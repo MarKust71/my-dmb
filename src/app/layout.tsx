@@ -17,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="light">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
         className={cn(
           'min-h-screen font-sans antialiased grainy',

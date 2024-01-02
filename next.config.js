@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withPWA = require('next-pwa')({
+  dest: 'public',
+})
+
 const nextConfig = {
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -29,4 +33,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA(nextConfig)
