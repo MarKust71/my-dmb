@@ -14,6 +14,7 @@ type LoginFormFieldProps = {
   type: string
   control: any
   disabled: boolean
+  autocomplete?: string
 }
 
 export const AuthFormField = ({
@@ -23,6 +24,7 @@ export const AuthFormField = ({
   type,
   control,
   disabled,
+  autocomplete,
 }: LoginFormFieldProps) => {
   return (
     <FormField
@@ -38,6 +40,7 @@ export const AuthFormField = ({
               placeholder={placeholder}
               type={type}
               disabled={disabled}
+              autoComplete={autocomplete}
             />
           </FormControl>
 

@@ -51,6 +51,7 @@ export const LoginForm = () => {
               type={'email'}
               control={form.control}
               disabled={isPending}
+              autocomplete={'login-email'}
             />
 
             <AuthFormField
@@ -60,6 +61,7 @@ export const LoginForm = () => {
               type={'password'}
               control={form.control}
               disabled={isPending}
+              autocomplete={'current-password'}
             />
           </div>
 
