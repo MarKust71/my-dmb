@@ -4,6 +4,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { logout } from '@/actions/logout'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -20,6 +21,9 @@ export default function DashboardNavbar() {
   const onLogoutClick = () => {
     logout()
   }
+
+  const loader = ({ src }: { src: string }) =>
+    `https://tailwindui.com/img/logos/${src}?color=indigo&shade=500`
 
   return (
     <Disclosure as="nav" className="bg-gray-800 w-full">
@@ -44,11 +48,24 @@ export default function DashboardNavbar() {
 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
+                  {/*
                   <img
                     className="h-8 w-auto"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                     alt="Your Company"
                   />
+*/}
+
+                  <div className="h-8 w-full">
+                    <Image
+                      loader={loader}
+                      src="mark.svg"
+                      alt="Your Company"
+                      // layout={'responsive'}
+                      height={32}
+                      width={38}
+                    />
+                  </div>
                 </div>
 
                 <div className="hidden sm:ml-6 sm:block">
@@ -90,11 +107,16 @@ export default function DashboardNavbar() {
 
                       <span className="sr-only">Open user menu</span>
 
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <div className="h-8 w-8">
+                        <Image
+                          className="rounded-full"
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          alt=""
+                          width={0}
+                          height={0}
+                          layout="responsive"
+                        />
+                      </div>
                     </Menu.Button>
                   </div>
 
