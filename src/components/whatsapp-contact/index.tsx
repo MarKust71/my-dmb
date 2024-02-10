@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 const WhatsappContact = () => {
   return (
@@ -8,9 +8,6 @@ const WhatsappContact = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {/*
-        <img src="/img/wa-contact.png" alt="Whatsapp" width="200px" />
-*/}
         <Image
           src="/img/wa-contact.png"
           alt="Whatsapp"

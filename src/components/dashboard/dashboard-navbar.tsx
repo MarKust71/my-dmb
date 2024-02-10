@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { logout } from '@/actions/logout'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -48,20 +48,11 @@ export default function DashboardNavbar() {
 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  {/*
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-*/}
-
                   <div className="h-8 w-full">
                     <Image
                       loader={loader}
                       src="mark.svg"
                       alt="Your Company"
-                      // layout={'responsive'}
                       height={32}
                       width={38}
                     />
