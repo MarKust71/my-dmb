@@ -80,3 +80,13 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .logo-mobile {
+    width: 200px;
+  }
+
+  .logo-desktop {
+    width: 400px;
+  }
+}
