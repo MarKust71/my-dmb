@@ -1,12 +1,12 @@
 import Image from 'next/legacy/image'
-import { CarouselItemContentProps } from '@/components/artistry/carousel-item-content.types'
+import { CarouselItemContentImageProps } from './carousel-item-content-image.types'
 
-export const CarouselItemContent = ({
+export const CarouselItemContentImage = ({
   src,
   alt,
   width,
   height,
-}: CarouselItemContentProps) => {
+}: CarouselItemContentImageProps) => {
   return (
     <div className={'drop-shadow-md text-center'}>
       <Image

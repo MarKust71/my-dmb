@@ -1,4 +1,4 @@
-export type CarouselItemContentProps = {
+export type CarouselItemContentImageProps = {
   src: string
   alt: string
   width: number
