@@ -31,7 +31,7 @@ const ArtistryHolisticPromoPage = () => {
           <div className={'paragraph-shape'} />
 
           <h1 className={'text-2xl font-bold mb-2'}>
-            Holistyczne zestawy Artistry
+            Holistyczne zestawy Artistry™
           </h1>
 
           <p>
@@ -39,7 +39,7 @@ const ArtistryHolisticPromoPage = () => {
             nawilżania, ujędrniania i regeneracji. Obejmują codzienne kroki
             pielęgnacyjne, wsparcie dla skóry od wewnątrz za pomocą suplementu*
             oraz dodatkowe wsparcie w postaci Zestawu do masażu twarzy i ciała
-            Artistry.
+            Artistry™.
           </p>
         </article>
 
@@ -49,49 +49,63 @@ const ArtistryHolisticPromoPage = () => {
           Dobierz zestaw do potrzeb swojej Pani
         </h1>
 
-        <Carousel>
-          <CarouselContent>
-            <CarouselItem>
-              <CarouselItemContent
-                href={'/artistry-holistic-promo?item=320868'}
-                title={'Holistyczny nawilżający zestaw Artistry™'}
-                subtitle={
-                  'Do młodej skóry, która wymaga jedynie kompleksowej pielęgnacji'
-                }
-                src={'/img/artistry/320868_PL_IMAGE_product-image_800_800.jpg'}
-                alt={'Artistry Holistic Promo'}
-              />
-            </CarouselItem>
+        <div className={'md:w-1/2 md:mx-auto'}>
+          <Carousel>
+            <CarouselContent>
+              <CarouselItem>
+                <CarouselItemContent
+                  href={
+                    'https://www.amway.pl/pl/recommendedProducts/sharedProducts-b9ac74b4-e5b0-479c-9dc0-9663d7f0dff6?aboSponsorCode=8286448&utm_source=copylink&utm_medium=sharebar&utm_campaign=pl_pl_15000008286448_102953354'
+                  }
+                  title={'Holistyczny nawilżający zestaw Artistry™'}
+                  subtitle={
+                    'Do młodej skóry, która wymaga jedynie kompleksowej pielęgnacji'
+                  }
+                  src={
+                    '/img/artistry/320868_PL_IMAGE_product-image_800_800.jpg'
+                  }
+                  alt={'Artistry Holistic Promo'}
+                />
+              </CarouselItem>
 
-            <CarouselItem>
-              <CarouselItemContent
-                href={'/artistry-holistic-promo?item=320871'}
-                title={'Holistyczny regenerujący zestaw Artistry™'}
-                subtitle={
-                  'Do skóry, na której widoczne są pierwsze oznaki zmęczenia i którą trzeba odżywić oraz ujędrnić'
-                }
-                src={'/img/artistry/320871_PL_IMAGE_product-image_800_800.jpg'}
-                alt={'Artistry Holistic Promo'}
-              />
-            </CarouselItem>
+              <CarouselItem>
+                <CarouselItemContent
+                  href={
+                    'https://www.amway.pl/pl/recommendedProducts/sharedProducts-227176cc-0c04-4ad7-87cf-a351fe580dcd?aboSponsorCode=8286448&utm_source=copylink&utm_medium=sharebar&utm_campaign=pl_pl_15000008286448_102953354'
+                  }
+                  title={'Holistyczny regenerujący zestaw Artistry™'}
+                  subtitle={
+                    'Do skóry, na której widoczne są pierwsze oznaki zmęczenia i którą trzeba odżywić oraz ujędrnić'
+                  }
+                  src={
+                    '/img/artistry/320871_PL_IMAGE_product-image_800_800.jpg'
+                  }
+                  alt={'Artistry Holistic Promo'}
+                />
+              </CarouselItem>
 
-            <CarouselItem>
-              <CarouselItemContent
-                href={'/artistry-holistic-promo?item=320874'}
-                title={'Holistyczny ujędrniający zestaw Artistry™'}
-                subtitle={
-                  'Do skóry wykazującej zaawansowane oznaki zmęczenia, potrzebującej rozjaśnienia i ujędrnienia'
-                }
-                src={'/img/artistry/320874_PL_IMAGE_product-image_800_800.jpg'}
-                alt={'Artistry Holistic Promo'}
-              />
-            </CarouselItem>
-          </CarouselContent>
+              <CarouselItem>
+                <CarouselItemContent
+                  href={
+                    'https://www.amway.pl/pl/recommendedProducts/sharedProducts-0c645145-ebbb-4056-96b1-82e14a14763b?aboSponsorCode=8286448&utm_source=copylink&utm_medium=sharebar&utm_campaign=pl_pl_15000008286448_102953354'
+                  }
+                  title={'Holistyczny ujędrniający zestaw Artistry™'}
+                  subtitle={
+                    'Do skóry wykazującej zaawansowane oznaki zmęczenia, potrzebującej rozjaśnienia i ujędrnienia'
+                  }
+                  src={
+                    '/img/artistry/320874_PL_IMAGE_product-image_800_800.jpg'
+                  }
+                  alt={'Artistry Holistic Promo'}
+                />
+              </CarouselItem>
+            </CarouselContent>
 
-          <CarouselPrevious />
+            <CarouselPrevious />
 
-          <CarouselNext />
-        </Carousel>
+            <CarouselNext />
+          </Carousel>
+        </div>
 
         <div className={'mb-3'} />
 
