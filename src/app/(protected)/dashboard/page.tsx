@@ -7,7 +7,8 @@ const DashboardPage = async () => {
     <DashboardWrapper>
       <DashboardSessionBox />
 
-      <Link href={'/body-cleansing-program'}>Body Cleansing program</Link>
+      <Link href={'/body-cleansing-program'}>Body Cleansing Program</Link>
+      <Link href={'/artistry-holistic-promo'}>Artistry Holistic Promo</Link>
     </DashboardWrapper>
   )
 }
