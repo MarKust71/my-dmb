@@ -1,6 +1,11 @@
-import { CarouselItemContentImage } from '@/components/artistry/carousel-item-content/carousel-item-content-image'
+'use client'
+
+import { CarouselItemContentImage } from './carousel-item-content-image'
 import { CarouselItemContentProps } from './carousel-item-content.types'
-import { CarouselItemContentVideo } from '@/components/artistry/carousel-item-content/carousel-item-content-video'
+import { CarouselItemContentVideo } from './carousel-item-content-video'
+import * as React from 'react'
+import { PrevButton } from './prev-button'
+import { NextButton } from './next-button'
 
 export const CarouselItemContent = ({
   href = '',
@@ -10,35 +15,45 @@ export const CarouselItemContent = ({
   alt = '',
   isVideo,
 }: CarouselItemContentProps) => {
-  if (isVideo) {
+  const CarouselItemContentHeader = () => {
     return (
-      <div className={'flex flex-col justify-between h-full'}>
-        <div>
+      <div className={'flex flex-row min-h-[140px]'}>
+        <PrevButton />
+
+        <div className={'flex-1'}>
           <h2 className={'text-center font-bold text-shadow mb-1'}>{title}</h2>
 
           <p className={'px-10 text-shadow text-center text-sm/5 mb-2'}>
             {subtitle}
           </p>
         </div>
-        <CarouselItemContentVideo src={src} width={400} height={300} />)
+
+        <NextButton />
+      </div>
+    )
+  }
+
+  if (isVideo) {
+    return (
+      <div className={'flex flex-col justify-start h-full'}>
+        <CarouselItemContentHeader />
+
+        <CarouselItemContentVideo src={src} width={'100%'} height={300} />
       </div>
     )
   }
 
   return (
-    <a
-      href={href}
-      className={'flex flex-col justify-between h-full'}
-      target={'_blank'}
-    >
-      <div>
-        <h2 className={'text-center font-bold text-shadow mb-1'}>{title}</h2>
+    <>
+      <CarouselItemContentHeader />
 
-        <p className={'px-10 text-shadow text-center text-sm/5 mb-2'}>
-          {subtitle}
-        </p>
-      </div>
-      <CarouselItemContentImage src={src} alt={alt} width={400} height={400} />
-    </a>
+      <CarouselItemContentImage
+        src={src}
+        alt={alt}
+        width={400}
+        height={400}
+        href={href}
+      />
+    </>
   )
 }

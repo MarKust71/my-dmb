@@ -3,4 +3,5 @@ export type CarouselItemContentImageProps = {
   alt: string
   width: number
   height: number
+  href: string
 }

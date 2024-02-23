@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel'
 import { CarouselItemContent } from '@/components/artistry/carousel-item-content'
 
@@ -41,12 +39,13 @@ const ArtistryHolisticPromoPage = () => {
             oraz dodatkowe wsparcie w postaci Zestawu do masażu twarzy i ciała
             Artistry™.
           </p>
+          <p>Każda kobieta marzy, żeby tak o siebie zadbać.</p>
         </article>
 
         <div className={'mb-8'} />
 
-        <h1 className={'text-2xl font-bold mb-6 text-shadow'}>
-          Dobierz zestaw do potrzeb swojej Pani
+        <h1 className={'text-2xl font-bold mb-4 text-shadow'}>
+          Dobierz zestaw do indywidualnych potrzeb
         </h1>
 
         <div className={'md:w-1/2 md:mx-auto mb-6'}>
@@ -111,12 +110,6 @@ const ArtistryHolisticPromoPage = () => {
                 />
               </CarouselItem>
             </CarouselContent>
-
-            <CarouselPrevious
-              className={'left-1 z-50 top-auto bottom-[410px]'}
-            />
-
-            <CarouselNext className={'right-1 z-50 top-auto bottom-[410px]'} />
           </Carousel>
         </div>
 
@@ -128,7 +121,13 @@ const ArtistryHolisticPromoPage = () => {
           produkcji kolagenu w celu zapewnienia prawidłowego funkcjonowania
           skóry.
         </p>
-        {/*<WhatsappContact />*/}
+
+        <p className={'text-gray-600 text-xs/3 pb-5 text-center'}>
+          Kampania jest realizowana przez:
+          <br /> MITAX Consulting sp. z o.o. z siedzibą w Zgorzelcu,
+          <br />
+          NIP PL6152043432
+        </p>
       </MaxWidthWrapper>
     </div>
   )
