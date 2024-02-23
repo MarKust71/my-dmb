@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { CarouselItemContent } from '@/components/artistry/carousel-item-content'
+import Image from 'next/legacy/image'
 
 const ArtistryHolisticPromoPage = () => {
   return (
@@ -121,6 +122,34 @@ const ArtistryHolisticPromoPage = () => {
           produkcji kolagenu w celu zapewnienia prawidłowego funkcjonowania
           skóry.
         </p>
+
+        <div
+          className={
+            'flex flex-col justify-center md:flex-row md:h-[300px] md:gap-2'
+          }
+        >
+          <div className={'md:w-[400px]'}>
+            <Image
+              src={'/img/artistry/page107-Artistry.png'}
+              width={400}
+              height={300}
+              layout={'responsive'}
+              alt={'Artistry Holistic Promo'}
+            />
+          </div>
+
+          <div className={'md:w-[400px]'}>
+            <Image
+              src={'/img/artistry/page107-Nutrilite.png'}
+              width={400}
+              height={300}
+              layout={'responsive'}
+              alt={'Artistry Holistic Promo'}
+            />
+          </div>
+        </div>
+
+        <div className={'mb-3'} />
 
         <p className={'text-gray-600 text-xs/3 pb-5 text-center'}>
           Kampania jest realizowana przez:
