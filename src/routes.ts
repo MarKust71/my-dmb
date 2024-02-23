@@ -1,4 +1,8 @@
-export const publicRoutes = ['/', '/body-cleansing-program']
+export const publicRoutes = [
+  '/',
+  '/body-cleansing-program',
+  '/artistry-holistic-promo',
+]
 
 export const authRoutes = ['/auth/login', '/auth/register']
 

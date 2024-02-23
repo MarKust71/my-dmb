@@ -1,5 +1,5 @@
 export type CarouselItemContentVideoProps = {
   src: string
-  width: number
-  height: number
+  width: number | string
+  height: number | string
 }
