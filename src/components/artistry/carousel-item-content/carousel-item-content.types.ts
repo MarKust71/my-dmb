@@ -1,7 +1,8 @@
 export type CarouselItemContentProps = {
-  href: string
+  href?: string
   title: string
   subtitle: string
   src: string
-  alt: string
+  alt?: string
+  isVideo?: boolean
 }

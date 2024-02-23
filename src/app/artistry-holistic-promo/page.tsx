@@ -43,13 +43,13 @@ const ArtistryHolisticPromoPage = () => {
           </p>
         </article>
 
-        <div className={'mb-4'} />
+        <div className={'mb-8'} />
 
-        <h1 className={'text-2xl font-bold mb-2 text-shadow'}>
+        <h1 className={'text-2xl font-bold mb-6 text-shadow'}>
           Dobierz zestaw do potrzeb swojej Pani
         </h1>
 
-        <div className={'md:w-1/2 md:mx-auto'}>
+        <div className={'md:w-1/2 md:mx-auto mb-6'}>
           <Carousel>
             <CarouselContent>
               <CarouselItem>
@@ -99,11 +99,24 @@ const ArtistryHolisticPromoPage = () => {
                   alt={'Artistry Holistic Promo'}
                 />
               </CarouselItem>
+
+              <CarouselItem>
+                <CarouselItemContent
+                  isVideo
+                  title={'Holistyczny ujędrniający zestaw Artistry™'}
+                  subtitle={'film promocyjny'}
+                  src={
+                    'https://drive.google.com/file/d/1VtfVITw8W46WI5fpFKIRhHdoIZ5Ng_ze/preview'
+                  }
+                />
+              </CarouselItem>
             </CarouselContent>
 
-            <CarouselPrevious />
+            <CarouselPrevious
+              className={'left-1 z-50 top-auto bottom-[410px]'}
+            />
 
-            <CarouselNext />
+            <CarouselNext className={'right-1 z-50 top-auto bottom-[410px]'} />
           </Carousel>
         </div>
 
