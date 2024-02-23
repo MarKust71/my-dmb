@@ -33,23 +33,22 @@ const ArtistryHolisticPromoPage = () => {
             Holistyczne zestawy Artistry™
           </h1>
 
-          <p>
-            to kompleksowa odpowiedź na potrzeby skóry twarzy i ciała w zakresie
-            nawilżania, ujędrniania i regeneracji. Obejmują codzienne kroki
-            pielęgnacyjne, wsparcie dla skóry od wewnątrz za pomocą suplementu*
-            oraz dodatkowe wsparcie w postaci Zestawu do masażu twarzy i ciała
-            Artistry™.
+          <p className={'text-sm md:text-md'}>
+            to kompleksowa odpowiedź na&nbsp;potrzeby skóry twarzy i&nbsp;ciała
+            w&nbsp;zakresie nawilżania, ujędrniania i&nbsp;regeneracji. Obejmują
+            codzienne kroki pielęgnacyjne, wsparcie dla skóry od&nbsp;wewnątrz
+            za pomocą suplementu* oraz dodatkowe wsparcie w&nbsp;postaci Zestawu
+            do masażu twarzy i&nbsp;ciała Artistry™.
           </p>
-          <p>Każda kobieta marzy, żeby tak o siebie zadbać.</p>
         </article>
 
         <div className={'mb-8'} />
 
         <h1 className={'text-2xl font-bold mb-4 text-shadow'}>
-          Dobierz zestaw do indywidualnych potrzeb
+          Dobierz ekskluzywny zestaw do&nbsp;swoich indywidualnych potrzeb
         </h1>
 
-        <div className={'md:w-1/2 md:mx-auto mb-6'}>
+        <div className={'md:w-1/2 md:mx-auto'}>
           <Carousel>
             <CarouselContent>
               <CarouselItem>
@@ -114,7 +113,13 @@ const ArtistryHolisticPromoPage = () => {
           </Carousel>
         </div>
 
-        <div className={'mb-3'} />
+        <div className={'mb-6'} />
+
+        <p className={'text-center text-xs/3 pb-5'}>
+          Wszystkie oferowane produkty objęte są 90-dniową gwarancją
+          satysfakcji, która w przypadku braku zadowolenia z ich działania
+          umożliwia w tym czasie ich wymianę na inny produkt lub jego zwrot.
+        </p>
 
         <p className={'text-gray-600 text-xs/3 pb-5'}>
           * Produkt Nutrilite™ Biotin C Plus zawiera biotynę i witaminę C.
