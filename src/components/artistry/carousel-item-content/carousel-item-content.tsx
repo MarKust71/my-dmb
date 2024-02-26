@@ -91,6 +91,11 @@ export const CarouselItemContent = ({
               ułatwieniem w&nbsp;przypadku potrzeby złożenia reklamacji,
               dokonania wymiany albo zwrotu zakupionego towaru.
             </p>
+
+            <p className={'p-4 text-justify'}>
+              Założenie konta nie zmusza do dokonania zakupu, ale umożliwi
+              bezpośredni kontakt ze sprzedającym.
+            </p>
             <DrawerFooter>
               <DrawerClose asChild>
                 <Link href={href} target={'_blank'}>
