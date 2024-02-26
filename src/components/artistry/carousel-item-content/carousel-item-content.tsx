@@ -6,6 +6,8 @@ import { CarouselItemContentVideo } from './carousel-item-content-video'
 import * as React from 'react'
 import { PrevButton } from './prev-button'
 import { NextButton } from './next-button'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export const CarouselItemContent = ({
   href = '',
@@ -54,6 +56,12 @@ export const CarouselItemContent = ({
         height={400}
         href={href}
       />
+
+      <Link href={href} target={'_blank'}>
+        <Button variant={'destructive'} className={'w-full mt-4 text-2xl'}>
+          Ten klikam i zamawiam!
+        </Button>
+      </Link>
     </>
   )
 }
