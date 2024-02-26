@@ -10,10 +10,10 @@ export const CarouselItemContentImage = ({
 }: CarouselItemContentImageProps) => {
   return (
     <div className={'drop-shadow-md text-center'}>
-      <a
-        href={href}
-        className={`flex flex-col justify-between h-full max-w-[${width}px] rounded-xl overflow-hidden  mx-auto`}
-        target={'_blank'}
+      <div
+        className={
+          'flex flex-col justify-between h-full max-w-[400px] rounded-xl overflow-hidden mx-auto'
+        }
       >
         <Image
           className={'rounded-xl'}
@@ -23,7 +23,7 @@ export const CarouselItemContentImage = ({
           layout={'responsive'}
           alt={alt}
         />
-      </a>
+      </div>
     </div>
   )
 }
