@@ -17,7 +17,7 @@ export const CarouselItemContent = ({
 }: CarouselItemContentProps) => {
   const CarouselItemContentHeader = () => {
     return (
-      <div className={'flex flex-row min-h-[140px]'}>
+      <div className={'flex flex-row min-h-[140px] md:min-h-[80px]'}>
         <PrevButton />
 
         <div className={'flex-1'}>

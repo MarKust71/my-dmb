@@ -10,7 +10,7 @@ import {
 import { CarouselItemContent } from '@/components/artistry/carousel-item-content'
 import Image from 'next/legacy/image'
 
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 
 const ArtistryHolisticPromoPage = () => {
   return (
@@ -168,7 +168,9 @@ const ArtistryHolisticPromoPage = () => {
           </p>
         </MaxWidthWrapper>
       </div>
+
       <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_ID}`} />
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_ID}`} />
     </>
   )
 }
