@@ -3,7 +3,6 @@
 import { CarouselItemContentImage } from './carousel-item-content-image'
 import { CarouselItemContentProps } from './carousel-item-content.types'
 import { CarouselItemContentVideo } from './carousel-item-content-video'
-import * as React from 'react'
 import { PrevButton } from './prev-button'
 import { NextButton } from './next-button'
 import { Button } from '@/components/ui/button'
@@ -18,6 +17,8 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 
+import React from 'react'
+
 export const CarouselItemContent = ({
   href = '',
   title,
@@ -26,6 +27,9 @@ export const CarouselItemContent = ({
   alt = '',
   isVideo,
 }: CarouselItemContentProps) => {
+  const closeButtonRef: React.Ref<HTMLButtonElement | undefined> =
+    React.createRef()
+
   const CarouselItemContentHeader = () => {
     return (
       <div className={'flex flex-row min-h-[140px] md:min-h-[80px]'}>
@@ -44,6 +48,18 @@ export const CarouselItemContent = ({
     )
   }
 
+  const onClick = () => {
+    setTimeout(() => closeButtonRef?.current?.click(), 3000)
+  }
+
+  const onClose = () => {
+    let timeoutId = window.setTimeout(function () {}, 0)
+
+    while (timeoutId--) {
+      window.clearTimeout(timeoutId)
+    }
+  }
+
   if (isVideo) {
     return (
       <div className={'flex flex-col justify-start h-full'}>
@@ -58,8 +74,8 @@ export const CarouselItemContent = ({
     <>
       <CarouselItemContentHeader />
 
-      <Drawer>
-        <DrawerTrigger className={'w-full'}>
+      <Drawer onClose={onClose}>
+        <DrawerTrigger className={'w-full'} onClick={onClick}>
           <CarouselItemContentImage
             src={src}
             alt={alt}
@@ -97,7 +113,10 @@ export const CarouselItemContent = ({
               bezpośredni kontakt ze sprzedającym.
             </p>
             <DrawerFooter>
-              <DrawerClose asChild>
+              <DrawerClose
+                asChild
+                ref={closeButtonRef as React.Ref<HTMLButtonElement> | undefined}
+              >
                 <Link href={href} target={'_blank'}>
                   <Button variant={'destructive'} className={'w-full'}>
                     Idę dalej
