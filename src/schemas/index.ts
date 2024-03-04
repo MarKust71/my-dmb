@@ -20,3 +20,13 @@ export const RegisterSchema = z.object({
     message: 'At least 6 characters required',
   }),
 })
+
+export const ContactSchema = z.object({
+  email: z.string().email({
+    message: 'To nie jest poprawny email',
+  }),
+  name: z.string().min(1, {
+    message: 'Podanie imienia jest wymagane',
+  }),
+  gdprConsent: z.boolean().default(false),
+})

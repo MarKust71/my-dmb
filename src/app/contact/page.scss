@@ -1,0 +1,13 @@
+.logo-drop-shadow {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))
+}
+
+.text-shadow {
+  text-shadow: 4px 3px 4px rgba(255, 255, 255, 0.6);
+}
+
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
