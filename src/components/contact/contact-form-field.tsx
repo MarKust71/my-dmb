@@ -6,9 +6,9 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { LoginFormFieldProps } from '@/components/auth/auth-form-field.types'
+import { ContactFormFieldProps } from '@/components/contact/contact-form-field.types'
 
-export const AuthFormField = ({
+export const ContactFormField = ({
   name,
   label,
   placeholder,
@@ -16,14 +16,15 @@ export const AuthFormField = ({
   control,
   disabled,
   autocomplete,
-}: LoginFormFieldProps) => {
+  className,
+}: ContactFormFieldProps) => {
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
+        <FormItem className={className}>
+          {!!label && <FormLabel>{label}</FormLabel>}
 
           <FormControl>
             <Input
