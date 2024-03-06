@@ -6,23 +6,27 @@ const ContactMarekKustoszPage = () => {
     <>
       <div
         className={
-          'bg-[#0C0A0D] bg-[url("/img/contact/marek-kustosz.png")] bg-no-repeat bg-contain bg-top h-screen w-screen'
+          'bg-[#0C0A0D] bg-[url("/img/contact/marek-kustosz.png")] bg-no-repeat bg-cover bg-top h-screen w-screen md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
         }
       >
-        <div
-          className={
-            'h-screen w-screen bg-[linear-gradient(to_top,_#0C0A0D_25%,_transparent)] '
-          }
-        >
-          {/*
+        {/*
         <h1 className={'text-white text-xl font-medium p-4'}>Marek Kustosz</h1>
 */}
+
+        <div
+          className={
+            'text-white p-4 w-full h-full flex flex-col-reverse md:h-auto'
+          }
+        >
+          <ContactForm />
         </div>
       </div>
 
+      {/*
       <div className={'absolute bottom-0 text-white p-4 w-full'}>
         <ContactForm />
       </div>
+*/}
     </>
   )
 }
