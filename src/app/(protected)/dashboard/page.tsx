@@ -9,6 +9,7 @@ const DashboardPage = async () => {
 
       <Link href={'/body-cleansing-program'}>Body Cleansing Program</Link>
       <Link href={'/artistry-holistic-promo'}>Artistry Holistic Promo</Link>
+      <Link href={'/contact/marek-kustosz'}>Kontakt Marek Kustosz</Link>
     </DashboardWrapper>
   )
 }
