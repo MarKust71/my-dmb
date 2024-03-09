@@ -10,13 +10,14 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form'
-import { ArrowRightCircle, WaQrMarekKustosz } from '@/components/svgs'
+import { WaQrMarekKustosz } from '../ui/svgs'
 import { ContactFormField } from '@/components/contact/contact-form-field'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactSchema } from '@/schemas'
 import Link from 'next/link'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useEffect, useState } from 'react'
+import { ArrowRightCircle } from '@/components/ui/buttons/arrow-right-circle'
 
 export const ContactForm = () => {
   const [isConsentVisible, setIsConsentVisible] = useState(false)
@@ -79,10 +80,10 @@ export const ContactForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className={'space-y-1 flex flex-col'}>
+          <div className={'space-y-4 flex flex-col p-4 bg-white/15'}>
             <p className={'text-sm'}>
               {
-                'Skontaktuję sie z Tobą w ciągu kilku godzin, jeśli tylko dasz mi taką szansę. ☺️ Dziekuję ☺️'
+                'Skontaktuję się z Tobą w ciągu kilku godzin, jeśli tylko dasz mi tę szansę. ☺️ Dziekuję ☺️'
               }
             </p>
 
@@ -108,7 +109,11 @@ export const ContactForm = () => {
               />
 
               <button type={'submit'} className={'mr-3 mt-1'}>
-                <ArrowRightCircle />
+                <ArrowRightCircle
+                  width={32}
+                  height={32}
+                  fill={!consent ? '#666' : undefined}
+                />
               </button>
             </div>
 
@@ -126,10 +131,7 @@ export const ContactForm = () => {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Wyrażam zgodę na przetwarzanie udostępnionych przeze
-                        mnie danych osobowych.
-                      </FormLabel>
+                      <FormLabel>Zgoda RODO</FormLabel>
 
                       <FormDescription>
                         Pełna treść udzielanej zgody{' '}

@@ -1,5 +1,5 @@
 import MaxWidthWrapper from '@/components/max-width-wrapper'
-import { ArtistryLogotype } from '@/components/svgs'
+import { ArtistryLogotype } from '@/components/ui/svgs'
 
 import './page.scss'
 import {

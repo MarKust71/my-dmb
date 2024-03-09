@@ -33,6 +33,7 @@ export const ContactFormField = ({
               type={type}
               disabled={disabled}
               autoComplete={autocomplete}
+              className={'ring-offset-ring focus-visible:ring-background'}
             />
           </FormControl>
 
