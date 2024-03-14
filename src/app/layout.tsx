@@ -28,7 +28,8 @@ export default async function RootLayout({
         <body
           className={cn(
             'min-h-screen font-sans antialiased grainy',
-            inter.className
+            inter.className,
+            'bg-[#0C0A0D] text-white'
           )}
         >
           {children}
