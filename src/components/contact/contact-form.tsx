@@ -23,10 +23,13 @@ import { SocialInstagram } from '@/components/ui/icons/social-instagram'
 import { SocialFacebook } from '@/components/ui/icons/social-facebook'
 import { SocialLinkedin } from '@/components/ui/icons/social-linkedin'
 import { ContactEmail } from '@/components/ui/icons/contact-email'
+import { ContactPhone } from '@/components/ui/icons/contact-phone'
+import { cn } from '@/lib/utils'
 
 export const ContactForm = () => {
   const [isConsentVisible, setIsConsentVisible] = useState(false)
   const [isContactFormVisible, setIsContactFormVisible] = useState(false)
+  const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactSchema),
@@ -56,6 +59,10 @@ export const ContactForm = () => {
     setIsContactFormVisible((prevState) => !prevState)
   }
 
+  const toggleContactPhone = () => {
+    setIsContactPhoneVisible((prevState) => !prevState)
+  }
+
   useEffect(() => {
     if (name && isEmailValid(email)) {
       setIsConsentVisible(true)
@@ -66,8 +73,8 @@ export const ContactForm = () => {
 
   return (
     <div className={'flex flex-col justify-between h-full'}>
-      <div className={'flex flex-col w-fit'}>
-        <div className={'items-center'}>
+      <div className={'flex flex-col'}>
+        <div className={'items-center w-fit'}>
           <p className={'text-sm text-center'}>{'WhatsApp'}</p>
 
           <div className={'w-20 h-20'}>
@@ -103,7 +110,30 @@ export const ContactForm = () => {
           </a>
 
           <div onClick={toggleContactForm}>
-            <ContactEmail width={48} height={48} fill={'#999DAD'} />
+            <ContactEmail
+              width={48}
+              height={48}
+              fill={isContactFormVisible ? '#fff' : '#999DAD'}
+            />
+          </div>
+
+          <div className={'flex flex-row justify-start items-center gap-4'}>
+            <div onClick={toggleContactPhone}>
+              <ContactPhone
+                width={48}
+                height={48}
+                fill={isContactPhoneVisible ? '#fff' : '#999DAD'}
+              />
+            </div>
+            <a
+              href={'tel:+48600414149'}
+              className={cn(
+                isContactPhoneVisible ? '' : 'hidden',
+                'font-bold text-xl'
+              )}
+            >
+              {'+48 600 414149'}
+            </a>
           </div>
         </div>
       </div>
