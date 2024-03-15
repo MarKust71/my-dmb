@@ -1,5 +1,6 @@
 import '../page.scss'
 import { ContactForm } from '@/components/contact/contact-form'
+import { WaQrMarekKustosz } from '@/components/ui/svgs'
 
 const ContactMarekKustoszPage = () => {
   return (
@@ -18,7 +19,15 @@ const ContactMarekKustoszPage = () => {
             'text-white p-4 w-full h-full flex flex-col-reverse md:h-auto'
           }
         >
-          <ContactForm />
+          <ContactForm
+            whatsapp={'https://wa.me/48600414149'}
+            whatsappQr={<WaQrMarekKustosz />}
+            instagram={'https://www.instagram.com/marek.kustosz/'}
+            facebook={'https://www.facebook.com/markust71/'}
+            linkedin={'https://www.linkedin.com/in/mkustosz/'}
+            phoneUrl={'tel:+48600414149'}
+            phone={'+48 600 414149'}
+          />
         </div>
       </div>
 
