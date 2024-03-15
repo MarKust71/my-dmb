@@ -1,7 +1,7 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { ContactFormValues } from './contact-form.types'
+import { ContactFormProps, ContactFormValues } from './contact-form.types'
 import {
   Form,
   FormControl,
@@ -10,7 +10,6 @@ import {
   FormItem,
   FormLabel,
 } from '@/components/ui/form'
-import { WaQrMarekKustosz } from '../ui/svgs'
 import { ContactFormField } from '@/components/contact/contact-form-field'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactSchema } from '@/schemas'
@@ -26,7 +25,15 @@ import { ContactEmail } from '@/components/ui/icons/contact-email'
 import { ContactPhone } from '@/components/ui/icons/contact-phone'
 import { cn } from '@/lib/utils'
 
-export const ContactForm = () => {
+export const ContactForm = ({
+  whatsapp,
+  whatsappQr,
+  instagram,
+  facebook,
+  linkedin,
+  phoneUrl,
+  phone,
+}: ContactFormProps) => {
   const [isConsentVisible, setIsConsentVisible] = useState(false)
   const [isContactFormVisible, setIsContactFormVisible] = useState(false)
   const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
@@ -78,12 +85,8 @@ export const ContactForm = () => {
           <p className={'text-sm text-center'}>{'WhatsApp'}</p>
 
           <div className={'w-20 h-20'}>
-            <a
-              href="https://wa.me/48600414149"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WaQrMarekKustosz />
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+              {whatsappQr}
             </a>
           </div>
 
@@ -97,15 +100,15 @@ export const ContactForm = () => {
         </div>
 
         <div className={'flex flex-col gap-1 mt-8'}>
-          <a href={'https://www.instagram.com/marek.kustosz/'} target={'_self'}>
+          <a href={instagram} target={'_self'}>
             <SocialInstagram width={48} height={48} fill={'#999DAD'} />
           </a>
 
-          <a href={'https://www.facebook.com/markust71/'} target={'_self'}>
+          <a href={facebook} target={'_self'}>
             <SocialFacebook width={48} height={48} fill={'#999DAD'} />
           </a>
 
-          <a href={'https://www.linkedin.com/in/mkustosz/'} target={'_self'}>
+          <a href={linkedin} target={'_self'}>
             <SocialLinkedin width={48} height={48} fill={'#999DAD'} />
           </a>
 
@@ -126,13 +129,13 @@ export const ContactForm = () => {
               />
             </div>
             <a
-              href={'tel:+48600414149'}
+              href={phoneUrl}
               className={cn(
                 isContactPhoneVisible ? '' : 'hidden',
                 'font-bold text-xl'
               )}
             >
-              {'+48 600 414149'}
+              {phone}
             </a>
           </div>
         </div>
