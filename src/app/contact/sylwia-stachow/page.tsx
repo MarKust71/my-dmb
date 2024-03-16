@@ -1,6 +1,6 @@
 import '../page.scss'
 import { ContactForm } from '@/components/contact/contact-form'
-import { WaQrMarekKustosz } from '@/components/ui/svgs'
+import { WaQrSylwiaStachow } from '@/components/ui/svgs'
 
 const ContactSylwiaStachowPage = () => {
   return (
@@ -21,10 +21,12 @@ const ContactSylwiaStachowPage = () => {
         >
           <ContactForm
             whatsapp={'https://wa.me/48665009121'}
-            whatsappQr={<WaQrMarekKustosz />}
-            instagram={'https://www.instagram.com/marek.kustosz/'}
-            facebook={'https://www.facebook.com/markust71/'}
-            linkedin={'https://www.linkedin.com/in/mkustosz/'}
+            whatsappQr={<WaQrSylwiaStachow />}
+            instagram={'https://www.instagram.com/sylwia_stachow/'}
+            facebook={'https://www.facebook.com/sylwia.kucharzak.0'}
+            linkedin={
+              'https://www.linkedin.com/in/sylwia-stach%C3%B3w-b883892a9/'
+            }
             phoneUrl={'tel:+48600414149'}
             phone={'+48 665 009121'}
           />
