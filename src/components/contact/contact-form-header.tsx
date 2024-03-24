@@ -4,6 +4,8 @@ import { ContactFormHeaderProps } from '@/components/contact/contact-form-header
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
+import './contact-form.css'
+
 export const ContactFormHeader = ({
   children,
   qrcode,
@@ -16,11 +18,12 @@ export const ContactFormHeader = ({
 
   return (
     <div>
-      <div onClick={toggleIsQrCodeVisible}>
+      <div onClick={toggleIsQrCodeVisible} className={'cursor-pointer'}>
         <h1
           className={cn(
             'text-[#999DAD] text-xl font-medium p-4',
-            isQrCodeUrlVisible && 'text-[#fff]'
+            isQrCodeUrlVisible && 'text-white',
+            'transition-colors duration-200 ease-in-out'
           )}
         >
           {children}

@@ -13,3 +13,12 @@ export type ContactFormProps = {
   phoneUrl: string
   phone: string
 }
+
+export enum ContactType {
+  EMAIL = 'email',
+  PHONE = 'phone',
+  WHATSAPP = 'whatsapp',
+  INSTAGRAM = 'instagram',
+  FACEBOOK = 'facebook',
+  LINKEDIN = 'linkedin',
+}
