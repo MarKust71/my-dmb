@@ -65,16 +65,28 @@ export const ContactForm = ({
     }
   }
 
+  const unSetAll = () => {
+    setIsContactFormVisible(() => false)
+    setIsContactPhoneVisible(() => false)
+    setIsContactWhatsAppVisible(() => false)
+  }
+
   const toggleContactForm = () => {
-    setIsContactFormVisible((prevState) => !prevState)
+    unSetAll()
+    // setIsContactFormVisible((prevState) => !prevState)
+    setIsContactFormVisible(() => true)
   }
 
   const toggleContactPhone = () => {
-    setIsContactPhoneVisible((prevState) => !prevState)
+    unSetAll()
+    // setIsContactPhoneVisible((prevState) => !prevState)
+    setIsContactPhoneVisible(() => true)
   }
 
   const toggleContactWhatsApp = () => {
-    setIsContactWhatsAppVisible((prevState) => !prevState)
+    unSetAll()
+    // setIsContactWhatsAppVisible((prevState) => !prevState)
+    setIsContactWhatsAppVisible(() => true)
   }
 
   useEffect(() => {
@@ -97,6 +109,7 @@ export const ContactForm = ({
                 fill={isContactWhatsAppVisible ? '#fff' : '#999DAD'}
               />
             </div>
+
             {isContactWhatsAppVisible && (
               <div
                 className={

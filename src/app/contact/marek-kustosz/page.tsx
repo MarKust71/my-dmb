@@ -2,6 +2,8 @@ import '../page.scss'
 import { ContactForm } from '@/components/contact/contact-form'
 import { cn } from '@/lib/utils'
 import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
+import { ContactFormHeader } from '@/components/contact/contact-form-header'
+import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 
 const ContactMarekKustoszPage = () => {
   return (
@@ -13,9 +15,9 @@ const ContactMarekKustoszPage = () => {
           'md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
         )}
       >
-        <h1 className={'text-[#999DAD] text-xl font-medium p-4'}>
-          Marek Kustosz
-        </h1>
+        <ContactFormHeader qrcode={<QrCodeUrlMarekKustosz />}>
+          {'Marek Kustosz'}
+        </ContactFormHeader>
 
         <div
           className={
