@@ -24,6 +24,7 @@ import { SocialLinkedin } from '@/components/ui/icons/social-linkedin'
 import { ContactEmail } from '@/components/ui/icons/contact-email'
 import { ContactPhone } from '@/components/ui/icons/contact-phone'
 import { cn } from '@/lib/utils'
+import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
 
 export const ContactForm = ({
   whatsapp,
@@ -37,6 +38,8 @@ export const ContactForm = ({
   const [isConsentVisible, setIsConsentVisible] = useState(false)
   const [isContactFormVisible, setIsContactFormVisible] = useState(false)
   const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
+  const [isContactWhatsAppVisible, setIsContactWhatsAppVisible] =
+    useState(false)
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactSchema),
@@ -70,6 +73,10 @@ export const ContactForm = ({
     setIsContactPhoneVisible((prevState) => !prevState)
   }
 
+  const toggleContactWhatsApp = () => {
+    setIsContactWhatsAppVisible((prevState) => !prevState)
+  }
+
   useEffect(() => {
     if (name && isEmailValid(email)) {
       setIsConsentVisible(true)
@@ -79,27 +86,60 @@ export const ContactForm = ({
   }, [name, email])
 
   return (
-    <div className={'flex flex-col justify-between h-full'}>
+    <div className={'flex flex-col justify-between'}>
       <div className={'flex flex-col'}>
-        <div className={'items-center w-fit'}>
-          <p className={'text-sm text-center'}>{'WhatsApp'}</p>
+        <div className={'flex flex-col gap-1 mt-8'}>
+          <div className={'flex flex-row justify-start items-end gap-4'}>
+            <div onClick={toggleContactWhatsApp}>
+              <ContactWhatsApp
+                width={48}
+                height={48}
+                fill={isContactWhatsAppVisible ? '#fff' : '#999DAD'}
+              />
+            </div>
+            {isContactWhatsAppVisible && (
+              <div
+                className={
+                  'flex flex-row items-center w-fit gap-4 bg-black/50 pr-4'
+                }
+              >
+                <div className={'w-20 h-20'}>
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+                    {whatsappQr}
+                  </a>
+                </div>
 
-          <div className={'w-20 h-20'}>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer">
-              {whatsappQr}
+                <p className={'text-xs text-center'}>
+                  Zeskanuj
+                  <br />
+                  albo
+                  <br />
+                  kliknij kod
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className={'flex flex-row justify-start items-center gap-4'}>
+            <div onClick={toggleContactPhone}>
+              <ContactPhone
+                width={48}
+                height={48}
+                fill={isContactPhoneVisible ? '#fff' : '#999DAD'}
+              />
+            </div>
+
+            <a
+              href={phoneUrl}
+              className={cn(
+                isContactPhoneVisible ? '' : 'hidden',
+                'font-bold text-xl'
+              )}
+            >
+              {phone}
             </a>
           </div>
 
-          <p className={'text-xs text-muted-foreground text-center'}>
-            Zeskanuj
-            <br />
-            albo
-            <br />
-            kliknij kod
-          </p>
-        </div>
-
-        <div className={'flex flex-col gap-1 mt-8'}>
           <a href={instagram} target={'_self'}>
             <SocialInstagram width={48} height={48} fill={'#999DAD'} />
           </a>
@@ -112,107 +152,92 @@ export const ContactForm = ({
             <SocialLinkedin width={48} height={48} fill={'#999DAD'} />
           </a>
 
-          <div onClick={toggleContactForm}>
-            <ContactEmail
-              width={48}
-              height={48}
-              fill={isContactFormVisible ? '#fff' : '#999DAD'}
-            />
-          </div>
-
-          <div className={'flex flex-row justify-start items-center gap-4'}>
-            <div onClick={toggleContactPhone}>
-              <ContactPhone
+          <div className={'flex flex-row justify-start items-end gap-4'}>
+            <div onClick={toggleContactForm}>
+              <ContactEmail
                 width={48}
                 height={48}
-                fill={isContactPhoneVisible ? '#fff' : '#999DAD'}
+                fill={isContactFormVisible ? '#fff' : '#999DAD'}
               />
             </div>
-            <a
-              href={phoneUrl}
-              className={cn(
-                isContactPhoneVisible ? '' : 'hidden',
-                'font-bold text-xl'
-              )}
-            >
-              {phone}
-            </a>
+
+            {isContactFormVisible && (
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className={'w-full'}
+                >
+                  <div className={'space-y-4 flex flex-col p-4 bg-white/15'}>
+                    <p className={'text-sm'}>{'Proszę o szybką odpowiedź.'}</p>
+
+                    <ContactFormField
+                      className={'text-black'}
+                      name={'email'}
+                      placeholder={'E-mail, np. jan.kowalski@mail.com'}
+                      type={'email'}
+                      control={form.control}
+                      disabled={false}
+                      autocomplete={'login-email'}
+                    />
+
+                    <div className={'pb-1 flex flex-row gap-4 items-start'}>
+                      <ContactFormField
+                        className={'text-black flex-1'}
+                        name={'name'}
+                        placeholder={'Imię, np. Janek Kowalski'}
+                        type={'text'}
+                        control={form.control}
+                        disabled={false}
+                        autocomplete={'login-email'}
+                      />
+
+                      <button type={'submit'} className={'mr-3 mt-1'}>
+                        <ArrowRightCircle
+                          width={32}
+                          height={32}
+                          fill={!consent ? '#666' : undefined}
+                        />
+                      </button>
+                    </div>
+
+                    <div className={isConsentVisible ? '' : 'hidden'}>
+                      <FormField
+                        control={form.control}
+                        name="gdprConsent"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                            <FormControl>
+                              <Checkbox
+                                className={'border-gray-200'}
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>Zgoda RODO</FormLabel>
+
+                              <FormDescription>
+                                Pełna treść udzielanej zgody{' '}
+                                <Link
+                                  href="/examples/forms"
+                                  className={'font-bold'}
+                                >
+                                  TUTAJ
+                                </Link>
+                                .
+                              </FormDescription>
+                            </div>
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+                </form>
+              </Form>
+            )}
           </div>
         </div>
       </div>
-
-      {isContactFormVisible && (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className={'space-y-4 flex flex-col p-4 bg-white/15'}>
-              <ContactFormField
-                className={'text-black'}
-                name={'email'}
-                placeholder={'Wpisz adres, np. jan.kowalski@mail.com'}
-                type={'email'}
-                control={form.control}
-                disabled={false}
-                autocomplete={'login-email'}
-              />
-
-              <div className={'pb-1 flex flex-row gap-4 items-start'}>
-                <ContactFormField
-                  className={'text-black flex-1'}
-                  name={'name'}
-                  placeholder={'Podaj imię, np. Janek Kowalski'}
-                  type={'text'}
-                  control={form.control}
-                  disabled={false}
-                  autocomplete={'login-email'}
-                />
-
-                <button type={'submit'} className={'mr-3 mt-1'}>
-                  <ArrowRightCircle
-                    width={32}
-                    height={32}
-                    fill={!consent ? '#666' : undefined}
-                  />
-                </button>
-              </div>
-
-              <p className={'text-sm !mt-0'}>
-                {
-                  'W ciągu najbliższych godzin skontaktuję się korzystając z podanego wyżej adresu.'
-                }
-              </p>
-
-              <div className={isConsentVisible ? '' : 'hidden'}>
-                <FormField
-                  control={form.control}
-                  name="gdprConsent"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
-                      <FormControl>
-                        <Checkbox
-                          className={'border-gray-200'}
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>Zgoda RODO</FormLabel>
-
-                        <FormDescription>
-                          Pełna treść udzielanej zgody{' '}
-                          <Link href="/examples/forms" className={'font-bold'}>
-                            TUTAJ
-                          </Link>
-                          .
-                        </FormDescription>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
-          </form>
-        </Form>
-      )}
     </div>
   )
 }

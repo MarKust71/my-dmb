@@ -39,6 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 https://www.youtube.com/watch?v=1MTyCvS05V4
+https://www.svgrepo.com/svg/138928/whatsapp
 
 https://console.neon.tech/app/projects
 https://api.elephantsql.com/console/770924f7-9d9b-4e39-b664-3988c0dfd944/details
