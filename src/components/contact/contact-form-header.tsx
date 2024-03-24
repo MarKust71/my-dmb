@@ -15,7 +15,7 @@ export const ContactFormHeader = ({
   }
 
   return (
-    <>
+    <div>
       <div onClick={toggleIsQrCodeVisible}>
         <h1
           className={cn(
@@ -30,6 +30,6 @@ export const ContactFormHeader = ({
       {isQrCodeUrlVisible && (
         <div className={'w-32 h-32 ml-4 bg-black/50'}>{qrcode}</div>
       )}
-    </>
+    </div>
   )
 }
