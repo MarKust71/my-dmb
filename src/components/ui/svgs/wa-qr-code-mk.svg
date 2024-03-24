@@ -1,5 +1,8 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 500 500"
+>
     <defs>
         <clipPath id="clip-path-dot-color">
             <circle cx="26" cy="154" r="8" transform="rotate(0,26,154)"/>

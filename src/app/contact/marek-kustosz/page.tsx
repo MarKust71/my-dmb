@@ -1,18 +1,21 @@
 import '../page.scss'
 import { ContactForm } from '@/components/contact/contact-form'
-import { WaQrMarekKustosz } from '@/components/ui/svgs'
+import { cn } from '@/lib/utils'
+import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
 
 const ContactMarekKustoszPage = () => {
   return (
     <>
       <div
-        className={
-          'bg-[#0C0A0D] bg-[url("/img/contact/marek-kustosz.png")] bg-no-repeat bg-cover bg-top h-screen w-screen md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
-        }
+        className={cn(
+          'h-screen w-screen flex flex-col justify-between items-start',
+          'bg-[#0C0A0D] bg-[url("/img/contact/marek-kustosz.png")] bg-no-repeat bg-cover bg-top',
+          'md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
+        )}
       >
-        {/*
-        <h1 className={'text-white text-xl font-medium p-4'}>Marek Kustosz</h1>
-*/}
+        <h1 className={'text-[#999DAD] text-xl font-medium p-4'}>
+          Marek Kustosz
+        </h1>
 
         <div
           className={
@@ -21,7 +24,7 @@ const ContactMarekKustoszPage = () => {
         >
           <ContactForm
             whatsapp={'https://wa.me/48600414149'}
-            whatsappQr={<WaQrMarekKustosz />}
+            whatsappQr={<QrCodeWhatsAppMarekKustosz />}
             instagram={'https://www.instagram.com/marek.kustosz/'}
             facebook={'https://www.facebook.com/markust71/'}
             linkedin={'https://www.linkedin.com/in/mkustosz/'}
@@ -30,12 +33,6 @@ const ContactMarekKustoszPage = () => {
           />
         </div>
       </div>
-
-      {/*
-      <div className={'absolute bottom-0 text-white p-4 w-full'}>
-        <ContactForm />
-      </div>
-*/}
     </>
   )
 }
