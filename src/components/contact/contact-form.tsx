@@ -1,7 +1,11 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { ContactFormProps, ContactFormValues } from './contact-form.types'
+import {
+  ContactFormProps,
+  ContactFormValues,
+  ContactType,
+} from './contact-form.types'
 import {
   Form,
   FormControl,
@@ -25,6 +29,9 @@ import { ContactEmail } from '@/components/ui/icons/contact-email'
 import { ContactPhone } from '@/components/ui/icons/contact-phone'
 import { cn } from '@/lib/utils'
 import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
+import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
+
+// import './contact-form.css'
 
 export const ContactForm = ({
   whatsapp,
@@ -40,6 +47,14 @@ export const ContactForm = ({
   const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
   const [isContactWhatsAppVisible, setIsContactWhatsAppVisible] =
     useState(false)
+  const [isContactEmailHover, setIsContactEmailHover] = useState(false)
+  const [isContactPhoneHover, setIsContactPhoneHover] = useState(false)
+  const [isContactWhatsAppHover, setIsContactWhatsAppHover] = useState(false)
+  const [isContactInstagramHover, setIsContactInstagramHover] = useState(false)
+  const [isContactFacebookHover, setIsContactFacebookHover] = useState(false)
+  const [isContactLinkedinHover, setIsContactLinkedinHover] = useState(false)
+
+  const isTouchScreenDevice = detectTouchScreenDevice()
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(ContactSchema),
@@ -65,28 +80,43 @@ export const ContactForm = ({
     }
   }
 
-  const unSetAll = () => {
-    setIsContactFormVisible(() => false)
+  const toggleContactForm = () => {
     setIsContactPhoneVisible(() => false)
     setIsContactWhatsAppVisible(() => false)
-  }
-
-  const toggleContactForm = () => {
-    unSetAll()
-    // setIsContactFormVisible((prevState) => !prevState)
-    setIsContactFormVisible(() => true)
+    setIsContactFormVisible((prevState) => !prevState)
   }
 
   const toggleContactPhone = () => {
-    unSetAll()
-    // setIsContactPhoneVisible((prevState) => !prevState)
-    setIsContactPhoneVisible(() => true)
+    setIsContactFormVisible(() => false)
+    setIsContactWhatsAppVisible(() => false)
+    setIsContactPhoneVisible((prevState) => !prevState)
   }
 
   const toggleContactWhatsApp = () => {
-    unSetAll()
-    // setIsContactWhatsAppVisible((prevState) => !prevState)
-    setIsContactWhatsAppVisible(() => true)
+    setIsContactFormVisible(() => false)
+    setIsContactPhoneVisible(() => false)
+    setIsContactWhatsAppVisible((prevState) => !prevState)
+  }
+
+  const onHover = (type: ContactType, state: boolean) => {
+    if (type === ContactType.EMAIL) {
+      setIsContactEmailHover(state)
+    }
+    if (type === ContactType.PHONE) {
+      setIsContactPhoneHover(state)
+    }
+    if (type === ContactType.WHATSAPP) {
+      setIsContactWhatsAppHover(state)
+    }
+    if (type === ContactType.INSTAGRAM) {
+      setIsContactInstagramHover(state)
+    }
+    if (type === ContactType.FACEBOOK) {
+      setIsContactFacebookHover(state)
+    }
+    if (type === ContactType.LINKEDIN) {
+      setIsContactLinkedinHover(state)
+    }
   }
 
   useEffect(() => {
@@ -102,11 +132,22 @@ export const ContactForm = ({
       <div className={'flex flex-col'}>
         <div className={'flex flex-col gap-1 mt-8'}>
           <div className={'flex flex-row justify-start items-end gap-4'}>
-            <div onClick={toggleContactWhatsApp}>
+            <div
+              onClick={toggleContactWhatsApp}
+              className={'cursor-pointer'}
+              onMouseEnter={() =>
+                onHover(ContactType.WHATSAPP, !isTouchScreenDevice)
+              }
+              onMouseLeave={() => onHover(ContactType.WHATSAPP, false)}
+            >
               <ContactWhatsApp
                 width={48}
                 height={48}
-                fill={isContactWhatsAppVisible ? '#fff' : '#999DAD'}
+                fill={
+                  isContactWhatsAppVisible || isContactWhatsAppHover
+                    ? '#fff'
+                    : '#999DAD'
+                }
               />
             </div>
 
@@ -116,7 +157,7 @@ export const ContactForm = ({
                   'flex flex-row items-center w-fit gap-4 bg-black/50 pr-4'
                 }
               >
-                <div className={'w-20 h-20'}>
+                <div className={'w-20 h-20 cursor-pointer'}>
                   <a href={whatsapp} target="_blank" rel="noopener noreferrer">
                     {whatsappQr}
                   </a>
@@ -134,11 +175,22 @@ export const ContactForm = ({
           </div>
 
           <div className={'flex flex-row justify-start items-center gap-4'}>
-            <div onClick={toggleContactPhone}>
+            <div
+              onClick={toggleContactPhone}
+              className={'cursor-pointer'}
+              onMouseEnter={() =>
+                onHover(ContactType.PHONE, !isTouchScreenDevice)
+              }
+              onMouseLeave={() => onHover(ContactType.PHONE, false)}
+            >
               <ContactPhone
                 width={48}
                 height={48}
-                fill={isContactPhoneVisible ? '#fff' : '#999DAD'}
+                fill={
+                  isContactPhoneVisible || isContactPhoneHover
+                    ? '#fff'
+                    : '#999DAD'
+                }
               />
             </div>
 
@@ -146,31 +198,75 @@ export const ContactForm = ({
               href={phoneUrl}
               className={cn(
                 isContactPhoneVisible ? '' : 'hidden',
-                'font-bold text-xl'
+                'font-bold text-xl p-2 bg-black/50'
               )}
             >
               {phone}
             </a>
           </div>
 
-          <a href={instagram} target={'_self'}>
-            <SocialInstagram width={48} height={48} fill={'#999DAD'} />
+          <a
+            href={instagram}
+            target={'_self'}
+            onMouseEnter={() =>
+              onHover(ContactType.INSTAGRAM, !isTouchScreenDevice)
+            }
+            onMouseLeave={() => onHover(ContactType.INSTAGRAM, false)}
+          >
+            <SocialInstagram
+              width={48}
+              height={48}
+              fill={isContactInstagramHover ? '#fff' : '#999DAD'}
+            />
           </a>
 
-          <a href={facebook} target={'_self'}>
-            <SocialFacebook width={48} height={48} fill={'#999DAD'} />
+          <a
+            href={facebook}
+            target={'_self'}
+            onMouseEnter={() =>
+              onHover(ContactType.FACEBOOK, !isTouchScreenDevice)
+            }
+            onMouseLeave={() => onHover(ContactType.FACEBOOK, false)}
+          >
+            <SocialFacebook
+              width={48}
+              height={48}
+              fill={isContactFacebookHover ? '#fff' : '#999DAD'}
+            />
           </a>
 
-          <a href={linkedin} target={'_self'}>
-            <SocialLinkedin width={48} height={48} fill={'#999DAD'} />
+          <a
+            href={linkedin}
+            target={'_self'}
+            onMouseEnter={() =>
+              onHover(ContactType.LINKEDIN, !isTouchScreenDevice)
+            }
+            onMouseLeave={() => onHover(ContactType.LINKEDIN, false)}
+          >
+            <SocialLinkedin
+              width={48}
+              height={48}
+              fill={isContactLinkedinHover ? '#fff' : '#999DAD'}
+            />
           </a>
 
           <div className={'flex flex-row justify-start items-end gap-4'}>
-            <div onClick={toggleContactForm}>
+            <div
+              onClick={toggleContactForm}
+              className={'cursor-pointer'}
+              onMouseEnter={() =>
+                onHover(ContactType.EMAIL, !isTouchScreenDevice)
+              }
+              onMouseLeave={() => onHover(ContactType.EMAIL, false)}
+            >
               <ContactEmail
                 width={48}
                 height={48}
-                fill={isContactFormVisible ? '#fff' : '#999DAD'}
+                fill={
+                  isContactFormVisible || isContactEmailHover
+                    ? '#fff'
+                    : '#999DAD'
+                }
               />
             </div>
 
@@ -180,8 +276,8 @@ export const ContactForm = ({
                   onSubmit={form.handleSubmit(onSubmit)}
                   className={'w-full'}
                 >
-                  <div className={'space-y-4 flex flex-col p-4 bg-white/15'}>
-                    <p className={'text-sm'}>{'Proszę o szybką odpowiedź.'}</p>
+                  <div className={'space-y-4 flex flex-col p-4 bg-black/50'}>
+                    <p className={'text-sm'}>{'Proszę o szybki kontakt'}</p>
 
                     <ContactFormField
                       className={'text-black'}

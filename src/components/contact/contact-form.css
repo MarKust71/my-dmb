@@ -1,0 +1,5 @@
+@media (hover: hover) {
+  h1:hover {
+    color: #fff;
+  }
+}
