@@ -6,7 +6,7 @@ export const QrCodeWhatsAppMarekKustosz = (
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
       <defs>
-        <clipPath id="clip-path-dot-color">
+        <clipPath id="clip-path-dot-color-whatsapp">
           <circle cx="26" cy="154" r="8" transform="rotate(0,26,154)" />
           <circle cx="26" cy="186" r="8" transform="rotate(0,26,186)" />
           <circle cx="26" cy="234" r="8" transform="rotate(0,26,234)" />
@@ -374,7 +374,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-dot-color')"
+        clip-path="url('#clip-path-dot-color-whatsapp')"
         fill={fill}
       />
       <rect

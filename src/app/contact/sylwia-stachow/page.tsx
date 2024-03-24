@@ -2,6 +2,8 @@ import '../page.scss'
 import { ContactForm } from '@/components/contact/contact-form'
 import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-whatsapp-sylwia-stachow'
 import { cn } from '@/lib/utils'
+import { ContactFormHeader } from '@/components/contact/contact-form-header'
+import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 
 const ContactSylwiaStachowPage = () => {
   return (
@@ -13,9 +15,9 @@ const ContactSylwiaStachowPage = () => {
           'md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
         )}
       >
-        <h1 className={'text-[#999DAD] text-xl font-medium p-4'}>
-          Sylwia Stachów
-        </h1>
+        <ContactFormHeader qrcode={<QrCodeUrlSylwiaStachow />}>
+          {'Sylwia Stachów'}
+        </ContactFormHeader>
 
         <div
           className={
