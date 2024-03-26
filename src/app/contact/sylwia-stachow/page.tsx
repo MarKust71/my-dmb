@@ -4,6 +4,7 @@ import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-wh
 import { cn } from '@/lib/utils'
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const ContactSylwiaStachowPage = () => {
   return (
@@ -37,6 +38,13 @@ const ContactSylwiaStachowPage = () => {
           />
         </div>
       </div>
+
+      <GoogleTagManager
+        gtmId={`${process.env.NEXT_PUBLIC_GTM_CONTACT_SYLWIA_STACHOW_ID}`}
+      />
+      <GoogleAnalytics
+        gaId={`${process.env.NEXT_PUBLIC_GA_CONTACT_SYLWIA_STACHOW_ID}`}
+      />
     </>
   )
 }
