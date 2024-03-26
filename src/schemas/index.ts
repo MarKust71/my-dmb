@@ -30,3 +30,13 @@ export const ContactSchema = z.object({
   }),
   gdprConsent: z.boolean().default(false),
 })
+
+export const CustomerContactSchema = z.object({
+  name: z.string().min(1, {
+    message: 'name is required',
+  }),
+  email: z.string().email({
+    message: 'Valid email address is required',
+  }),
+  consent: z.string().datetime({ message: 'Consent is required' }),
+})

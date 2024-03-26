@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const ContactMarekKustoszPage = () => {
   return (
@@ -35,6 +36,13 @@ const ContactMarekKustoszPage = () => {
           />
         </div>
       </div>
+
+      <GoogleTagManager
+        gtmId={`${process.env.NEXT_PUBLIC_GTM_CONTACT_MAREK_KUSTOSZ_ID}`}
+      />
+      <GoogleAnalytics
+        gaId={`${process.env.NEXT_PUBLIC_GA_CONTACT_MAREK_KUSTOSZ_ID}`}
+      />
     </>
   )
 }
