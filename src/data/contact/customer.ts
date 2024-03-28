@@ -1,10 +1,16 @@
 import { db } from '@/lib/db'
 
-export const getCustomerByEmail = async (email: string) => {
+export const getCustomerByEmailContext = async (
+  email: string,
+  context: string
+) => {
   try {
     return await db.customer.findUnique({
       where: {
-        email,
+        email_context: {
+          email,
+          context,
+        },
       },
     })
   } catch {

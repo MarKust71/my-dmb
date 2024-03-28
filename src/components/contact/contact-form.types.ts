@@ -1,10 +1,12 @@
 export type ContactFormValues = {
   email: string
   name: string
+  userContext: UserContext
   gdprConsent: boolean
 }
 
 export type ContactFormProps = {
+  userContext: UserContext
   whatsapp: string
   whatsappQr: React.ReactNode
   instagram: string
@@ -21,4 +23,9 @@ export enum ContactType {
   INSTAGRAM = 'instagram',
   FACEBOOK = 'facebook',
   LINKEDIN = 'linkedin',
+}
+
+export enum UserContext {
+  SYLWIA_STACHOW = 'Sylwia Stachów',
+  MAREK_KUSTOSZ = 'Marek Kustosz',
 }

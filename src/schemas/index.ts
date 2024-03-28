@@ -28,6 +28,7 @@ export const ContactFormSchema = z.object({
   name: z.string().min(1, {
     message: 'Podanie imienia jest wymagane',
   }),
+  userContext: z.string(),
   gdprConsent: z.boolean().default(false),
 })
 
@@ -38,5 +39,6 @@ export const ContactCustomerSchema = z.object({
   email: z.string().email({
     message: 'Valid email address is required',
   }),
+  context: z.string(),
   consent: z.string().datetime().optional(),
 })

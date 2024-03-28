@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { UserContext } from '@/components/contact/contact-form.types'
 
 const ContactSylwiaStachowPage = () => {
   return (
@@ -26,6 +27,7 @@ const ContactSylwiaStachowPage = () => {
           }
         >
           <ContactForm
+            userContext={UserContext.SYLWIA_STACHOW}
             whatsapp={'https://wa.me/48665009121'}
             whatsappQr={<QrCodeWhatsAppSylwiaStachow />}
             instagram={'https://www.instagram.com/sylwia_stachow/'}

@@ -25,6 +25,7 @@ import { addCustomer } from '@/actions/contact/add-customer'
 import { useToast } from '@/components/ui/use-toast'
 
 export const ContactForm = ({
+  userContext,
   whatsapp,
   whatsappQr,
   instagram,
@@ -55,6 +56,7 @@ export const ContactForm = ({
     defaultValues: {
       email: '',
       name: '',
+      userContext,
       gdprConsent: false,
     },
   })
@@ -79,7 +81,7 @@ export const ContactForm = ({
     // if (consent) {
     if (name && email) {
       startTransition(() => {
-        addCustomer(values).then((data) => {
+        addCustomer({ ...values, context: values.userContext }).then((data) => {
           if (data.error) {
             toast({
               className: 'font-bold justify-center',
