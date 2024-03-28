@@ -9,7 +9,7 @@ import {
 import { Form } from '@/components/ui/form'
 import { ContactFormField } from '@/components/contact/contact-form-field'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ContactSchema } from '@/schemas'
+import { ContactFormSchema } from '@/schemas'
 import { useEffect, useState, useTransition } from 'react'
 import { ArrowRightCircle } from '@/components/ui/buttons/arrow-right-circle'
 import { isEmailValid } from '@/lib/validation'
@@ -22,6 +22,7 @@ import { cn } from '@/lib/utils'
 import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
 import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
 import { addCustomer } from '@/actions/contact/add-customer'
+import { useToast } from '@/components/ui/use-toast'
 
 export const ContactForm = ({
   whatsapp,
@@ -33,8 +34,8 @@ export const ContactForm = ({
   phone,
 }: ContactFormProps) => {
   const [isPending, startTransition] = useTransition()
+  const { toast } = useToast()
 
-  const [error, setError] = useState<string | undefined>('')
   const [isConsentVisible, setIsConsentVisible] = useState(false)
   const [isContactFormVisible, setIsContactFormVisible] = useState(false)
   const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
@@ -50,7 +51,7 @@ export const ContactForm = ({
   const isTouchScreenDevice = detectTouchScreenDevice()
 
   const form = useForm<ContactFormValues>({
-    resolver: zodResolver(ContactSchema),
+    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       email: '',
       name: '',
@@ -63,21 +64,37 @@ export const ContactForm = ({
   const email = watch('email')
   const consent = watch('gdprConsent')
 
-  const onSubmit = (values: ContactFormValues) => {
-    setError('')
+  const onSuccess = (message: string) => {
+    toast({
+      className: 'font-bold justify-center bg-[#999DAD]',
+      description: message,
+      duration: 3000,
+    })
 
+    form.reset()
+    setIsContactFormVisible(() => false)
+  }
+
+  const onSubmit = (values: ContactFormValues) => {
     // if (consent) {
     if (name && email) {
       startTransition(() => {
         addCustomer(values).then((data) => {
-          setError(data.error)
-        })
-      })
+          if (data.error) {
+            toast({
+              className: 'font-bold justify-center',
+              description: data.error,
+              duration: 3000,
+              variant: 'destructive',
+            })
 
-      // TODO: remove!
-      // eslint-disable-next-line no-console
-      console.log('%c onSubmit: ', 'color: black; background-color: yellow', {
-        values,
+            return
+          }
+
+          if (data.success) {
+            onSuccess(data.success)
+          }
+        })
       })
     }
   }
@@ -313,7 +330,9 @@ export const ContactForm = ({
                           width={32}
                           height={32}
                           // fill={!consent ? '#666' : undefined}
-                          fill={!name || !email ? '#666' : undefined}
+                          fill={
+                            !name || !email || isPending ? '#666' : undefined
+                          }
                         />
                       </button>
                     </div>

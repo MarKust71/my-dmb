@@ -21,7 +21,7 @@ export const RegisterSchema = z.object({
   }),
 })
 
-export const ContactSchema = z.object({
+export const ContactFormSchema = z.object({
   email: z.string().email({
     message: 'To nie jest poprawny email',
   }),
@@ -31,7 +31,7 @@ export const ContactSchema = z.object({
   gdprConsent: z.boolean().default(false),
 })
 
-export const CustomerContactSchema = z.object({
+export const ContactCustomerSchema = z.object({
   name: z.string().min(1, {
     message: 'name is required',
   }),
