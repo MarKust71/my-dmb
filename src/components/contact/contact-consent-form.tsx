@@ -9,10 +9,14 @@ import { Checkbox } from '@/components/ui/checkbox'
 import Link from 'next/link'
 import { ContactConsentFormProps } from '@/components/contact/contact-consent-form.types'
 
-export const ContactConsentForm = ({ control }: ContactConsentFormProps) => {
+export const ContactConsentForm = ({
+  control,
+  disabled,
+}: ContactConsentFormProps) => {
   return (
     <FormField
       control={control}
+      disabled={disabled}
       name="gdprConsent"
       render={({ field }) => (
         <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
