@@ -14,7 +14,7 @@ export const addCustomer = async (
     return { error: 'Invalid fields!' }
   }
 
-  const { name, email, consent } = validatedFields.data
+  const { name, email, consent, context } = validatedFields.data
 
   const existingCustomer = await getCustomerByEmail(email)
 
@@ -27,6 +27,7 @@ export const addCustomer = async (
       name,
       email,
       consent,
+      context,
     },
   })
 

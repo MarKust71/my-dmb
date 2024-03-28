@@ -5,6 +5,7 @@ import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-wha
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { UserContext } from '@/components/contact/contact-form.types'
 
 const ContactMarekKustoszPage = () => {
   return (
@@ -26,6 +27,7 @@ const ContactMarekKustoszPage = () => {
           }
         >
           <ContactForm
+            userContext={UserContext.MAREK_KUSTOSZ}
             whatsapp={'https://wa.me/48600414149'}
             whatsappQr={<QrCodeWhatsAppMarekKustosz />}
             instagram={'https://www.instagram.com/marek.kustosz/'}
