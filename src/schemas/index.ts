@@ -38,5 +38,5 @@ export const CustomerContactSchema = z.object({
   email: z.string().email({
     message: 'Valid email address is required',
   }),
-  consent: z.string().datetime({ message: 'Consent is required' }),
+  consent: z.string().datetime().optional(),
 })

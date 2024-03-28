@@ -10,7 +10,7 @@ import { Form } from '@/components/ui/form'
 import { ContactFormField } from '@/components/contact/contact-form-field'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactSchema } from '@/schemas'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { ArrowRightCircle } from '@/components/ui/buttons/arrow-right-circle'
 import { isEmailValid } from '@/lib/validation'
 import { SocialInstagram } from '@/components/ui/icons/social-instagram'
@@ -21,6 +21,7 @@ import { ContactPhone } from '@/components/ui/icons/contact-phone'
 import { cn } from '@/lib/utils'
 import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
 import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
+import { addCustomer } from '@/actions/contact/add-customer'
 
 export const ContactForm = ({
   whatsapp,
@@ -31,6 +32,9 @@ export const ContactForm = ({
   phoneUrl,
   phone,
 }: ContactFormProps) => {
+  const [isPending, startTransition] = useTransition()
+
+  const [error, setError] = useState<string | undefined>('')
   const [isConsentVisible, setIsConsentVisible] = useState(false)
   const [isContactFormVisible, setIsContactFormVisible] = useState(false)
   const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
@@ -60,8 +64,16 @@ export const ContactForm = ({
   const consent = watch('gdprConsent')
 
   const onSubmit = (values: ContactFormValues) => {
+    setError('')
+
     // if (consent) {
     if (name && email) {
+      startTransition(() => {
+        addCustomer(values).then((data) => {
+          setError(data.error)
+        })
+      })
+
       // TODO: remove!
       // eslint-disable-next-line no-console
       console.log('%c onSubmit: ', 'color: black; background-color: yellow', {
@@ -277,7 +289,7 @@ export const ContactForm = ({
                       placeholder={'E-mail, np. jan.kowalski@mail.com'}
                       type={'email'}
                       control={form.control}
-                      disabled={false}
+                      disabled={isPending}
                       autocomplete={'login-email'}
                     />
 
@@ -288,11 +300,15 @@ export const ContactForm = ({
                         placeholder={'Imię, np. Janek Kowalski'}
                         type={'text'}
                         control={form.control}
-                        disabled={false}
+                        disabled={isPending}
                         autocomplete={'login-email'}
                       />
 
-                      <button type={'submit'} className={'mr-3 mt-1'}>
+                      <button
+                        type={'submit'}
+                        className={'mr-3 mt-1'}
+                        disabled={isPending}
+                      >
                         <ArrowRightCircle
                           width={32}
                           height={32}
@@ -304,7 +320,7 @@ export const ContactForm = ({
 
                     {/*
                     {isContactFormVisible && (
-                      <ContactConsentForm control={form.control} />
+                      <ContactConsentForm control={form.control} disabled={isPending} />
                     )}
 */}
                   </div>

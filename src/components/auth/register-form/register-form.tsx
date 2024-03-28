@@ -10,7 +10,7 @@ import { AuthFormField } from '@/components/auth/auth-form-field'
 import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/auth/form-error'
 import { useState, useTransition } from 'react'
-import { register } from '@/actions/register'
+import { register } from '@/actions/auth/register'
 
 export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>('')
