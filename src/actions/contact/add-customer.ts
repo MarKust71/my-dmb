@@ -1,14 +1,14 @@
 'use server'
 
 import * as z from 'zod'
-import { CustomerContactSchema } from '@/schemas'
+import { ContactCustomerSchema } from '@/schemas'
 import { getCustomerByEmail } from '@/data/contact/customer'
 import { db } from '@/lib/db'
 
 export const addCustomer = async (
-  data: z.infer<typeof CustomerContactSchema>
+  data: z.infer<typeof ContactCustomerSchema>
 ) => {
-  const validatedFields = CustomerContactSchema.safeParse(data)
+  const validatedFields = ContactCustomerSchema.safeParse(data)
 
   if (!validatedFields.success) {
     return { error: 'Invalid fields!' }
@@ -19,7 +19,7 @@ export const addCustomer = async (
   const existingCustomer = await getCustomerByEmail(email)
 
   if (existingCustomer) {
-    return { error: 'Customer already exists!' }
+    return { error: 'Taki email dodano już wcześniej!' }
   }
 
   await db.customer.create({
@@ -30,5 +30,5 @@ export const addCustomer = async (
     },
   })
 
-  return { success: true }
+  return { success: 'Twój email został dodany!' }
 }

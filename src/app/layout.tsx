@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
 import { SessionProvider } from 'next-auth/react'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,7 +33,9 @@ export default async function RootLayout({
             'bg-[#0C0A0D] text-white'
           )}
         >
-          {children}
+          <main>{children}</main>
+
+          <Toaster />
         </body>
       </html>
     </SessionProvider>
