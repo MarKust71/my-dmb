@@ -33,7 +33,7 @@ export default async function RootLayout({
             'bg-[#0C0A0D] text-white'
           )}
         >
-          <main>{children}</main>
+          {children}
 
           <Toaster />
         </body>
