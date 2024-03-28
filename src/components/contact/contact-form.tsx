@@ -6,19 +6,10 @@ import {
   ContactFormValues,
   ContactType,
 } from './contact-form.types'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-} from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 import { ContactFormField } from '@/components/contact/contact-form-field'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactSchema } from '@/schemas'
-import Link from 'next/link'
-import { Checkbox } from '@/components/ui/checkbox'
 import { useEffect, useState } from 'react'
 import { ArrowRightCircle } from '@/components/ui/buttons/arrow-right-circle'
 import { isEmailValid } from '@/lib/validation'
@@ -30,8 +21,6 @@ import { ContactPhone } from '@/components/ui/icons/contact-phone'
 import { cn } from '@/lib/utils'
 import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
 import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
-
-// import './contact-form.css'
 
 export const ContactForm = ({
   whatsapp,
@@ -71,7 +60,8 @@ export const ContactForm = ({
   const consent = watch('gdprConsent')
 
   const onSubmit = (values: ContactFormValues) => {
-    if (consent) {
+    // if (consent) {
+    if (name && email) {
       // TODO: remove!
       // eslint-disable-next-line no-console
       console.log('%c onSubmit: ', 'color: black; background-color: yellow', {
@@ -250,7 +240,7 @@ export const ContactForm = ({
             />
           </a>
 
-          <div className={'flex flex-row justify-start items-end gap-4'}>
+          <div className={'flex flex-row justify-start items-start gap-4'}>
             <div
               onClick={toggleContactForm}
               className={'cursor-pointer'}
@@ -277,7 +267,9 @@ export const ContactForm = ({
                   className={'w-full'}
                 >
                   <div className={'space-y-4 flex flex-col p-4 bg-black/50'}>
-                    <p className={'text-sm'}>{'Proszę o szybki kontakt'}</p>
+                    <p className={'text-sm'}>
+                      {'Zapraszam do szybkiego kontaktu'}
+                    </p>
 
                     <ContactFormField
                       className={'text-black'}
@@ -304,42 +296,17 @@ export const ContactForm = ({
                         <ArrowRightCircle
                           width={32}
                           height={32}
-                          fill={!consent ? '#666' : undefined}
+                          // fill={!consent ? '#666' : undefined}
+                          fill={!name || !email ? '#666' : undefined}
                         />
                       </button>
                     </div>
 
-                    <div className={isConsentVisible ? '' : 'hidden'}>
-                      <FormField
-                        control={form.control}
-                        name="gdprConsent"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
-                            <FormControl>
-                              <Checkbox
-                                className={'border-gray-200'}
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel>Zgoda RODO</FormLabel>
-
-                              <FormDescription>
-                                Pełna treść udzielanej zgody{' '}
-                                <Link
-                                  href="/examples/forms"
-                                  className={'font-bold'}
-                                >
-                                  TUTAJ
-                                </Link>
-                                .
-                              </FormDescription>
-                            </div>
-                          </FormItem>
-                        )}
-                      />
-                    </div>
+                    {/*
+                    {isContactFormVisible && (
+                      <ContactConsentForm control={form.control} />
+                    )}
+*/}
                   </div>
                 </form>
               </Form>
