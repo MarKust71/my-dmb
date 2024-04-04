@@ -29,3 +29,13 @@ export enum UserContext {
   SYLWIA_STACHOW = 'Sylwia Stachów',
   MAREK_KUSTOSZ = 'Marek Kustosz',
 }
+
+export enum UserId {
+  SYLWIA_STACHOW = 'sylwia-stachow',
+  MAREK_KUSTOSZ = 'marek-kustosz',
+}
+
+export enum UserIdShort {
+  SYLWIA_STACHOW = 'ss',
+  MAREK_KUSTOSZ = 'mk',
+}
