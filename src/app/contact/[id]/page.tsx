@@ -3,12 +3,36 @@ import { ContactPage } from '@/components/contact/contact-page'
 import { UserContext, UserId } from '@/components/contact/contact-form.types'
 import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
 import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-whatsapp-sylwia-stachow'
+import { Metadata } from 'next'
 
-type Params = {
+type Props = {
   params: { id: string }
 }
 
-export default function Component({ params: { id } }: Params) {
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  switch (id) {
+    case UserId.MAREK_KUSTOSZ: {
+      return {
+        title: `my-dMb App | Contact | ${UserContext.MAREK_KUSTOSZ}`,
+      }
+    }
+
+    case UserId.SYLWIA_STACHOW: {
+      return {
+        title: `my-dMb App | Contact | ${UserContext.SYLWIA_STACHOW}`,
+      }
+    }
+
+    default:
+      return {
+        title: 'my-dMb App',
+      }
+  }
+}
+
+export default function Component({ params: { id } }: Props) {
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {
       const {
