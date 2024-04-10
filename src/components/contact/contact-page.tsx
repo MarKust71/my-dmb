@@ -23,7 +23,7 @@ export const ContactPage = ({
     <>
       <div
         className={cn(
-          'h-screen w-screen flex flex-col justify-between items-start',
+          'min-h-screen w-screen flex flex-col justify-between items-start',
           `bg-[#0C0A0D] bg-no-repeat bg-cover bg-top`,
           backgroundImageClass,
           'md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
