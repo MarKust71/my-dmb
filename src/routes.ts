@@ -8,6 +8,8 @@ export const publicRoutes = [
   `/contact/${UserId.SYLWIA_STACHOW}`,
   `/c/${UserIdShort.MAREK_KUSTOSZ}`,
   `/c/${UserIdShort.SYLWIA_STACHOW}`,
+  '/invite',
+  '/i',
 ]
 
 export const authRoutes = ['/auth/login', '/auth/register']
