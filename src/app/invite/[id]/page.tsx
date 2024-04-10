@@ -6,14 +6,15 @@ type Props = {
 }
 
 const InvitationsPage = ({ params: { id } }: Props) => {
-  if (id === 'next' || id === 'n') {
-    return <Invite202404112000 />
-  }
-
   if (id) {
     switch (id) {
+      case 'next':
       case '202404112000':
         return <Invite202404112000 />
+
+      case 'n':
+        redirect('/invite/next')
+        break
 
       default:
         redirect('/')

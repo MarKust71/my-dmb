@@ -10,7 +10,8 @@ export const Invite202404112000 = () => {
   return (
     <div
       className={cn(
-        'min-h-screen w-screen bg-white text-black flex flex-col justify-start items-center'
+        'min-h-screen w-screen bg-white text-black flex flex-col justify-start items-center',
+        'md:max-w-[430px] md:w-auto md:mx-auto md:my-4 md:min-h-[786px] md:h-auto md:flex'
       )}
     >
       <div className={'relative'}>

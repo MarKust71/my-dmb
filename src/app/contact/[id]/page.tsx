@@ -4,6 +4,7 @@ import { UserContext, UserId } from '@/components/contact/contact-form.types'
 import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
 import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-whatsapp-sylwia-stachow'
 import { Metadata } from 'next'
+import '../page.scss'
 
 type Props = {
   params: { id: string }
