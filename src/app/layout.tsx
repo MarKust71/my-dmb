@@ -30,7 +30,7 @@ export default async function RootLayout({
           className={cn(
             'min-h-screen font-sans antialiased grainy',
             inter.className,
-            'bg-[#0C0A0D] text-white'
+            'dark:bg-[#0C0A0D] dark:text-white'
           )}
         >
           {children}
