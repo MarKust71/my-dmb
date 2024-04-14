@@ -1,5 +1,14 @@
 import { Invite202404112000 } from '@/components/invite/202404112000'
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  return {
+    title: `my-dMb App | Invite | ${id}`,
+  }
+}
 
 type Props = {
   params: { id: string }

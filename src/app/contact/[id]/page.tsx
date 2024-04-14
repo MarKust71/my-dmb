@@ -8,10 +8,6 @@ import '../page.scss'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 
-type Props = {
-  params: { id: string }
-}
-
 export async function generateMetadata({
   params: { id },
 }: Props): Promise<Metadata> {
@@ -33,6 +29,10 @@ export async function generateMetadata({
         title: 'my-dMb App',
       }
   }
+}
+
+type Props = {
+  params: { id: string }
 }
 
 export default function Component({ params: { id } }: Props) {
