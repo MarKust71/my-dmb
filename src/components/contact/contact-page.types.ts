@@ -12,6 +12,4 @@ export type ContactPageProps = {
   linkedin: string
   facebook: string
   instagram: string
-  gtmId: string
-  gaId: string
 }

@@ -3,7 +3,6 @@ import { cn } from '@/lib/utils'
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { ContactForm } from '@/components/contact/contact-form'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 export const ContactPage = ({
   backgroundImageClass,
@@ -16,8 +15,6 @@ export const ContactPage = ({
   linkedin,
   facebook,
   instagram,
-  gtmId,
-  gaId,
 }: ContactPageProps) => {
   return (
     <>
@@ -50,9 +47,6 @@ export const ContactPage = ({
           />
         </div>
       </div>
-
-      <GoogleTagManager gtmId={gtmId} />
-      <GoogleAnalytics gaId={gaId} />
     </>
   )
 }
