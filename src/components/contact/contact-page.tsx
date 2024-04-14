@@ -1,8 +1,12 @@
+'use client'
+
 import { ContactPageProps } from '@/components/contact/contact-page.types'
 import { cn } from '@/lib/utils'
 import { ContactFormHeader } from '@/components/contact/contact-form-header'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { ContactForm } from '@/components/contact/contact-form'
+import { sendGAEvent } from '@next/third-parties/google'
+import { useEffect } from 'react'
 
 export const ContactPage = ({
   backgroundImageClass,
@@ -16,6 +20,10 @@ export const ContactPage = ({
   facebook,
   instagram,
 }: ContactPageProps) => {
+  useEffect(() => {
+    sendGAEvent({ event: 'contact-page-visit', value: userContext })
+  }, [])
+
   return (
     <>
       <div
