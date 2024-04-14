@@ -39,9 +39,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_GENERAL_ID}`} />
-      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_GENERAL_ID}`} />
     </>
   )
 }
