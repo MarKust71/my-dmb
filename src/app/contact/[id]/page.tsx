@@ -47,8 +47,6 @@ export default function Component({ params: { id } }: Props) {
         linkedin,
         facebook,
         instagram,
-        gtmId,
-        gaId,
       } = {
         backgroundImageClass: 'bg-[url("/img/contact/marek-kustosz.png")]',
         header: UserContext.MAREK_KUSTOSZ,
@@ -60,8 +58,6 @@ export default function Component({ params: { id } }: Props) {
         linkedin: 'https://www.linkedin.com/in/mkustosz/',
         phoneUrl: 'tel:+48600414149',
         phone: '+48 600 414149',
-        gtmId: `${process.env.NEXT_PUBLIC_GTM_CONTACT_MAREK_KUSTOSZ_ID}`,
-        gaId: `${process.env.NEXT_PUBLIC_GA_CONTACT_MAREK_KUSTOSZ_ID}`,
       }
 
       return (
@@ -76,8 +72,6 @@ export default function Component({ params: { id } }: Props) {
           linkedin={linkedin}
           facebook={facebook}
           instagram={instagram}
-          gtmId={gtmId}
-          gaId={gaId}
         />
       )
     }
@@ -94,8 +88,6 @@ export default function Component({ params: { id } }: Props) {
         linkedin,
         facebook,
         instagram,
-        gtmId,
-        gaId,
       } = {
         backgroundImageClass: 'bg-[url("/img/contact/sylwia-stachow.png")]',
         header: UserContext.SYLWIA_STACHOW,
@@ -107,8 +99,6 @@ export default function Component({ params: { id } }: Props) {
         linkedin: 'https://www.linkedin.com/in/sylwia-stach%C3%B3w-b883892a9/',
         phoneUrl: 'tel:+48665009121',
         phone: '+48 665 009121',
-        gtmId: `${process.env.NEXT_PUBLIC_GTM_CONTACT_SYLWIA_STACHOW_ID}`,
-        gaId: `${process.env.NEXT_PUBLIC_GA_CONTACT_SYLWIA_STACHOW_ID}`,
       }
 
       return (
@@ -123,8 +113,6 @@ export default function Component({ params: { id } }: Props) {
           linkedin={linkedin}
           facebook={facebook}
           instagram={instagram}
-          gtmId={gtmId}
-          gaId={gaId}
         />
       )
     }

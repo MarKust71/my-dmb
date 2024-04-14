@@ -2,7 +2,6 @@ import { Poppins } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { LoginButton } from '@/components/auth/login-button'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import { redirect } from 'next/navigation'
 
 const font = Poppins({
