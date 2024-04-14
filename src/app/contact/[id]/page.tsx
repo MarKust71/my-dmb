@@ -5,6 +5,8 @@ import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-wha
 import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-whatsapp-sylwia-stachow'
 import { Metadata } from 'next'
 import '../page.scss'
+import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
+import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 
 type Props = {
   params: { id: string }
@@ -40,6 +42,7 @@ export default function Component({ params: { id } }: Props) {
         backgroundImageClass,
         header,
         userContext,
+        contactPageQr,
         whatsappQr,
         whatsapp,
         phone,
@@ -51,6 +54,7 @@ export default function Component({ params: { id } }: Props) {
         backgroundImageClass: 'bg-[url("/img/contact/marek-kustosz.png")]',
         header: UserContext.MAREK_KUSTOSZ,
         userContext: UserContext.MAREK_KUSTOSZ,
+        contactPageQr: <QrCodeUrlMarekKustosz />,
         whatsapp: 'https://wa.me/48600414149',
         whatsappQr: <QrCodeWhatsAppMarekKustosz />,
         instagram: 'https://www.instagram.com/marek.kustosz/',
@@ -65,6 +69,7 @@ export default function Component({ params: { id } }: Props) {
           backgroundImageClass={backgroundImageClass}
           header={header}
           userContext={userContext}
+          contactPageQr={contactPageQr}
           whatsappQr={whatsappQr}
           whatsapp={whatsapp}
           phone={phone}
@@ -81,6 +86,7 @@ export default function Component({ params: { id } }: Props) {
         backgroundImageClass,
         header,
         userContext,
+        contactPageQr,
         whatsappQr,
         whatsapp,
         phone,
@@ -92,6 +98,7 @@ export default function Component({ params: { id } }: Props) {
         backgroundImageClass: 'bg-[url("/img/contact/sylwia-stachow.png")]',
         header: UserContext.SYLWIA_STACHOW,
         userContext: UserContext.SYLWIA_STACHOW,
+        contactPageQr: <QrCodeUrlSylwiaStachow />,
         whatsapp: 'https://wa.me/48665009121',
         whatsappQr: <QrCodeWhatsAppSylwiaStachow />,
         instagram: 'https://www.instagram.com/sylwia_stachow/',
@@ -106,6 +113,7 @@ export default function Component({ params: { id } }: Props) {
           backgroundImageClass={backgroundImageClass}
           header={header}
           userContext={userContext}
+          contactPageQr={contactPageQr}
           whatsappQr={whatsappQr}
           whatsapp={whatsapp}
           phone={phone}

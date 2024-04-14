@@ -5,6 +5,7 @@ export type ContactPageProps = {
   backgroundImageClass: string
   header: string
   userContext: UserContext
+  contactPageQr: ReactNode
   whatsappQr: ReactNode
   whatsapp: string
   phone: string
