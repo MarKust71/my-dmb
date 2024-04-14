@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
 import { SessionProvider } from 'next-auth/react'
 import { Toaster } from '@/components/ui/toaster'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,6 +38,9 @@ export default async function RootLayout({
 
           <Toaster />
         </body>
+
+        <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_GENERAL_ID}`} />
+        <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_GENERAL_ID}`} />
       </html>
     </SessionProvider>
   )
