@@ -3,9 +3,11 @@ import Image from 'next/image'
 import DiamondLiveImage from '@/assets/images/diamond-live-image.jpeg'
 import { Button } from '@/components/ui/button'
 
+import './page.scss'
+
 const DiamondLivePage = () => {
   return (
-    <div className={'min-h-screen bg-black'}>
+    <div className={'min-h-screen max-w-screen-md mx-auto bg-black'}>
       <Image src={DiamondLiveImage} alt={'diamond-live-image'} />
 
       <a
