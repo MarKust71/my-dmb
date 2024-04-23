@@ -1,9 +1,14 @@
 .mra-report-menu-li {
   cursor: pointer;
   white-space: nowrap;
-  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
 
   &:hover {
     background-color: #fff;
   }
+}
+
+.selected {
+  background-color: #f0f0f0;
 }
