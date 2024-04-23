@@ -1,13 +1,8 @@
 export const reportItems = [
   {
-    id: 'item-001',
-    title: '01-Układ krążenia i naczyń mózgowych',
-    url: '/mra-reports/[id]/01-Układ krążenia i naczyń mózgowych.htm',
-  },
-  {
     id: 'item-01',
     title: '01-Układ krążenia i naczyń mózgowych',
-    url: '/mra-reports/[id]/01-Uklad_krazenia_i_naczyn_mozgowych.htm',
+    url: '/mra-reports/[id]/01-Układ krążenia i naczyń mózgowych.htm',
   },
   {
     id: 'item-02',
