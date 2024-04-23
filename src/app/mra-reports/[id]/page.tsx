@@ -6,10 +6,6 @@ type Props = {
 }
 
 export default function Component({ params: { id } }: Props) {
-  // TODO: remove!
-  // eslint-disable-next-line no-console
-  console.log('%c id: ', 'color: black; background-color: yellow', { id })
-
   return (
     <div
       className={
