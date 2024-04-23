@@ -8,7 +8,7 @@ export const ReportDocument = ({ id }: ReportDocumentProps) => {
   const currentMraReport = useMraReportStore((state) => state.currentMraReport)
 
   const src = useMemo(
-    () => currentMraReport.url?.replace('[id]', id),
+    () => encodeURI(currentMraReport.url?.replace('[id]', id)),
     [currentMraReport]
   )
 
