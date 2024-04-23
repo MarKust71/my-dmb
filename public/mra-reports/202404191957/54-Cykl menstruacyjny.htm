@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type"; content = "text/html; charset=windows-1250" > 
+<title>Sprawozdanie z badań</title>
+<STYLE>.title { FONT-SIZE: 18px; FONT-FAMILY: "Times New Roman" } TD { FONT-SIZE: 11pt } .small { FONT-SIZE: 9pt } a:link { color: #000000; text-decoration: none; } a:visited { color: #000000; text-decoration: none; } a:hover { color: #FF0000;  text-decoration: underline;} .table { BORDER-RIGHT: #000000 0px; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 0px } .td { BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #ffffff 0px; FONT-SIZE: 14px; BORDER-LEFT: #ffffff 0px; BORDER-BOTTOM: #000000 1px solid }  .td2 { BORDER-RIGHT:  #ffffff 0px; BORDER-TOP: #ffffff 0px; FONT-SIZE: 14px; BORDER-LEFT: #ffffff 0px; BORDER-BOTTOM: #000000 1px solid }  .NOPRINT { FONT-SIZE: 9pt; FONT-FAMILY: "Arial" } .wtable { BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid } .lineone { BORDER-RIGHT: #ffffff 0px; BORDER-TOP: #000000 1px solid;  BORDER-LEFT: #ffffff 0px; BORDER-BOTTOM: #000000 1px solid } .lineone1 { BORDER-RIGHT:  #000000 1px solid; BORDER-TOP: #000000 1px solid;  BORDER-LEFT: #ffffff 0px; BORDER-BOTTOM: #000000 1px solid } .three { BORDER-RIGHT: #ffffff 0px; BORDER-TOP: #000000 1px solid;  BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid } .right { BORDER-RIGHT:  #000000 1px solid; BORDER-TOP: #ffffff 0px; BORDER-LEFT: #ffffff 0px; BORDER-BOTTOM: #ffffff 0px } .leftright { BORDER-RIGHT:  #000000 1px solid; BORDER-TOP: #ffffff 0px; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #ffffff 0px } .xtable { BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #ffffff 0px; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid } </STYLE>
+</head>
+<body style="background:url(Pagebg.jpg);background-position:center">
+<table cellSpacing=4 cellPadding=0 width=600 align=Center border=0><tr><td align=middle colspan=3><font size=6>(Cykl menstruacyjny) Raport z analizy</font></td></tr><tr><td width=100% colspan=3><hr color=#FF9933 size=2></td></tr><tr><td width=30%>Imię: Szymańska, Aleksandra</td><td width=30% align=center>Płeć: Kobieta</td><td width=30% align=center>Wiek: 40</td></tr><tr><td colspan=3><table width=100% cellSpacing=0 cellPadding=0 ><tr><td width=50% align=left>Sylwetka: 164cm, 57kg</td><td width=50% align=right>Czas badania: 19.04.2024 19:57</td></tr></table></td></tr><tr><td width=100% colspan=3><hr color=#FF9933 size=2></td></tr></table>
+<TABLE width=590 align=center border=0 cellpadding=0 cellspacing=0><tr><td height=8></td></tr></table>
+<SCRIPT type='text/javascript' src='echarts.js'></SCRIPT>
+<TABLE border=0 width=600 height=100 align=center cellSpacing=0 cellPadding=0><TR><TD bgcolor='ffffff'><div id=R54 style='height:220px; width:600px; margin:0px;'></div></TD></TR><TR><TD bgcolor='ffffff' height=3></TD></TR><TR><TD bgcolor='ffffff'><img src=Ruler.png border=0></TD></TR><TR><TD bgcolor='ffffff' height=18></TD></TR></TABLE>
+<SCRIPT type='text/javascript'>
+var dom = document.getElementById('R54');
+var myChart = echarts.init(dom);
+var option = {
+grid: { top: 30, bottom: 2,left: 180,right: 30 },
+xAxis: { type:'value', max: 6, min: -6,minInterval: 2,
+splitLine: { lineStyle: { type: 'dashed' } },
+axisLabel : { formatter: function(){ return ''; } } },
+yAxis: { type: 'category', axisLine: {show: false}, axisLabel: { interval:0 , formatter : function(params){ var iLong=28; var newString = ''; var iSpace=0; var iNo=0; if(params.length < iLong) { newString = params; }  else{ var strs = params.split(''); for(var i=iLong; i>0; i--){  if(strs[i]==' '){ if(iNo==0){ iSpace=i;iNo=1;} } }  if (iSpace!=0){ newString = params.substring(0,iSpace)+'\n'+params.substring(iSpace+1,params.length); }  else { newString = params; }} return newString; }, textStyle:{ fontSize:11,color:'#000000' }},axisTick: {show: false}, splitLine: {show: true},
+data: ['Szybkość osadzania białka','Fibrynogen','Białka aktywne','Hormon beta']},
+series: [{ type: 'bar',
+data: ['-3','-3','-3','-1'],
+itemStyle:{ normal:{  color: function (params){
+var colorList = ['#2861C8','#2861C8','#2861C8','#6CE26C'];
+return colorList[params.dataIndex]; } } }
+ }]
+};
+ if (option && typeof option === 'object') {
+myChart.setOption(option, true); }
+</SCRIPT>
+<TABLE width=590 align=center border=0 cellpadding=0 cellspacing=0><tr><td height=15></td></tr></table>
+<TABLE width=590 align=center border=0><TR><TD><Font size=3><STRONG>Aktualne badane wyniki</STRONG></Font></TD></TR></TABLE><TABLE class=table cellSpacing=0 cellPadding=3 width=590 align=center border=0><TR class=td align=middle bgcolor=B3D9ED height=28><TD class=td><STRONG>Badane pozycje</STRONG></TD><TD class=td><STRONG>Norma warto&#347;ci</STRONG></TD><TD class=td><STRONG>Badane warto&#347;ci</STRONG></TD><TD class=td><STRONG>Wynik badania</STRONG></TD></TR><TR class=td align=left bgcolor=EBF5FB><TD class=td align=middle>Hormon beta</TD><TD class=td align=middle>2,942 - 3,407</TD><TD class=td align=middle>3,025</TD><TD class=td align=middle><image src=YC04.png border=0></TD></TR><TR class=td align=left bgcolor=EBF5FB><TD class=td align=middle>Bia&#322;ka aktywne</TD><TD class=td align=middle>4,713 - 5,345</TD><TD class=td align=middle>3,943</TD><TD class=td align=middle><image src=YC03.png border=0></TD></TR><TR class=td align=left bgcolor=EBF5FB><TD class=td align=middle>Fibrynogen</TD><TD class=td align=middle>2,807 - 3,294</TD><TD class=td align=middle>1,907</TD><TD class=td align=middle><image src=YC03.png border=0></TD></TR><TR class=td align=left bgcolor=EBF5FB><TD class=td align=middle>Szybko&#347;&#263; osadzania bia&#322;ka</TD><TD class=td align=middle>6,326 - 8,018</TD><TD class=td align=middle>5,68</TD><TD class=td align=middle><image src=YC03.png border=0></TD></TR></TABLE>
+<TABLE width=590 align=center border=0 cellpadding=0 cellspacing=0><tr><td height=20></td></tr></table>
+<TABLE cellSpacing=0 cellPadding=3 width=590 align=center border=0><TR align=middle><TD><b>Standard referencyjny:</b></TD><TD colspan=2><TABLE cellSpacing=0 cellPadding=0 border=0><TR><TD><img src=YCMark4.jpg border=0>&nbsp;</TD><TD><B>Norma(-)</B></TD><TD><img src=YCMark3.jpg border=0>&nbsp;</TD><TD><B>Nieznacznie poza norm&#261;(+)</B></TD></TR><TR><TD><img src=YCMark2.jpg border=0>&nbsp;</TD><TD><B>&#346;rednie odst&#281;pstwo(++)</B></TD><TD><img src=YCMark1.jpg border=0>&nbsp;</TD><TD><B>Powa&#380;ne odst&#281;pstwo(+++)</B></TD></TR></TABLE></TD></TR><TR><TD colspan=3 height=8> </TD></TR><TR align=middle><TD>Hormon beta:</TD><TD>2,942-3,407(-)</TD><TD>2,074-2,942(+)</TD></TR><TR align=middle><TD>&nbsp;</TD><TD>0,626-2,074(++)</TD><TD><0,626(+++)</TD></TR><TR><TD colspan=3 height=8> </TD></TR><TR align=middle><TD>Bia&#322;ka aktywne:</TD><TD>4,713-5,345(-)</TD><TD>3,833-4,713(+)</TD></TR><TR align=middle><TD>&nbsp;</TD><TD>0,097-3,833(++)</TD><TD><0,097(+++)</TD></TR><TR><TD colspan=3 height=8> </TD></TR><TR align=middle><TD>Fibrynogen:</TD><TD>2,807-3,294(-)</TD><TD>1,116-2,807(+)</TD></TR><TR align=middle><TD>&nbsp;</TD><TD>0,809-1,116(++)</TD><TD><0,809(+++)</TD></TR><TR><TD colspan=3 height=8> </TD></TR><TR align=middle><TD>Szybko&#347;&#263; osadzania bia&#322;ka:</TD><TD>6,326-8,018(-)</TD><TD>4,449-6,326(+)</TD></TR><TR align=middle><TD>&nbsp;</TD><TD>1,325-4,449(++)</TD><TD><1,325(+++)</TD></TR><TR><TD colspan=3 height=8> </TD></TR></TABLE>
+<TABLE width=590 align=center border=0 cellpadding=0 cellspacing=0><tr><td height=30></td></tr></table>
+
+<TABLE width=590 align=center border=0 cellpadding=0 cellspacing=0><tr><td height=12></td></tr></table>
+<table cellSpacing=0 cellPadding=0 width=600 align=Center border=0><tr><td><hr color=#FF9933 size=2></td></tr></table>
+<TABLE cellSpacing=0 cellPadding=0 width=590 align=center border=0><TR height=5><TD></TD></TR><TR align=right><TD colSpan=2>Wyniki testu s&#261; jedynie orientacyjne i nie stanowi&#261; ko&#324;cowej diagnozy.</TD></TR></table>
+</body>
+</html>
