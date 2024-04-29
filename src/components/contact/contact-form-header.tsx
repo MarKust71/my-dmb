@@ -1,7 +1,7 @@
 'use client'
 
 import { ContactFormHeaderProps } from '@/components/contact/contact-form-header.types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 import './contact-form.css'
@@ -10,11 +10,17 @@ export const ContactFormHeader = ({
   children,
   qrcode,
 }: ContactFormHeaderProps) => {
-  const [isQrCodeUrlVisible, setIsQrCodeUrlVisible] = useState(false)
+  const [isQrCodeUrlVisible, setIsQrCodeUrlVisible] = useState(true)
 
   const toggleIsQrCodeVisible = () => {
     setIsQrCodeUrlVisible((prevState) => !prevState)
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsQrCodeUrlVisible(false)
+    }, 5000)
+  }, [])
 
   return (
     <div>
