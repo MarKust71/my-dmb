@@ -1,3 +1,24 @@
 body {
   background-color: #000;
 }
+
+.zoom-button {
+  -webkit-box-shadow:0 0 8px 2px #CDD9FF;
+  -moz-box-shadow: 0 0 8px 2px #CDD9FF;
+  box-shadow: 0 0 8px 2px #CDD9FF;
+  animation: animate 2s linear infinite;
+  background: linear-gradient(
+      120deg,
+      #074CE5 30%,
+      #3184FC 38%,
+      #3184FC 40%,
+      #074CE5 48%
+  ) 100% 0;
+  background-size: 200% 100%;
+
+  @keyframes animate {
+    100% {
+      background-position: -100% 0;
+    }
+  }
+}
