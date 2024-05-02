@@ -14,7 +14,9 @@ const DiamondLivePage = () => {
         href={'https://us06web.zoom.us/j/89796337110'}
         className={'flex justify-center py-4 mx-auto'}
       >
-        <Button className={'bg-[#074CE5]'}>Dołącz do spotkania ZOOM</Button>
+        <Button className={'zoom-button'}>
+          Kliknij i dołącz do spotkania ZOOM
+        </Button>
       </a>
     </div>
   )
