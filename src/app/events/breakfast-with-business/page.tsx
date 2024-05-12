@@ -16,7 +16,7 @@ const BreakfastWithBusinessPage = () => {
 
       <div className={'p-8 relative z-10'}>
         <div
-          className={'relative w-full z-10 p-8 pt-0 border-[#422418] border-2'}
+          className={'relative w-full z-10 p-8 pt-0 border-[#36231D] border-2'}
         >
           <Image
             className={''}
