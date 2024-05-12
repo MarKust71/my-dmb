@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 
 import './page.scss'
 
+const nbsp = '\u00A0'
+
 const BreakfastWithBusinessPage = () => {
   return (
     <div
@@ -25,7 +27,7 @@ const BreakfastWithBusinessPage = () => {
           />
 
           <h1 className={'text-2xl font-bold text-[#422418] mt-4 text-center'}>
-            {'Śniadanie z Biznesem'}
+            {`Śniadanie z${nbsp}Biznesem`}
           </h1>
 
           <h2 className={'text-lg text-[#422418] text-center mt-2'}>
