@@ -8,7 +8,11 @@ import './page.scss'
 const DiamondLivePage = () => {
   return (
     <div className={'min-h-screen max-w-screen-md mx-auto bg-black'}>
-      <Image src={DiamondLiveImage} alt={'diamond-live-image'} />
+      <Image
+        src={DiamondLiveImage}
+        alt={'diamond-live-image'}
+        className={'mx-auto'}
+      />
 
       <a
         href={'https://us06web.zoom.us/j/89796337110'}
