@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import DiamondLiveImage from '@/assets/images/diamond-live-image.jpeg'
+import DiamondLiveImage from '@/assets/images/diamond-live-image-1.jpeg'
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
