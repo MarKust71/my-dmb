@@ -3,6 +3,8 @@ const withPWA = require('next-pwa')({
   dest: 'public',
 })
 
+const DEFAULT_REDIRECT = '/'
+
 const nextConfig = {
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -50,23 +52,63 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/c',
-        destination: '/',
-        permanent: true,
-      },
-      {
-        source: '/invite',
-        destination: '/',
+        source: '/api',
+        destination: DEFAULT_REDIRECT,
         permanent: true,
       },
       {
         source: '/auth',
-        destination: '/',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/nf',
+        destination: '/n-finance',
+        permanent: true,
+      },
+      {
+        source: '/n-finance',
+        destination: 'https://account.tapitag.co/230220241244$$NFMS',
+        permanent: false,
+      },
+      {
+        source: '/c',
+        destination: DEFAULT_REDIRECT,
         permanent: true,
       },
       {
         source: '/contact',
-        destination: '/',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/e',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/events',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/i',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/invite',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/products',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/mra-reports',
+        destination: DEFAULT_REDIRECT,
         permanent: true,
       },
     ]
