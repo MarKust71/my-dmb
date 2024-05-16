@@ -2,11 +2,14 @@ import { DashboardSessionBox } from '@/components/dashboard/dashboard-session-bo
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import Link from 'next/link'
 import { FileUpload } from '@/components/file-upload'
+import { auth } from '@/auth'
 
 const DashboardPage = async () => {
+  const session = await auth()
+
   return (
     <DashboardWrapper>
-      <DashboardSessionBox />
+      <DashboardSessionBox session={session} />
 
       <h1>Links:</h1>
 
