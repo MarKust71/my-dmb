@@ -13,6 +13,15 @@ export const {
   signOut,
 } = NextAuth({
   callbacks: {
+    async signIn({ user }) {
+      if (!user.id) {
+        return false
+      }
+
+      const existingUser = await getUserById(user.id)
+
+      return !(!existingUser || !existingUser.emailVerified)
+    },
     async session(params) {
       const { session, token } = params as { session: Session; token: JWT }
 
