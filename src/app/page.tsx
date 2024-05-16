@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { LoginButton } from '@/components/auth/login-button'
 import { redirect } from 'next/navigation'
+import { DEFAULT_REDIRECT } from '@/routes'
 
 const font = Poppins({
   subsets: ['latin'],
@@ -10,7 +11,7 @@ const font = Poppins({
 })
 
 export default function Home() {
-  redirect('/contact/marek-kustosz')
+  redirect(DEFAULT_REDIRECT)
 
   return (
     <>
