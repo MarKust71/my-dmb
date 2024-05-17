@@ -381,7 +381,7 @@ export const QrCodeWhatsAppSylwiaStachow = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-background-color')"
+        clipPath="url('#clip-path-background-color')"
         fill={background}
       />
       <rect
