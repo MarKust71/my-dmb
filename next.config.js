@@ -72,6 +72,16 @@ const nextConfig = {
         permanent: false,
       },
       {
+        source: '/nh',
+        destination: '/n-home',
+        permanent: true,
+      },
+      {
+        source: '/n-home',
+        destination: 'https://account.tapitag.co/230220241244$$NFMS',
+        permanent: false,
+      },
+      {
         source: '/c',
         destination: DEFAULT_REDIRECT,
         permanent: true,
