@@ -15,10 +15,6 @@ export default auth((req) => {
 
   const url = nextUrl.pathname
 
-  // TODO: remove!
-  // eslint-disable-next-line no-console
-  console.log('%c url: ', 'color: black; background-color: yellow', { url })
-
   const isApiAuthRoute = url.startsWith(apiAuthPrefix)
   const isPublicRoute = publicRoutes.includes(url) // || url.startsWith(url)
   const isAuthRoute = authRoutes.includes(url)
