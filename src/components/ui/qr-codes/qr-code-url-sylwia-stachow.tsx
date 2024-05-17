@@ -336,19 +336,19 @@ export const QrCodeUrlSylwiaStachow = (
           <circle cx="474" cy="410" r="8" transform="rotate(0,474,410)" />
           <circle cx="474" cy="458" r="8" transform="rotate(0,474,458)" />
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 18 58v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 58 34h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(0,74,74)"
           />
           <circle cx="74" cy="74" r="24" transform="rotate(0,74,74)" />
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 370 58v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 410 34h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(90,426,74)"
           />
           <circle cx="426" cy="74" r="24" transform="rotate(90,426,74)" />
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 18 410v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 58 386h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(-90,74,426)"
           />
@@ -360,7 +360,7 @@ export const QrCodeUrlSylwiaStachow = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-background-color')"
+        clipPath="url('#clip-path-background-color')"
         fill={background}
       />
       <rect
@@ -368,7 +368,7 @@ export const QrCodeUrlSylwiaStachow = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-dot-color')"
+        clipPath="url('#clip-path-dot-color')"
         fill={fill}
       />
     </svg>
