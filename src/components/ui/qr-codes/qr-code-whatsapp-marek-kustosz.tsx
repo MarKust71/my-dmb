@@ -332,7 +332,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         </clipPath>
         <clipPath id="clip-path-corners-square-color-0-0">
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 18 58v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 58 34h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(0,74,74)"
           />
@@ -342,7 +342,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         </clipPath>
         <clipPath id="clip-path-corners-square-color-1-0">
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 370 58v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 410 34h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(90,426,74)"
           />
@@ -352,7 +352,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         </clipPath>
         <clipPath id="clip-path-corners-square-color-0-1">
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M 18 410v 32a 40 40, 0, 0, 0, 40 40h 32a 40 40, 0, 0, 0, 40 -40v -32a 40 40, 0, 0, 0, -40 -40h -32a 40 40, 0, 0, 0, -40 40M 58 386h 32a 24 24, 0, 0, 1, 24 24v 32a 24 24, 0, 0, 1, -24 24h -32a 24 24, 0, 0, 1, -24 -24v -32a 24 24, 0, 0, 1, 24 -24"
             transform="rotate(-90,74,426)"
           />
@@ -366,7 +366,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-background-color')"
+        clipPath="url('#clip-path-background-color')"
         fill={background}
       />
       <rect
@@ -374,7 +374,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="0"
         height="500"
         width="500"
-        clip-path="url('#clip-path-dot-color-whatsapp')"
+        clipPath="url('#clip-path-dot-color-whatsapp')"
         fill={fill}
       />
       <rect
@@ -382,7 +382,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="18"
         height="112"
         width="112"
-        clip-path="url('#clip-path-corners-square-color-0-0')"
+        clipPath="url('#clip-path-corners-square-color-0-0')"
         fill={fill}
       />
       <rect
@@ -390,7 +390,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="50"
         height="48"
         width="48"
-        clip-path="url('#clip-path-corners-dot-color-0-0')"
+        clipPath="url('#clip-path-corners-dot-color-0-0')"
         fill={fill}
       />
       <rect
@@ -398,7 +398,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="18"
         height="112"
         width="112"
-        clip-path="url('#clip-path-corners-square-color-1-0')"
+        clipPath="url('#clip-path-corners-square-color-1-0')"
         fill={fill}
       />
       <rect
@@ -406,7 +406,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="50"
         height="48"
         width="48"
-        clip-path="url('#clip-path-corners-dot-color-1-0')"
+        clipPath="url('#clip-path-corners-dot-color-1-0')"
         fill={fill}
       />
       <rect
@@ -414,7 +414,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="370"
         height="112"
         width="112"
-        clip-path="url('#clip-path-corners-square-color-0-1')"
+        clipPath="url('#clip-path-corners-square-color-0-1')"
         fill={fill}
       />
       <rect
@@ -422,7 +422,7 @@ export const QrCodeWhatsAppMarekKustosz = (
         y="402"
         height="48"
         width="48"
-        clip-path="url('#clip-path-corners-dot-color-0-1')"
+        clipPath="url('#clip-path-corners-dot-color-0-1')"
         fill={fill}
       />
     </svg>
