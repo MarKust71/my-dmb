@@ -4,6 +4,7 @@ const withPWA = require('next-pwa')({
 })
 
 const DEFAULT_REDIRECT = '/'
+const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 
 const nextConfig = {
   webpack(config) {
@@ -97,8 +98,18 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/e/de',
+        destination: DIAMOND_EVENT_NEXT_REDIRECT,
+        permanent: true,
+      },
+      {
         source: '/events',
         destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/events/diamond-event',
+        destination: DIAMOND_EVENT_NEXT_REDIRECT,
         permanent: true,
       },
       {
