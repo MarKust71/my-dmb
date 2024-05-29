@@ -32,6 +32,8 @@ export const publicRoutes = [
   '/invite',
   '/mra-reports',
   '/products',
+  '/program',
+  '/program/energy-program',
 ]
 
 export const DEFAULT_REDIRECT = '/contact/marek-kustosz'
