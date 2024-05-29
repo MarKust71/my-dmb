@@ -128,6 +128,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/program',
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      },
+      {
         source: '/mra-reports',
         destination: DEFAULT_REDIRECT,
         permanent: true,
