@@ -7,6 +7,13 @@ import {
 */
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import WhatsappContact from '@/components/whatsapp-contact'
+import { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'my-dMb App | Product | Body Cleansing Program',
+  }
+}
 
 const BodyCleansingProgram = () => {
   return (

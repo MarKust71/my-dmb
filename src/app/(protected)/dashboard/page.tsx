@@ -4,6 +4,13 @@ import Link from 'next/link'
 import { FileUpload } from '@/components/file-upload'
 import { auth } from '@/auth'
 import { sendMail } from '@/lib/mail'
+import { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'my-dMb App | Dashboard',
+  }
+}
 
 const DashboardPage = async () => {
   const session = await auth()
@@ -22,20 +29,44 @@ const DashboardPage = async () => {
       <h1>Links:</h1>
 
       <div className={'px-4'}>
-        <Link href={'/body-cleansing-program'} className={'flex'}>
-          Body Cleansing Program
+        <Link href={'/products/body-cleansing-program'} className={'flex'}>
+          Product | Body Cleansing Program
         </Link>
 
-        <Link href={'/artistry-holistic-promo'} className={'flex'}>
-          Artistry Holistic Promo
+        <Link href={'/products/artistry-holistic-promo'} className={'flex'}>
+          Product | Artistry Holistic Promo
+        </Link>
+
+        <Link href={'/products/mra'} className={'flex'}>
+          Product | MRA
         </Link>
 
         <Link href={'/contact/marek-kustosz'} className={'flex'}>
-          Kontakt Marek Kustosz
+          Contact | Marek Kustosz
         </Link>
 
         <Link href={'/contact/sylwia-stachow'} className={'flex'}>
-          Kontakt Sylwia Stachów
+          Contact | Sylwia Stachów
+        </Link>
+
+        <Link href={'/e/iac'} className={'flex'}>
+          Event | International Award Ceremony
+        </Link>
+
+        <Link href={'/e/bwb'} className={'flex'}>
+          Event | Breakfast with Business
+        </Link>
+
+        <Link href={'/e/de'} className={'flex'}>
+          Event | Diamond Event
+        </Link>
+
+        <Link href={'/e/dl'} className={'flex'}>
+          Event | Diamond Live
+        </Link>
+
+        <Link href={'/i/n'} className={'flex'}>
+          Invite | Next
         </Link>
       </div>
 

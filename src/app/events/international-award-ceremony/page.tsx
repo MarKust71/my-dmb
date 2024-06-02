@@ -4,6 +4,13 @@ import InternationalAwardCeremonyImage from '@/assets/images/international-award
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
+import { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'my-dMb App | Event | International Award Ceremony',
+  }
+}
 
 const InternationalAwardCeremonyPage = () => {
   return (
