@@ -4,8 +4,15 @@ import BreakfastWithBusinessImage from '@/assets/images/breakfast-with-business-
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
+import { Metadata } from 'next'
 
 const nbsp = '\u00A0'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'my-dMb App | Event | Breakfast with Business',
+  }
+}
 
 const BreakfastWithBusinessPage = () => {
   return (

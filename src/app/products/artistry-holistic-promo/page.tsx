@@ -9,6 +9,13 @@ import {
 } from '@/components/ui/carousel'
 import { CarouselItemContent } from '@/components/artistry/carousel-item-content'
 import Image from 'next/legacy/image'
+import { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'my-dMb App | Product | Artistry Holistic Promo',
+  }
+}
 
 const ArtistryHolisticPromoPage = () => {
   return (
