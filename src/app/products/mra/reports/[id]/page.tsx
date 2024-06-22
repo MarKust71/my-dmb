@@ -1,5 +1,5 @@
-import { ReportItemList } from '@/components/mra-reports/menu-item-list'
-import { ReportDocument } from '@/components/mra-reports/report-document'
+import { ReportDocument } from '@/components/products/mra/reports/report-document'
+import { ReportItemList } from '@/components/products/mra/reports/menu-item-list'
 
 type Props = {
   params: { id: string }

@@ -1,9 +1,9 @@
 'use client'
 
 import './styles.scss'
-import { reportItems } from '@/components/mra-reports/menu-item-list/menu-item-list.const'
 import { useMraReportStore } from '@/store/mra-report'
 import { cn } from '@/lib/utils'
+import { reportItems } from '@/components/products/mra/reports/menu-item-list/menu-item-list.const'
 
 export const ReportItemList = () => {
   const updateCurrentMraReport = useMraReportStore(
