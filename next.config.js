@@ -137,6 +137,11 @@ const nextConfig = {
         destination: DEFAULT_REDIRECT,
         permanent: true,
       },
+      {
+        source: '/mra-registration',
+        destination: '/products/mra/registration',
+        permanent: true,
+      },
     ]
   },
 }
