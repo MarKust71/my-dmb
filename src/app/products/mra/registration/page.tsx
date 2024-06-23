@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { MraRegistrationForm } from '@/components/products/mra/registration/registration-form'
+import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -9,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const MraRegistrationPage = () => {
   return (
-    <>
+    <DashboardWrapper>
       <h1>Biorezonans MRA || Rejestracja</h1>
 
       <p>
@@ -18,7 +19,7 @@ const MraRegistrationPage = () => {
       </p>
 
       <MraRegistrationForm />
-    </>
+    </DashboardWrapper>
   )
 }
 
