@@ -30,8 +30,10 @@ export const publicRoutes = [
   '/events/international-award-ceremony',
   '/i',
   '/invite',
+  '/mra-registration',
   '/mra-reports',
   '/products',
+  '/products/mra/registration',
   '/program',
   '/program/energy-program',
 ]

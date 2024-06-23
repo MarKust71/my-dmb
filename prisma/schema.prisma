@@ -58,3 +58,36 @@ model Customer {
 
   @@unique([email, context])
 }
+
+model MraContext {
+  id             String           @id @default(cuid())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  contextId      String
+  name           String
+  MraApplication MraApplication[]
+
+  @@unique([contextId])
+}
+
+model MraApplication {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  lastname  String
+  firstname String
+  email     String
+  phone     String
+  postcode  String
+  city      String?
+  address   String?
+  birthDate DateTime?
+  height    Int?
+  weigth    Int?
+  consent   DateTime?
+  contextId String
+
+  context MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
+
+  @@unique([email, contextId])
+}
