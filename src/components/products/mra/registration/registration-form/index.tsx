@@ -31,7 +31,10 @@ export const MraRegistrationForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-4/5 mx-auto space-y-6"
+      >
         <FieldLastName form={form} />
 
         <FieldFirstName form={form} />
