@@ -9,12 +9,23 @@ import { Button } from '@/components/ui/button'
 import { MraRegistrationFormSchema } from '@/schemas'
 import { FieldLastName } from '@/components/products/mra/registration/registration-form/field-last-name'
 import { FieldFirstName } from '@/components/products/mra/registration/registration-form/field-first-name'
+import { FieldEmail } from '@/components/products/mra/registration/registration-form/field-email'
+import { FieldPhone } from '@/components/products/mra/registration/registration-form/field-phone'
+import { FieldPostcode } from '@/components/products/mra/registration/registration-form/field-postcode'
+import { FieldCity } from '@/components/products/mra/registration/registration-form/field-city'
+import { FieldAddress } from '@/components/products/mra/registration/registration-form/field-address'
+import { FieldBirthDate } from '@/components/products/mra/registration/registration-form/field-birth-date'
+import { FieldHeight } from '@/components/products/mra/registration/registration-form/field-height'
+import { FieldWeight } from '@/components/products/mra/registration/registration-form/field-weight'
 
 export const MraRegistrationForm = () => {
   const form = useForm<z.infer<typeof MraRegistrationFormSchema>>({
     resolver: zodResolver(MraRegistrationFormSchema),
     defaultValues: {
       lastname: '',
+      firstname: '',
+      email: '',
+      phone: '',
     },
   })
 
@@ -31,10 +42,29 @@ export const MraRegistrationForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-5/6 mx-auto space-y-6"
+      >
         <FieldLastName form={form} />
 
         <FieldFirstName form={form} />
+
+        <FieldEmail form={form} />
+
+        <FieldPhone form={form} />
+
+        <FieldPostcode form={form} />
+
+        <FieldCity form={form} />
+
+        <FieldAddress form={form} />
+
+        <FieldBirthDate form={form} />
+
+        <FieldHeight form={form} />
+
+        <FieldWeight form={form} />
 
         <Button type="submit">Zapisz</Button>
       </form>

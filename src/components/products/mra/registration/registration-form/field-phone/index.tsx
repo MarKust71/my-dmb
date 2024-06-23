@@ -6,19 +6,19 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { FieldLastNameProps } from '@/components/products/mra/registration/registration-form/field-last-name/field-last-name.types'
+import { FieldPhoneProps } from '@/components/products/mra/registration/registration-form/field-phone/field-phone.types'
 
-export const FieldLastName = ({ form }: FieldLastNameProps) => {
+export const FieldPhone = ({ form }: FieldPhoneProps) => {
   return (
     <FormField
       control={form.control}
-      name="lastname"
+      name="phone"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Nazwisko:</FormLabel>
+          <FormLabel>Telefon:</FormLabel>
 
           <FormControl>
-            <Input {...field} placeholder="np.: Kowalski" />
+            <Input {...field} placeholder="np.: +48 123 456 789" type={'tel'} />
           </FormControl>
 
           <FormMessage />
