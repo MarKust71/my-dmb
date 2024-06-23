@@ -42,3 +42,12 @@ export const ContactCustomerSchema = z.object({
   context: z.string(),
   consent: z.string().datetime().optional(),
 })
+
+export const MraRegistrationFormSchema = z.object({
+  lastname: z.string().min(2, {
+    message: 'Nazwisko musi mieć co najmniej dwa znaki.',
+  }),
+  firstname: z.string().min(2, {
+    message: 'Imię musi mieć co najmniej dwa znaki.',
+  }),
+})
