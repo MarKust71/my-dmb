@@ -18,7 +18,7 @@ export const FieldFirstName = ({ form }: FieldFirstNameProps) => {
           <FormLabel>Imię:</FormLabel>
 
           <FormControl>
-            <Input placeholder="np.: Jan" {...field} />
+            <Input {...field} placeholder="np.: Jan" />
           </FormControl>
 
           <FormMessage />

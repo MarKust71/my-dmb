@@ -6,19 +6,19 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { FieldLastNameProps } from '@/components/products/mra/registration/registration-form/field-last-name/field-last-name.types'
+import { FieldCityProps } from '@/components/products/mra/registration/registration-form/field-city/field-city.types'
 
-export const FieldLastName = ({ form }: FieldLastNameProps) => {
+export const FieldCity = ({ form }: FieldCityProps) => {
   return (
     <FormField
       control={form.control}
-      name="lastname"
+      name="city"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Nazwisko:</FormLabel>
+          <FormLabel>Miasto (opcjonalnie):</FormLabel>
 
           <FormControl>
-            <Input {...field} placeholder="np.: Kowalski" />
+            <Input {...field} placeholder="np.: Wąchock" type={'text'} />
           </FormControl>
 
           <FormMessage />
