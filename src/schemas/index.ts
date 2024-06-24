@@ -71,32 +71,41 @@ export const MraRegistrationFormSchema = z.object({
   address: z.string().optional(),
   birthDate: z
     .string()
-    .refine((value) => /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value ?? ''), {
-      message: 'Data urodzenia musi mieć postać RRRR-MM-DD.',
-    })
+    .refine(
+      (value) =>
+        /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value ?? '') || value === '',
+      {
+        message: 'Data urodzenia musi mieć postać RRRR-MM-DD.',
+      }
+    )
     .optional(),
   height: z
     .string()
-    .refine((value) => /^[0-9]{2,3}$/.test(value ?? ''), {
+    .refine((value) => /^[0-9]{2,3}$/.test(value ?? '') || value === '', {
       message: 'Wzrost może być tylko dwu albo trzycyfrowy.',
     })
-    .refine((value) => parseInt(value, 10) >= 60, {
+    .refine((value) => parseInt(value, 10) >= 60 || value === '', {
       message: 'Minimalny wzrost to 60 cm.',
     })
-    .refine((value) => parseInt(value, 10) <= 300, {
+    .refine((value) => parseInt(value, 10) <= 300 || value === '', {
       message: 'Maksymalny wzrost to 300 cm.',
     })
     .optional(),
   weight: z
     .string()
-    .refine((value) => /^[0-9]{2,3}$/.test(value ?? ''), {
+    .refine((value) => /^[0-9]{2,3}$/.test(value ?? '') || value === '', {
       message: 'Waga może być tylko dwu albo trzycyfrowa.',
     })
-    .refine((value) => parseInt(value, 10) >= 30, {
+    .refine((value) => parseInt(value, 10) >= 30 || value === '', {
       message: 'Minimalna waga to 30 kg.',
     })
-    .refine((value) => parseInt(value, 10) <= 200, {
+    .refine((value) => parseInt(value, 10) <= 200 || value === '', {
       message: 'Maksymalna waga to 200 kg.',
     })
     .optional(),
+})
+
+export const MraContextSchema = z.object({
+  contextId: z.string(),
+  name: z.string(),
 })

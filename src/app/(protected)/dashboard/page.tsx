@@ -5,6 +5,7 @@ import { FileUpload } from '@/components/file-upload'
 import { auth } from '@/auth'
 import { sendMail } from '@/lib/mail'
 import { Metadata } from 'next'
+import { InitMraContext } from '@/components/products/mra/init-mra-context'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -71,6 +72,8 @@ const DashboardPage = async () => {
       </div>
 
       <FileUpload />
+
+      <InitMraContext />
     </DashboardWrapper>
   )
 }
