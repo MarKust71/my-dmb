@@ -26,6 +26,12 @@ export const MraRegistrationForm = () => {
       firstname: '',
       email: '',
       phone: '',
+      postcode: '',
+      city: '',
+      address: '',
+      birthDate: '',
+      height: '',
+      weight: '',
     },
   })
 
@@ -44,7 +50,7 @@ export const MraRegistrationForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="w-5/6 mx-auto space-y-6"
+        className="w-full p-4 mx-auto space-y-3"
       >
         <FieldLastName form={form} />
 
