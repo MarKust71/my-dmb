@@ -103,11 +103,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/events',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
         source: '/events/diamond-event',
         destination: DIAMOND_EVENT_NEXT_REDIRECT,
         permanent: true,
