@@ -1,18 +1,16 @@
 'use client'
 
-import { EventBoxLinkProps } from '@/components/ui/boxes/event-box/event-box-link/event-box-link.types'
+import { EventBoxLinkProps } from './event-box-link.types'
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@/components/ui/icons/icon-copy'
-import Link from 'next/link'
 import { useToast } from '@/components/ui/use-toast'
+import Link from 'next/link'
 
-export const EventBoxLink: React.FC<EventBoxLinkProps> = ({ url }) => {
+export const EventBoxLink = ({ url }: EventBoxLinkProps) => {
   const { toast } = useToast()
 
   const handleCopyIconClick = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
-
-    console.log(' COPY: ', url)
 
     try {
       await navigator.clipboard.writeText(url)
