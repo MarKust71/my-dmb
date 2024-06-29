@@ -5,11 +5,16 @@ import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 import './contact-form.css'
+import { ContactActiveEnum } from '@/types/contact.types'
+import { useSearchParams } from 'next/navigation'
 
 export const ContactFormHeader = ({
   children,
   qrcode,
 }: ContactFormHeaderProps) => {
+  const searchParams = useSearchParams()
+  const active = searchParams.get('active') as ContactActiveEnum
+
   const [isQrCodeUrlVisible, setIsQrCodeUrlVisible] = useState(true)
 
   const toggleIsQrCodeVisible = () => {
@@ -17,9 +22,11 @@ export const ContactFormHeader = ({
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsQrCodeUrlVisible(false)
-    }, 5000)
+    if (active !== ContactActiveEnum.QR) {
+      setTimeout(() => {
+        setIsQrCodeUrlVisible(false)
+      }, 5000)
+    }
   }, [])
 
   return (

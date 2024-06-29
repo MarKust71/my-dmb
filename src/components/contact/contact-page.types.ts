@@ -1,5 +1,6 @@
 import { UserContext } from '@/components/contact/contact-form.types'
 import { ReactNode } from 'react'
+import { ContactActiveEnum } from '@/types/contact.types'
 
 export type ContactPageProps = {
   backgroundImageClass: string
@@ -13,4 +14,5 @@ export type ContactPageProps = {
   linkedin: string
   facebook: string
   instagram: string
+  active?: ContactActiveEnum
 }

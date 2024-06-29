@@ -94,7 +94,7 @@ const nextConfig = {
       },
       {
         source: '/e',
-        destination: DEFAULT_REDIRECT,
+        destination: '/events',
         permanent: true,
       },
       {

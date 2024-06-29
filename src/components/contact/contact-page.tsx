@@ -15,6 +15,7 @@ export const ContactPage = ({
   linkedin,
   facebook,
   instagram,
+  active,
 }: ContactPageProps) => {
   return (
     <>
@@ -42,6 +43,7 @@ export const ContactPage = ({
             linkedin={linkedin}
             phoneUrl={phoneUrl}
             phone={phone}
+            active={active}
           />
         </div>
       </div>

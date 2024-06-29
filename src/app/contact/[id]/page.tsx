@@ -33,9 +33,12 @@ export async function generateMetadata({
 
 type Props = {
   params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default function Component({ params: { id } }: Props) {
+export default function Component({ params: { id }, searchParams }: Props) {
+  const active = searchParams.active
+
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {
       const {
@@ -77,6 +80,7 @@ export default function Component({ params: { id } }: Props) {
           linkedin={linkedin}
           facebook={facebook}
           instagram={instagram}
+          active={active}
         />
       )
     }
@@ -121,6 +125,7 @@ export default function Component({ params: { id } }: Props) {
           linkedin={linkedin}
           facebook={facebook}
           instagram={instagram}
+          active={active}
         />
       )
     }

@@ -23,6 +23,7 @@ import { ContactWhatsApp } from '@/components/ui/icons/contact-whatsapp'
 import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
 import { addCustomer } from '@/actions/contact/add-customer'
 import { useToast } from '@/components/ui/use-toast'
+import { ContactActiveEnum } from '@/types/contact.types'
 
 export const ContactForm = ({
   userContext,
@@ -33,15 +34,21 @@ export const ContactForm = ({
   linkedin,
   phoneUrl,
   phone,
+  active,
 }: ContactFormProps) => {
   const [isPending, startTransition] = useTransition()
   const { toast } = useToast()
 
   const [isConsentVisible, setIsConsentVisible] = useState(false)
-  const [isContactFormVisible, setIsContactFormVisible] = useState(false)
-  const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(false)
-  const [isContactWhatsAppVisible, setIsContactWhatsAppVisible] =
-    useState(false)
+  const [isContactFormVisible, setIsContactFormVisible] = useState(
+    active === ContactActiveEnum.MAIL
+  )
+  const [isContactPhoneVisible, setIsContactPhoneVisible] = useState(
+    active === ContactActiveEnum.PHONE
+  )
+  const [isContactWhatsAppVisible, setIsContactWhatsAppVisible] = useState(
+    active === ContactActiveEnum.WHATSAPP
+  )
   const [isContactEmailHover, setIsContactEmailHover] = useState(false)
   const [isContactPhoneHover, setIsContactPhoneHover] = useState(false)
   const [isContactWhatsAppHover, setIsContactWhatsAppHover] = useState(false)
