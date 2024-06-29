@@ -1,3 +1,5 @@
+import { ContactActiveEnum } from '@/types/contact.types'
+
 export type ContactFormValues = {
   email: string
   name: string
@@ -14,6 +16,7 @@ export type ContactFormProps = {
   linkedin: string
   phoneUrl: string
   phone: string
+  active?: ContactActiveEnum
 }
 
 export enum ContactType {
