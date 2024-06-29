@@ -7,6 +7,7 @@ import { Metadata } from 'next'
 import './page.scss'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
+import { ContactActiveEnum } from '@/types/contact.types'
 
 export async function generateMetadata({
   params: { id },
@@ -37,7 +38,7 @@ type Props = {
 }
 
 export default function Component({ params: { id }, searchParams }: Props) {
-  const active = searchParams.active
+  const active = searchParams.active as ContactActiveEnum
 
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {
