@@ -1,0 +1,31 @@
+/* Definicja zmiennych kolorów złotego gradientu */
+$gold-light: #FDEE64;
+$gold-medium-light: #F7D451;
+$gold-medium: #F0BB3E;
+$gold-medium-dark: #EBA32B;
+$gold-dark: #E7B740;
+
+/* Klasa dla gradientu tekstowego */
+.gold-text-gradient {
+  background: linear-gradient(45deg,
+    $gold-light 0%,
+    $gold-medium-light 10%,
+    $gold-medium 20%,
+    $gold-medium-dark 30%,
+    $gold-dark 40%,
+    $gold-light 50%,
+    $gold-medium-light 60%,
+    $gold-medium 70%,
+    $gold-medium-dark 80%,
+    $gold-dark 90%,
+    $gold-light 100%  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  /* Opcjonalnie, aby usunąć antyaliasing dla lepszej jakości tekstu */
+  &.no-antialiasing {
+    -webkit-font-smoothing: antialiased;
+  }
+}

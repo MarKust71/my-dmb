@@ -5,6 +5,7 @@ const withPWA = require('next-pwa')({
 
 const DEFAULT_REDIRECT = '/'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
+const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 
 const nextConfig = {
   webpack(config) {
@@ -52,6 +53,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/biorezonans/umow-wizyte',
+        destination: MRA_REGISTRATION_REDIRECT,
+        permanent: true,
+      },
       {
         source: '/api',
         destination: DEFAULT_REDIRECT,
