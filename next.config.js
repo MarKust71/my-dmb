@@ -6,6 +6,10 @@ const withPWA = require('next-pwa')({
 const DEFAULT_REDIRECT = '/'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
+const MRA_REGISTRATION_GOOGLE_REDIRECT =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdqjOYcljSptlZQZs6UYoUZzR9JBMecTA3D2gm_ZlqOkl3ZEA/viewform'
+const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
+const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 
 const nextConfig = {
   webpack(config) {
@@ -54,8 +58,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/biorezonans/umow-wizyte',
-        destination: MRA_REGISTRATION_REDIRECT,
+        source: '/mra/umow-test',
+        destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
         permanent: true,
       },
       {
@@ -75,7 +79,7 @@ const nextConfig = {
       },
       {
         source: '/n-finance',
-        destination: 'https://account.tapitag.co/230220241244$$NFMS',
+        destination: N_FINANCE_REDIRECT,
         permanent: false,
       },
       {
@@ -85,7 +89,7 @@ const nextConfig = {
       },
       {
         source: '/n-home',
-        destination: 'https://account.tapitag.co/230220241244$$NFMS',
+        destination: N_HOME_REDIRECT,
         permanent: false,
       },
       {
@@ -140,7 +144,7 @@ const nextConfig = {
       },
       {
         source: '/mra-registration',
-        destination: '/products/mra/registration',
+        destination: MRA_REGISTRATION_REDIRECT,
         permanent: true,
       },
     ]
