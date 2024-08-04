@@ -6,8 +6,7 @@ const withPWA = require('next-pwa')({
 const DEFAULT_REDIRECT = '/'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
-const MRA_REGISTRATION_GOOGLE_REDIRECT =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdqjOYcljSptlZQZs6UYoUZzR9JBMecTA3D2gm_ZlqOkl3ZEA/viewform'
+const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/BvWXFzaqpJF7Dy1G8'
 const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 
