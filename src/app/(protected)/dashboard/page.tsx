@@ -30,72 +30,100 @@ const DashboardPage = async () => {
       <h1>Links:</h1>
 
       <div className={'px-4'}>
-        <Link href={'/contact/marek-kustosz'} className={'flex'}>
+        <Link
+          href={'/contact/marek-kustosz'}
+          className={'flex'}
+          target={'_blank'}
+        >
           Contact | Marek Kustosz
         </Link>
 
-        <Link href={'/contact/sylwia-stachow'} className={'flex'}>
+        <Link
+          href={'/contact/sylwia-stachow'}
+          className={'flex'}
+          target={'_blank'}
+        >
           Contact | Sylwia Stachów
         </Link>
 
         <div className={'flex mb-2'} />
 
-        <Link href={'/products/body-cleansing-program'} className={'flex'}>
+        <Link
+          href={'/products/body-cleansing-program'}
+          className={'flex'}
+          target={'_blank'}
+        >
           Product | Body Cleansing Program
         </Link>
 
-        <Link href={'/products/artistry-holistic-promo'} className={'flex'}>
+        <Link
+          href={'/products/artistry-holistic-promo'}
+          className={'flex'}
+          target={'_blank'}
+        >
           Product | Artistry Holistic Promo
         </Link>
 
-        <Link href={'/products/mra'} className={'flex'}>
+        <Link href={'/products/mra'} className={'flex'} target={'_blank'}>
           Product | MRA
         </Link>
 
         <div className={'flex flex-col pl-4'}>
-          <Link href={'/products/mra/registration'} className={'flex'}>
+          <Link
+            href={'/products/mra/registration'}
+            className={'flex'}
+            target={'_blank'}
+          >
             Product | MRA | Registration
           </Link>
 
-          <Link href={'/products/mra/reports/202404191957'} className={'flex'}>
+          <Link
+            href={'/products/mra/reports/202404191957'}
+            className={'flex'}
+            target={'_blank'}
+          >
             Product | MRA | Reports
           </Link>
         </div>
 
         <div className={'flex mb-2'} />
 
-        <Link href={'/e'} className={'flex'}>
+        <Link href={'/e'} className={'flex'} target={'_blank'}>
           Events
         </Link>
 
         <div className={'flex flex-col pl-4'}>
-          <Link href={'/e/iac'} className={'flex'}>
+          <Link href={'/e/iac'} className={'flex'} target={'_blank'}>
             Event | International Award Ceremony
           </Link>
 
-          <Link href={'/e/bwb'} className={'flex'}>
+          <Link href={'/e/bwb'} className={'flex'} target={'_blank'}>
             Event | Breakfast with Business
           </Link>
 
-          <Link href={'/e/de'} className={'flex'}>
+          <Link href={'/e/de'} className={'flex'} target={'_blank'}>
             Event | Diamond Event
           </Link>
 
-          <Link href={'/e/dl'} className={'flex'}>
+          <Link href={'/e/dl'} className={'flex'} target={'_blank'}>
             Event | Diamond Live
           </Link>
         </div>
 
         <div className={'flex mb-2'} />
 
-        <Link href={'/i/n'} className={'flex'}>
+        <Link href={'/i/n'} className={'flex'} target={'_blank'}>
           Invite | Next
         </Link>
 
         <div className={'flex mb-2'} />
 
-        <Link href={'/campaign'} className={'flex'}>
+        <Link href={'/campaign'} className={'flex'} target={'_blank'}>
           Campaign
+        </Link>
+
+        <Link href={'/umow-konsultacje'} className={'flex'} target={'_blank'}>
+          Konsultacje
         </Link>
       </div>
 
