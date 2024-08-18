@@ -9,6 +9,7 @@ const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/BvWXFzaqpJF7Dy1G8'
 const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
+const GOOGLE_CALENDAR_REDIRECT = 'https://calendar.app.google/RPtGx3AJ7aXsmjxP6'
 
 const nextConfig = {
   webpack(config) {
@@ -56,6 +57,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/umow-konsultacje',
+        destination: GOOGLE_CALENDAR_REDIRECT,
+        permanent: true,
+      },
       {
         source: '/mra/umow-test',
         destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
