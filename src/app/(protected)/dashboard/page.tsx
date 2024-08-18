@@ -30,6 +30,16 @@ const DashboardPage = async () => {
       <h1>Links:</h1>
 
       <div className={'px-4'}>
+        <Link href={'/contact/marek-kustosz'} className={'flex'}>
+          Contact | Marek Kustosz
+        </Link>
+
+        <Link href={'/contact/sylwia-stachow'} className={'flex'}>
+          Contact | Sylwia Stachów
+        </Link>
+
+        <div className={'flex mb-2'} />
+
         <Link href={'/products/body-cleansing-program'} className={'flex'}>
           Product | Body Cleansing Program
         </Link>
@@ -42,32 +52,50 @@ const DashboardPage = async () => {
           Product | MRA
         </Link>
 
-        <Link href={'/contact/marek-kustosz'} className={'flex'}>
-          Contact | Marek Kustosz
+        <div className={'flex flex-col pl-4'}>
+          <Link href={'/products/mra/registration'} className={'flex'}>
+            Product | MRA | Registration
+          </Link>
+
+          <Link href={'/products/mra/reports/202404191957'} className={'flex'}>
+            Product | MRA | Reports
+          </Link>
+        </div>
+
+        <div className={'flex mb-2'} />
+
+        <Link href={'/e'} className={'flex'}>
+          Events
         </Link>
 
-        <Link href={'/contact/sylwia-stachow'} className={'flex'}>
-          Contact | Sylwia Stachów
-        </Link>
+        <div className={'flex flex-col pl-4'}>
+          <Link href={'/e/iac'} className={'flex'}>
+            Event | International Award Ceremony
+          </Link>
 
-        <Link href={'/e/iac'} className={'flex'}>
-          Event | International Award Ceremony
-        </Link>
+          <Link href={'/e/bwb'} className={'flex'}>
+            Event | Breakfast with Business
+          </Link>
 
-        <Link href={'/e/bwb'} className={'flex'}>
-          Event | Breakfast with Business
-        </Link>
+          <Link href={'/e/de'} className={'flex'}>
+            Event | Diamond Event
+          </Link>
 
-        <Link href={'/e/de'} className={'flex'}>
-          Event | Diamond Event
-        </Link>
+          <Link href={'/e/dl'} className={'flex'}>
+            Event | Diamond Live
+          </Link>
+        </div>
 
-        <Link href={'/e/dl'} className={'flex'}>
-          Event | Diamond Live
-        </Link>
+        <div className={'flex mb-2'} />
 
         <Link href={'/i/n'} className={'flex'}>
           Invite | Next
+        </Link>
+
+        <div className={'flex mb-2'} />
+
+        <Link href={'/campaign'} className={'flex'}>
+          Campaign
         </Link>
       </div>
 
