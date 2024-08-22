@@ -49,7 +49,7 @@ export default function Home() {
               target="_blank"
               className={'flex flex-col bg-white/5 hover:bg-white/10 px-8 py-2'}
             >
-              <div>Odwiedź nas na</div>
+              <div>Odwiedź</div>
               <div className={'font-bold my-3 text-transform: uppercase'}>
                 dmb.global
               </div>
@@ -74,7 +74,7 @@ export default function Home() {
               target="_blank"
               className={'flex flex-col bg-white/5 hover:bg-white/10 px-8 py-2'}
             >
-              <div>Dołącz do:</div>
+              <div>Dołącz do</div>
               <div className={'font-bold my-3 text-transform: uppercase'}>
                 DMB Global Events
               </div>
