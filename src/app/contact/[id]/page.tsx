@@ -8,6 +8,7 @@ import './page.scss'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 import { ContactActiveEnum } from '@/types/contact.types'
+import { Props } from './page.types'
 
 export async function generateMetadata({
   params: { id },
@@ -30,11 +31,6 @@ export async function generateMetadata({
         title: 'my-dMb App',
       }
   }
-}
-
-type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 export default function Component({ params: { id }, searchParams }: Props) {
