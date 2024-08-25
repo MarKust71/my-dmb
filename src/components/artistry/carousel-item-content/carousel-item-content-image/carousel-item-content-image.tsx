@@ -1,4 +1,5 @@
 import Image from 'next/legacy/image'
+
 import { CarouselItemContentImageProps } from './carousel-item-content-image.types'
 
 export const CarouselItemContentImage = ({

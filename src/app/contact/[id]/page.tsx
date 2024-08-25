@@ -1,13 +1,15 @@
 import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
+
 import { ContactPage } from '@/components/contact/contact-page'
 import { UserContext, UserId } from '@/components/contact/contact-form.types'
 import { QrCodeWhatsAppMarekKustosz } from '@/components/ui/qr-codes/qr-code-whatsapp-marek-kustosz'
 import { QrCodeWhatsAppSylwiaStachow } from '@/components/ui/qr-codes/qr-code-whatsapp-sylwia-stachow'
-import { Metadata } from 'next'
 import './page.scss'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 import { ContactActiveEnum } from '@/types/contact.types'
+
 import { Props } from './page.types'
 
 export async function generateMetadata({

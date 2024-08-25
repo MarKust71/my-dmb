@@ -1,9 +1,23 @@
 // eslint.config.js
+
 module.exports = [
   {
     // extends: ['next/core-web-vitals'],
+    plugins: {
+      import: require('eslint-plugin-import'),
+    },
     rules: {
       'react-hooks/exhaustive-deps': 'off',
-    },
+      'import/order': [
+        'error',
+        {
+          groups: [
+            ['external', 'builtin'],
+            ['parent', 'internal'],
+            ['index', 'sibling'],
+          ],
+          'newlines-between': 'always',
+        },
+      ]},
   },
 ]

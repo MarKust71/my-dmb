@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import {
   FormControl,
   FormDescription,
@@ -6,7 +8,6 @@ import {
   FormLabel,
 } from '@/components/ui/form'
 import { Checkbox } from '@/components/ui/checkbox'
-import Link from 'next/link'
 import { ContactConsentFormProps } from '@/components/contact/contact-consent-form.types'
 
 export const ContactConsentForm = ({

@@ -1,10 +1,11 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { FcGoogle } from 'react-icons/fc'
 import { FaFacebook, FaInstagram } from 'react-icons/fa'
 import { FaXTwitter, FaGithub } from 'react-icons/fa6'
 import { signIn } from 'next-auth/react'
+
+import { Button } from '@/components/ui/button'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 
 enum SocialProvider {

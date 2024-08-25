@@ -1,7 +1,8 @@
 import Image from 'next/image'
+import { Metadata } from 'next'
+
 import EnergyProgramImage1 from '@/assets/images/program/energy-program/energy-program-image-1.jpg'
 import EnergyProgramImage2 from '@/assets/images/program/energy-program/energy-program-image-2.jpg'
-import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

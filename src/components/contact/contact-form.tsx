@@ -1,16 +1,12 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import {
-  ContactFormProps,
-  ContactFormValues,
-  ContactType,
-} from './contact-form.types'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState, useTransition } from 'react'
+
 import { Form } from '@/components/ui/form'
 import { ContactFormField } from '@/components/contact/contact-form-field'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactFormSchema } from '@/schemas'
-import { useEffect, useState, useTransition } from 'react'
 import { ArrowRightCircle } from '@/components/ui/buttons/arrow-right-circle'
 import { isEmailValid } from '@/lib/validation'
 import { SocialInstagram } from '@/components/ui/icons/social-instagram'
@@ -24,6 +20,12 @@ import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
 import { addCustomer } from '@/actions/contact/add-customer'
 import { useToast } from '@/components/ui/use-toast'
 import { ContactActiveEnum } from '@/types/contact.types'
+
+import {
+  ContactFormProps,
+  ContactFormValues,
+  ContactType,
+} from './contact-form.types'
 
 export const ContactForm = ({
   userContext,

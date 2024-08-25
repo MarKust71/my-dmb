@@ -1,12 +1,9 @@
 'use client'
 
-import { CarouselItemContentImage } from './carousel-item-content-image'
-import { CarouselItemContentProps } from './carousel-item-content.types'
-import { CarouselItemContentVideo } from './carousel-item-content-video'
-import { PrevButton } from './prev-button'
-import { NextButton } from './next-button'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import React from 'react'
+
+import { Button } from '@/components/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -17,7 +14,13 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 
-import React from 'react'
+import { CarouselItemContentImage } from './carousel-item-content-image'
+import { CarouselItemContentProps } from './carousel-item-content.types'
+import { CarouselItemContentVideo } from './carousel-item-content-video'
+import { PrevButton } from './prev-button'
+import { NextButton } from './next-button'
+
+
 
 export const CarouselItemContent = ({
   href = '',

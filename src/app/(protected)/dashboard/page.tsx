@@ -1,10 +1,11 @@
+import Link from 'next/link'
+import { Metadata } from 'next'
+
 import { DashboardSessionBox } from '@/components/dashboard/dashboard-session-box'
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
-import Link from 'next/link'
 import { FileUpload } from '@/components/file-upload'
 import { auth } from '@/auth'
 import { sendMail } from '@/lib/mail'
-import { Metadata } from 'next'
 import { InitMraContext } from '@/components/products/mra/init-mra-context'
 
 export async function generateMetadata(): Promise<Metadata> {

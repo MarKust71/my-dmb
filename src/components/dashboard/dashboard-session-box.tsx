@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+
 import { DashboardSessionBoxProps } from '@/components/dashboard/dashboard-session-box.types'
 
 export const DashboardSessionBox = ({ session }: DashboardSessionBoxProps) => {

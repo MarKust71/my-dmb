@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
+
+import { cn } from '@/lib/utils'
 import DmbLogo from '@/assets/images/dmb-logo.png'
 import './page.scss'
 

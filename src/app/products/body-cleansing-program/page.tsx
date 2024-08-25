@@ -5,9 +5,10 @@ import {
   PictogramSociety,
 } from '@/components/svgs'
 */
+import { Metadata } from 'next'
+
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import WhatsappContact from '@/components/whatsapp-contact'
-import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

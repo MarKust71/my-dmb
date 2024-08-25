@@ -1,6 +1,7 @@
-import { Invite202404112000 } from '@/components/invite/202404112000'
 import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
+
+import { Invite202404112000 } from '@/components/invite/202404112000'
 
 export async function generateMetadata({
   params: { id },

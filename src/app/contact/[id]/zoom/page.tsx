@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
+
 import { UserContext, UserId } from '@/components/contact/contact-form.types'
 import { Props } from '../page.types'
+import './page.scss'
+import { ContactZoom } from '@/components/contact/zoom/contact-zoom'
 
 export async function generateMetadata({
   params: { id },
@@ -25,12 +28,12 @@ export async function generateMetadata({
   }
 }
 
-const ContactZoomPage = () => {
+const Component = () => {
   return (
-    <div>
-      <h1>Contact Zoom Page</h1>
+    <div className={'min-h-screen flex flex-col'}>
+      <ContactZoom />
     </div>
   )
 }
 
-export default ContactZoomPage
+export default Component

@@ -1,5 +1,6 @@
-import { UserContext } from '@/components/contact/contact-form.types'
 import { ReactNode } from 'react'
+
+import { UserContext } from '@/components/contact/contact-form.types'
 import { ContactActiveEnum } from '@/types/contact.types'
 
 export type ContactPageProps = {
