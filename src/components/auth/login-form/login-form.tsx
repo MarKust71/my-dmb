@@ -1,15 +1,16 @@
 'use client'
 
-import { AuthCardWrapper } from '@/components/auth/auth-card-wrapper'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import { LoginSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState, useTransition } from 'react'
+
+import { AuthCardWrapper } from '@/components/auth/auth-card-wrapper'
+import { LoginSchema } from '@/schemas'
 import { Form } from '@/components/ui/form'
 import { AuthFormField } from '@/components/auth/auth-form-field'
 import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/auth/form-error'
-import { useState, useTransition } from 'react'
 import { login } from '@/actions/auth/login'
 
 export const LoginForm = () => {

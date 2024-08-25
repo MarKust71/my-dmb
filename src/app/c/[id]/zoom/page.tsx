@@ -4,21 +4,15 @@ import { UserId, UserIdShort } from '@/components/contact/contact-form.types'
 
 export default function Component({
   params: { id },
-  searchParams,
 }: {
   params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const searchString = searchParams.active
-    ? `?active=${searchParams.active}`
-    : ''
-
   if (id === UserIdShort.MAREK_KUSTOSZ || id === UserId.MAREK_KUSTOSZ) {
-    redirect(`/contact/${UserId.MAREK_KUSTOSZ}${searchString}`)
+    redirect(`/contact/${UserId.MAREK_KUSTOSZ}/zoom`)
   }
 
   if (id === UserIdShort.SYLWIA_STACHOW || id === UserId.SYLWIA_STACHOW) {
-    redirect(`/contact/${UserId.SYLWIA_STACHOW}${searchString}`)
+    redirect(`/contact/${UserId.SYLWIA_STACHOW}/zoom`)
   }
 
   redirect('/')

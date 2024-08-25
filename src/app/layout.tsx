@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { SessionProvider } from 'next-auth/react'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+
 import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
-import { SessionProvider } from 'next-auth/react'
 import { Toaster } from '@/components/ui/toaster'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({ subsets: ['latin'] })
 

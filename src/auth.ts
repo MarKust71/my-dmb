@@ -1,10 +1,12 @@
 import NextAuth, { Session } from 'next-auth'
-import authConfig from '@/auth.config'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { db } from '@/lib/db'
 import { JWT } from 'next-auth/jwt'
-import { getUserById } from '@/data/auth/user'
 import { UserRole } from '@prisma/client'
+
+import authConfig from '@/auth.config'
+import { db } from '@/lib/db'
+import { getUserById } from '@/data/auth/user'
+
 
 export const {
   handlers: { GET, POST },

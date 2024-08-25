@@ -1,8 +1,9 @@
+import { ArrowRight } from 'lucide-react'
+import * as React from 'react'
+
 import { useCarousel } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { ArrowRight } from 'lucide-react'
-import * as React from 'react'
 
 export const NextButton = () => {
   const { scrollNext, canScrollNext } = useCarousel()

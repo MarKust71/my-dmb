@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+
 import { MraReport } from '@/store/mra-report.types'
 
 export type MraReportState = {

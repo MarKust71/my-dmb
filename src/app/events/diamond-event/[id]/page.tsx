@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
+
 import { DiamondEvent20240616 } from '@/components/event/diamond-event/20240616'
 
 export async function generateMetadata({

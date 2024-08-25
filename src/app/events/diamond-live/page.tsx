@@ -1,10 +1,10 @@
 import Image from 'next/image'
+import { Metadata } from 'next'
 
 import DiamondLiveImage from '@/assets/images/diamond-live-image-1.jpeg'
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
-import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

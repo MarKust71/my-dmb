@@ -1,6 +1,8 @@
+import Image from 'next/legacy/image'
+import { Metadata } from 'next'
+
 import MaxWidthWrapper from '@/components/max-width-wrapper'
 import { ArtistryLogotype } from '@/components/ui/svgs'
-
 import './page.scss'
 import {
   Carousel,
@@ -8,8 +10,6 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { CarouselItemContent } from '@/components/artistry/carousel-item-content'
-import Image from 'next/legacy/image'
-import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

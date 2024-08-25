@@ -1,10 +1,10 @@
 import Image from 'next/image'
+import { Metadata } from 'next'
 
 import InternationalAwardCeremonyImage from '@/assets/images/international-award-ceremony-image.jpeg'
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
-import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

@@ -1,12 +1,12 @@
 'use client'
 
-import { ContactFormHeaderProps } from '@/components/contact/contact-form-header.types'
 import { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
+import { useSearchParams } from 'next/navigation'
 
+import { ContactFormHeaderProps } from '@/components/contact/contact-form-header.types'
+import { cn } from '@/lib/utils'
 import './contact-form.css'
 import { ContactActiveEnum } from '@/types/contact.types'
-import { useSearchParams } from 'next/navigation'
 
 export const ContactFormHeader = ({
   children,

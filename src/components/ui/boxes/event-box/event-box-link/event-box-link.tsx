@@ -1,12 +1,18 @@
 'use client'
 
-import { EventBoxLinkProps } from './event-box-link.types'
+import Link from 'next/link'
+
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@/components/ui/icons/icon-copy'
 import { useToast } from '@/components/ui/use-toast'
-import Link from 'next/link'
 
-export const EventBoxLink = ({ url }: EventBoxLinkProps) => {
+import { EventBoxLinkProps } from './event-box-link.types'
+
+export const EventBoxLink = ({
+  url,
+  className,
+  stroke = '#18181b',
+}: EventBoxLinkProps) => {
   const { toast } = useToast()
 
   const handleCopyIconClick = async (event: React.MouseEvent<HTMLElement>) => {
@@ -33,13 +39,13 @@ export const EventBoxLink = ({ url }: EventBoxLinkProps) => {
   return (
     <div className={'flex flex-row items-center gap-2'}>
       <Link href={url} target={'_blank'}>
-        <Button variant={'link'} size={'auto'}>
+        <Button variant={'link'} size={'auto'} className={className}>
           {url}
         </Button>
       </Link>
 
       <Button variant={'link'} size={'auto'} onClick={handleCopyIconClick}>
-        <IconCopy width={14} height={14} fill={'none'} stroke={'#18181b'} />
+        <IconCopy width={14} height={14} fill={'none'} stroke={stroke} />
       </Button>
     </div>
   )

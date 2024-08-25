@@ -1,7 +1,8 @@
 'use client'
 
-import { useMraReportStore } from '@/store/mra-report'
 import { useMemo } from 'react'
+
+import { useMraReportStore } from '@/store/mra-report'
 import { ReportDocumentProps } from '@/components/products/mra/reports/report-document/types'
 
 export const ReportDocument = ({ id }: ReportDocumentProps) => {

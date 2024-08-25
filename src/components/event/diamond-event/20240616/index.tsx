@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import DiamondEventImageVertical from '@/assets/images/diamond-event/diamond-event-20240616/diamond-event-20240616-v.jpeg'
 import DiamondEventImageSquare from '@/assets/images/diamond-event/diamond-event-20240616/diamond-event-20240616-s.jpeg'
 import DiamondEventImageHorizontal from '@/assets/images/diamond-event/diamond-event-20240616/diamond-event-20240616-h.jpeg'

@@ -1,10 +1,10 @@
 import Image from 'next/image'
+import { Metadata } from 'next'
 
 import BreakfastWithBusinessImage from '@/assets/images/breakfast-with-business-image.jpeg'
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
-import { Metadata } from 'next'
 
 const nbsp = '\u00A0'
 

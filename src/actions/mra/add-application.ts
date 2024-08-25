@@ -1,7 +1,8 @@
 'use server'
 
-import { MraRegistrationFormSchema } from '@/schemas'
 import { z } from 'zod'
+
+import { MraRegistrationFormSchema } from '@/schemas'
 
 export const addApplication = async (
   data: z.infer<typeof MraRegistrationFormSchema>

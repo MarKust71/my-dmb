@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+
 import { MraRegistrationForm } from '@/components/products/mra/registration/registration-form'
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 

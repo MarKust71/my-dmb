@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
+
+import { cn } from '@/lib/utils'
 import tlo from '@/assets/images/tlo.jpg'
 import { ArtistryLogo, NutriliteLogo } from '@/components/ui/svgs'
 import { Button } from '@/components/ui/button'
