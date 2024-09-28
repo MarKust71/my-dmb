@@ -2,6 +2,7 @@ import { UserId, UserIdShort } from '@/components/contact/contact-form.types'
 
 export const publicRoutes = [
   '/',
+  '/api/webhooks/mailerlite', // TODO: secure it later!
   '/artistry-holistic-promo',
   '/body-cleansing-program',
   '/c',
