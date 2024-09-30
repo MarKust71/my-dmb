@@ -35,7 +35,7 @@ export const publicRoutes = [
   '/events/international-award-ceremony',
   '/i',
   '/invite',
-  '/media',
+  '/media/business-plan',
   '/mra-registration',
   '/mra-reports',
   '/products',
