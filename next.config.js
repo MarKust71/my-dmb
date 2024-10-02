@@ -10,6 +10,10 @@ const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/BvWXFzaqpJF7Dy1G8'
 const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const GOOGLE_CALENDAR_REDIRECT = 'https://calendar.app.google/RPtGx3AJ7aXsmjxP6'
+const MAILERLITE_MAREK_KUSTOSZ_LANDINGPAGE_REDIRECT =
+  'https://subscribepage.io/marek-kustosz'
+const MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT =
+  'https://subscribepage.io/business-plan'
 
 const nextConfig = {
   webpack(config) {
@@ -63,6 +67,46 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...[
+        '/landing-page/marek-kustosz',
+        '/landing-page/mk',
+        '/lp/marek-kustosz',
+        '/lp/mk',
+      ].map((source) => ({
+        source,
+        destination: MAILERLITE_MAREK_KUSTOSZ_LANDINGPAGE_REDIRECT,
+        permanent: true,
+      })),
+      ...[
+        '/api',
+        '/auth',
+        '/c',
+        '/contact',
+        '/i',
+        '/invite',
+        '/products',
+        '/program',
+        '/mra-reports',
+      ].map((source) => ({
+        source,
+        destination: DEFAULT_REDIRECT,
+        permanent: true,
+      })),
+      ...[
+        '/events/diamond-event',
+        '/events/de',
+        '/e/diamond-event',
+        '/e/de',
+      ].map((source) => ({
+        source,
+        destination: DIAMOND_EVENT_NEXT_REDIRECT,
+        permanent: true,
+      })),
+      {
+        source: '/business-plan',
+        destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
+        permanent: true,
+      },
       {
         source: '/umow-konsultacje',
         destination: GOOGLE_CALENDAR_REDIRECT,
@@ -71,16 +115,6 @@ const nextConfig = {
       {
         source: '/mra/umow-test',
         destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/api',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/auth',
-        destination: DEFAULT_REDIRECT,
         permanent: true,
       },
       {
@@ -104,53 +138,8 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: '/c',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/contact',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
         source: '/e',
         destination: '/events',
-        permanent: true,
-      },
-      {
-        source: '/e/de',
-        destination: DIAMOND_EVENT_NEXT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/events/diamond-event',
-        destination: DIAMOND_EVENT_NEXT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/i',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/invite',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/products',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/program',
-        destination: DEFAULT_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/mra-reports',
-        destination: DEFAULT_REDIRECT,
         permanent: true,
       },
       {
