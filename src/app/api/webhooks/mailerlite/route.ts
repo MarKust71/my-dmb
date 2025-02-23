@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
   // TODO: remove!
   // eslint-disable-next-line no-console
-  console.log('%c', 'color: black; background-color: yellow', { payload })
+  console.log('%c', 'color: black; background-color: yellow', { payload: JSON.stringify(payload, null, 2) })
 
   const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = payload
 
