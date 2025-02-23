@@ -4,6 +4,11 @@ import { addSubscriber } from '@/actions/mailerlite/add-subscriber'
 
 export async function POST(req: Request) {
   const payload = await req.json()
+
+  // TODO: remove!
+  // eslint-disable-next-line no-console
+  console.log('%c', 'color: black; background-color: yellow', { payload })
+
   const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = payload
 
   const result = await addSubscriber(
