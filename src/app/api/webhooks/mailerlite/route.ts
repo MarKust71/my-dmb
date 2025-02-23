@@ -5,7 +5,7 @@ import { addSubscriber } from '@/actions/mailerlite/add-subscriber'
 export async function POST(req: Request) {
   const { payload: { events } } = await req.json()
 
-  const subscriberAddedToGroup = events.find(({ type }) => type === 'subscriber.added_to_group')
+  const subscriberAddedToGroup = events.find(({ type }: { type: string }) => type === 'subscriber.added_to_group')
 
   const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = subscriberAddedToGroup
 
