@@ -22,6 +22,8 @@ export default auth((req) => {
 
   if (isApiAuthRoute || isPublicRoute) {
     // Don't invoke Middleware on API Auth routes
+
+    return
   }
 
   if (isAuthRoute) {
@@ -29,12 +31,12 @@ export default auth((req) => {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
     }
 
+    return
   }
 
   if (!isLoggedIn) {
     return Response.redirect(new URL('/auth/login', nextUrl))
   }
-
 })
 
 export const config = {

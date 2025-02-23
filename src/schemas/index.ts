@@ -1,5 +1,7 @@
 import * as z from 'zod'
 
+const dateTimeRegExp = /^(?:(?:(?!0000)\d{4}-(?:(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01]))|(?:(?:0[469]|11)-(?:0[1-9]|[12]\d|30))|(?:02-(?:0[1-9]|1\d|2[0-8]))))|(?:(?!0000)(?:(?:\d{2}(?:0[48]|[2468][048]|[13579][26]))|(?:[02468][048]|[13579][26])00)-02-29))\s(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/
+
 export const LoginSchema = z.object({
   email: z.string().email({
     message: 'Valid email address is required',
@@ -108,4 +110,37 @@ export const MraRegistrationFormSchema = z.object({
 export const MraContextSchema = z.object({
   contextId: z.string(),
   name: z.string(),
+})
+
+export const MailerLiteSubscriberSchema = z.object({
+  email: z
+    .string()
+    .min(1, {
+      message: 'Email address is required',
+    }).email('Invalid email address'),
+  name: z.string().optional(),
+  mailerLiteId: z.string().min(1, {
+    message: 'MailerLiteId is required',
+  }),
+  dmbBusinessPlanAccessCode: z.string().optional(),
+  dmbBusinessPlanAccessCodeValidFrom: z
+    .string()
+    .refine(
+      (value) =>
+        dateTimeRegExp.test(value ?? '') || value === '',
+      {
+        message: 'Data urodzenia musi mieć postać RRRR-MM-DD GG:SS.',
+      }
+    )
+    .optional(),
+  dmbBusinessPlanAccessCodeValidTo: z
+    .string()
+    .refine(
+      (value) =>
+        dateTimeRegExp.test(value ?? '') || value === '',
+      {
+        message: 'Data urodzenia musi mieć postać RRRR-MM-DD GG:MM:SS.',
+      }
+    )
+    .optional(),
 })
