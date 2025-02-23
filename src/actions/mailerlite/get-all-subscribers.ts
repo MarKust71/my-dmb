@@ -5,6 +5,7 @@ export const getAllSubscribers = async () => {
     return await db.mailerLiteSubscriber.findMany()
   } catch (error) {
     console.error('Error in getAllSubscribers:', error)
+
     return null
   }
 }

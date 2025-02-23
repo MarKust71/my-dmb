@@ -1,12 +1,25 @@
 import { NextResponse } from 'next/server'
 
+import { updateSubscriber } from '@/actions/mailerlite/update-subscriber'
+
 export async function POST(req: Request) {
   const payload = await req.json()
-  const { type, subscriber: { id: subscriberId, email }, group: { id: groupId } } = payload
+  const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = payload
 
-  // TODO: remove!
-  // eslint-disable-next-line no-console
-  console.log('%c payload: ', 'color: black; background-color: yellow', {type, subscriberId, email, groupId})
+  const result = await updateSubscriber(
+    { email, mailerLiteId: subscriberId, name }
+  )
 
-  return new NextResponse(JSON.stringify({type, subscriberId, email, groupId}), { status: 200 })
+  if (result.error) {
+    console.error({ error: result.error })
+
+    return new NextResponse(
+      JSON.stringify({ error: result.error }), { status: 400 }
+    )
+  }
+
+  return new NextResponse(
+    JSON.stringify({ type, subscriberId, email, groupId }),
+    { status: 200 }
+  )
 }

@@ -9,6 +9,7 @@ export const getSubscriberByEmail = async (email: string) => {
     })
   } catch (error) {
     console.error('Error in getSubscriberByEmail:', error)
+
     return null
   }
 }
