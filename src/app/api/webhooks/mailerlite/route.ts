@@ -3,13 +3,11 @@ import { NextResponse } from 'next/server'
 import { addSubscriber } from '@/actions/mailerlite/add-subscriber'
 
 export async function POST(req: Request) {
-  const payload = await req.json()
+  const { payload: { events } } = await req.json()
 
-  // TODO: remove!
-  // eslint-disable-next-line no-console
-  console.log('%c', 'color: black; background-color: yellow', { payload: JSON.stringify(payload, null, 2) })
+  const subscriberAddedToGroup = events.find(({ type }) => type === 'subscriber.added_to_group')
 
-  const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = payload
+  const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = subscriberAddedToGroup
 
   const result = await addSubscriber(
     { email, mailerLiteId: subscriberId, name }
