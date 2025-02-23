@@ -12,11 +12,7 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-// enum UserRole {
-//   USER
-//   ADMIN
-// }
-
+// models
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -90,4 +86,19 @@ model MraApplication {
   context MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
 
   @@unique([email, contextId])
+}
+
+model MailerLiteSubscriber {
+  id                                 String    @id @default(cuid())
+  createdAt                          DateTime  @default(now())
+  updatedAt                          DateTime  @updatedAt
+  email                              String
+  name                               String?
+  mailerLiteId                       String
+  dmbBusinessPlanAccessCode          String?
+  dmbBusinessPlanAccessCodeValidFrom DateTime?
+  dmbBusinessPlanAccessCodeValidTo   DateTime?
+
+  @@unique([email])
+  @@unique([mailerLiteId])
 }
