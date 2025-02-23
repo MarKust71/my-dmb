@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 
-import { updateSubscriber } from '@/actions/mailerlite/update-subscriber'
+import { addSubscriber } from '@/actions/mailerlite/add-subscriber'
 
 export async function POST(req: Request) {
   const payload = await req.json()
   const { type, subscriber: { id: subscriberId, email, fields: { name } }, group: { id: groupId } } = payload
 
-  const result = await updateSubscriber(
+  const result = await addSubscriber(
     { email, mailerLiteId: subscriberId, name }
   )
 
@@ -20,6 +20,6 @@ export async function POST(req: Request) {
 
   return new NextResponse(
     JSON.stringify({ type, subscriberId, email, groupId }),
-    { status: 200 }
+    { status: 201 }
   )
 }
