@@ -20,8 +20,6 @@ import { CarouselItemContentVideo } from './carousel-item-content-video'
 import { PrevButton } from './prev-button'
 import { NextButton } from './next-button'
 
-
-
 export const CarouselItemContent = ({
   href = '',
   title,
