@@ -13,7 +13,8 @@ export const getCustomerByEmailContext = async (
         },
       },
     })
-  } catch {
+  } catch (error) {
+    console.error('Error in getCustomerByEmailContext:', error)
     return null
   }
 }
