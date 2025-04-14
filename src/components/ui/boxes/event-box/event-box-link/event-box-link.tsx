@@ -16,6 +16,7 @@ export const EventBoxLink = ({
   const { toast } = useToast()
 
   const handleCopyIconClick = async (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault()
     event.stopPropagation()
 
     try {
@@ -38,7 +39,11 @@ export const EventBoxLink = ({
 
   return (
     <div className={'flex flex-row items-center gap-2'}>
-      <Link href={url} target={'_blank'}>
+      <Link
+        href={url}
+        target={'_blank'}
+        onClick={(event) => event.stopPropagation()}
+      >
         <Button variant={'link'} size={'auto'} className={className}>
           {url}
         </Button>

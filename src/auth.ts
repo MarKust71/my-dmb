@@ -9,7 +9,7 @@ import { getUserById } from '@/data/auth/user'
 
 enum UserRole {
   'USER',
-  'ADMIN'
+  'ADMIN',
 }
 
 export const {
