@@ -6,8 +6,6 @@ import { Button } from '@/components/ui/button'
 
 import './page.scss'
 
-const nbsp = '\u00A0'
-
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'my-dMb App | Event | Biznes Espresso',
