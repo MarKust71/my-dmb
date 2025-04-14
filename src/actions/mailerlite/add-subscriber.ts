@@ -7,7 +7,9 @@ import { getSubscriberByEmail } from '@/actions/mailerlite/get-subscriber-by-ema
 import { MailerLiteSubscriberSchema } from '@/schemas'
 import { generateHmacCode } from '@/lib/generate-hmac-code'
 
-export const addSubscriber = async (data: z.infer<typeof MailerLiteSubscriberSchema>) => {
+export const addSubscriber = async (
+  data: z.infer<typeof MailerLiteSubscriberSchema>
+) => {
   const validatedFields = MailerLiteSubscriberSchema.safeParse(data)
 
   if (!validatedFields.success) {
@@ -34,7 +36,8 @@ export const addSubscriber = async (data: z.infer<typeof MailerLiteSubscriberSch
           dmbBusinessPlanAccessCode: code,
           dmbBusinessPlanAccessCodeValidFrom: new Date().toISOString(),
           dmbBusinessPlanAccessCodeValidTo: validTo.toISOString(),
-        } })
+        },
+      })
 
       return { success: 'Subscriber added!', result }
     } catch (error) {

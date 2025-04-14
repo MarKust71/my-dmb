@@ -5,7 +5,9 @@ import * as z from 'zod'
 import { getSubscriberByEmail } from '@/actions/mailerlite/get-subscriber-by-email'
 import { MailerLiteSubscriberSchema } from '@/schemas'
 
-export const updateSubscriber = async (data: z.infer<typeof MailerLiteSubscriberSchema>) => {
+export const updateSubscriber = async (
+  data: z.infer<typeof MailerLiteSubscriberSchema>
+) => {
   const validatedFields = MailerLiteSubscriberSchema.safeParse(data)
 
   if (!validatedFields.success) {

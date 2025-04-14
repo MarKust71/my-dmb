@@ -1,6 +1,6 @@
-import crypto from 'crypto';
+import crypto from 'crypto'
 
-const secret = process.env.HMAC_SECRET;
+const secret = process.env.HMAC_SECRET
 
 export const generateHmacCode = (
   data: string = Date.now().toString(),
@@ -9,9 +9,9 @@ export const generateHmacCode = (
   const hmac = crypto
     .createHmac('sha256', secret || '')
     .update(data)
-    .digest('base64');
+    .digest('base64')
   // const alphanum = hmac.replace(/[^a-zA-Z0-9]/g, '');
-  const alphanum = hmac.replace(/[^A-Z0-9]/g, '');
+  const alphanum = hmac.replace(/[^A-Z0-9]/g, '')
 
-  return alphanum.substring(0, length);
-};
+  return alphanum.substring(0, length)
+}
