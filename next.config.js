@@ -6,7 +6,9 @@ const withPWA = require('next-pwa')({
 const DEFAULT_REDIRECT = '/'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
-const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/BvWXFzaqpJF7Dy1G8'
+const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/XcSTsSE3j7kt9Umc7'
+const MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfZ1K3DqajCsG6RqHcdoepz8WB2q0AqH9iDyCVGK0HOXWV0lg/viewform?entry.1682302562='
 const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const GOOGLE_CALENDAR_REDIRECT = 'https://calendar.app.google/RPtGx3AJ7aXsmjxP6'
@@ -115,6 +117,21 @@ const nextConfig = {
       {
         source: '/mra/umow-test',
         destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/mra/rejestruj',
+        destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/mra/umow-test/:code',
+        destination: `${MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE}:code`,
+        permanent: true,
+      },
+      {
+        source: '/mra/rejestruj/:code',
+        destination: `${MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE}:code`,
         permanent: true,
       },
       {
