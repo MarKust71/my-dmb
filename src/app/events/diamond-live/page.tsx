@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Metadata } from 'next'
 
-import DiamondLiveImage from '@/assets/images/diamond-live-image-2.jpeg'
+import DiamondLiveImage from '@/assets/images/diamond-live-image-3.jpeg'
 import { Button } from '@/components/ui/button'
 
 import './page.scss'
