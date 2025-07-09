@@ -46,7 +46,9 @@ export const publicRoutes = [
   '/mra-registration',
   '/mra-reports',
   '/products',
+  '/products/mra',
   '/products/mra/registration',
+  '/products/mra/flyer',
   '/program',
   '/program/energy-program',
 ]

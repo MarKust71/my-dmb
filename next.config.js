@@ -120,12 +120,22 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/mra/rejestracja',
+        destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
+        permanent: true,
+      },
+      {
         source: '/mra/rejestruj',
         destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
         permanent: true,
       },
       {
         source: '/mra/umow-test/:code',
+        destination: `${MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE}:code`,
+        permanent: true,
+      },
+      {
+        source: '/mra/rejestracja/:code',
         destination: `${MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE}:code`,
         permanent: true,
       },
