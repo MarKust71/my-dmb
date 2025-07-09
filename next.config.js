@@ -5,6 +5,7 @@ const withPWA = require('next-pwa')({
 
 const DEFAULT_REDIRECT = '/'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
+const MRA_FLYER_REDIRECT = '/products/mra/flyer'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/XcSTsSE3j7kt9Umc7'
 const MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE =
@@ -127,6 +128,11 @@ const nextConfig = {
       {
         source: '/mra/rejestruj',
         destination: MRA_REGISTRATION_GOOGLE_REDIRECT,
+        permanent: true,
+      },
+      {
+        source: '/mra/ulotka',
+        destination: MRA_FLYER_REDIRECT,
         permanent: true,
       },
       {
