@@ -62,12 +62,16 @@ export const ReferralCodeDialog = () => {
             ref={inputRef}
             value={referralCode}
             onChange={(e) => {
-              setReferralCode(e.target.value)
+              const rawValue = e.target.value
+              const sanitizedValue = rawValue
+                .toUpperCase()
+                .replace(/[^A-Z0-9]/g, '') // tylko litery A-Z i cyfry 0-9
+              setReferralCode(sanitizedValue)
               if (error) {
                 setError('')
               }
             }}
-            placeholder="Twój kod"
+            placeholder="TWÓJ KOD"
             className={error ? 'border-red-500' : ''}
           />
           {error && <p className="text-red-500 text-sm">{error}</p>}
