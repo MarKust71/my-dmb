@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog'
+import { useMraFlyerStore } from '@/store/mra-flyer'
 
 const images = [
   '/img/mra/mra-ulotka-skan-page-1-optimized.jpg',
@@ -24,9 +25,14 @@ const images = [
 const registerUrl = 'https://mydmb.pl/mra/rejestruj'
 
 const Flyer = () => {
-  const [referralCode, setReferralCode] = useState('')
-  const [dialogOpen, setDialogOpen] = useState(false)
-  const [error, setError] = useState('')
+  const {
+    referralCode,
+    error,
+    dialogOpen,
+    setReferralCode,
+    setError,
+    setDialogOpen,
+  } = useMraFlyerStore()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleProceed = () => {
@@ -83,7 +89,7 @@ const Flyer = () => {
         Umów test
       </Button>
 
-      {/* Dialog z shadcn/ui */}
+      {/* Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
