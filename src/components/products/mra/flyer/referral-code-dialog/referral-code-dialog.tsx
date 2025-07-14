@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useMraFlyerStore } from '@/store/mra-flyer'
+import { cn } from '@/lib/utils'
 
 const registerUrl = 'https://mydmb.pl/mra/rejestruj'
 
@@ -50,9 +51,9 @@ export const ReferralCodeDialog = () => {
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogContent>
+      <DialogContent className="bg-[#f8f5f2] rounded-xl shadow-lg">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="text-[#2e2e2e] text-lg font-semibold">
             Jeśli otrzymałeś swój własny kod polecenia, wpisz go tutaj:
           </DialogTitle>
         </DialogHeader>
@@ -65,24 +66,34 @@ export const ReferralCodeDialog = () => {
               const rawValue = e.target.value
               const sanitizedValue = rawValue
                 .toUpperCase()
-                .replace(/[^A-Z0-9]/g, '') // tylko litery A-Z i cyfry 0-9
+                .replace(/[^A-Z0-9]/g, '')
               setReferralCode(sanitizedValue)
               if (error) {
                 setError('')
               }
             }}
             placeholder="TWÓJ KOD"
-            className={error ? 'border-red-500' : ''}
+            className={cn(
+              'bg-white text-black',
+              error ? 'border-red-500' : 'border-gray-300'
+            )}
           />
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-[#d44b3e] text-sm">{error}</p>}
         </div>
 
-        <DialogFooter className="flex justify-between gap-2">
-          <Button onClick={handleProceed} className="flex-1">
+        <DialogFooter className="flex justify-between gap-2 pt-4">
+          <Button
+            onClick={handleProceed}
+            className="flex-1 bg-[#ff9100] hover:bg-[#e57e00] text-white"
+          >
             Mam kod
           </Button>
 
-          <Button variant="secondary" onClick={handleNoCode} className="flex-1">
+          <Button
+            variant="outline"
+            onClick={handleNoCode}
+            className="flex-1 border border-[#ff9100] text-[#ff9100] hover:bg-[#fff4e6]"
+          >
             Nie mam kodu
           </Button>
         </DialogFooter>
