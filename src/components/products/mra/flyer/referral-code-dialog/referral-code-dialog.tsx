@@ -54,7 +54,7 @@ export const ReferralCodeDialog = () => {
       <DialogContent className="bg-[#f8f5f2] rounded-xl shadow-lg">
         <DialogHeader>
           <DialogTitle className="text-[#2e2e2e] text-lg font-semibold">
-            Jeśli otrzymałeś swój własny kod polecenia, wpisz go tutaj:
+            Jeśli otrzymałeś kod polecenia, wpisz go tutaj:
           </DialogTitle>
         </DialogHeader>
 
