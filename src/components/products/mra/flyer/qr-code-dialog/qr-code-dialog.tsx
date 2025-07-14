@@ -49,7 +49,7 @@ export const QrCodeDialog = () => {
             alt="Kod QR"
             width={192}
             height={192}
-            className="w-48 h-48 hover:opacity-80 transition-opacity"
+            className="w-48 h-48 hover:opacity-80 transition-opacity mx-auto"
           />
 
           <div className="text-center">
