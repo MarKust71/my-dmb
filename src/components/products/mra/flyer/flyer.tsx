@@ -1,19 +1,23 @@
 'use client'
 
 import { ReferralCodeDialog } from '@/components/products/mra/flyer/referral-code-dialog'
-import { RegisterButton } from '@/components/products/mra/flyer/register-button'
+import { MenuButton } from '@/components/products/mra/flyer/menu-button'
 import { FlyerImages } from '@/components/products/mra/flyer/flyer-images'
+import { QrCodeDialog } from '@/components/products/mra/flyer/qr-code-dialog'
 
 const Flyer = () => {
   return (
     <div className="relative">
       <FlyerImages />
 
-      {/* Pływający przycisk */}
-      <RegisterButton />
+      {/* Floating Button */}
+      <MenuButton />
 
-      {/* Dialog */}
+      {/* Referral Code Modal */}
       <ReferralCodeDialog />
+
+      {/* QR Modal */}
+      <QrCodeDialog />
     </div>
   )
 }
