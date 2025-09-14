@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
 import Image from 'next/image'
+import { Copy, Loader2 } from 'lucide-react'
 
 import {
   Card,
@@ -20,6 +21,7 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 import { useQrStore } from '@/store/use-qr-store'
+import { Skeleton } from '@/components/ui/skeleton'
 
 // ---- RHF schema -------------------------------------------------------------
 const formSchema = z.object({
@@ -131,15 +133,18 @@ export function ProductPageToQrcode() {
   const values = watch()
   useEffect(() => {
     if (!isHydrated) return
+
     if (suppressNextSave) {
       setSuppressNextSave(false)
       return
     }
+
     saveToLocalStorage(values)
   }, [values, isHydrated, suppressNextSave, setSuppressNextSave])
 
   const onSubmit = async (data: FormValues) => {
     setIsWorking(true)
+
     try {
       const normalized = normalizeAmwayUrl(data.linkUrl)
       const finalUrl = buildUrlWithAbo(normalized, data.aboSponsor)
@@ -153,6 +158,7 @@ export function ProductPageToQrcode() {
           description: 'Usunięto fragment ścieżki pomiędzy domeną a "/p/".',
         })
       }
+
       toast({
         title: 'Sukces',
         description: 'Link i kod QR zostały wygenerowane.',
@@ -170,6 +176,7 @@ export function ProductPageToQrcode() {
 
   const copyToClipboard = async () => {
     if (!generatedUrl) return
+
     try {
       await navigator.clipboard.writeText(generatedUrl)
       toast({
@@ -187,13 +194,78 @@ export function ProductPageToQrcode() {
 
   const downloadPng = () => {
     if (!qrDataUrl) return
+
     const a = document.createElement('a')
     a.href = qrDataUrl
     a.download = `qr-abo-${values.aboSponsor || 'link'}.png`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
+
     toast({ title: 'Pobrano', description: 'Kod QR został pobrany jako PNG.' })
+  }
+
+  if (!isHydrated) {
+    return (
+      <div
+        className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-3' : 'p-6'}`}
+      >
+        <Card>
+          <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex flex-col items-start justify-start">
+                <CardTitle className="text-xl">Generator kodu QR</CardTitle>
+                <CardDescription>Ładowanie danych…</CardDescription>
+              </div>
+
+              <div className="hidden items-center gap-2 md:flex">
+                <Label className="opacity-60">Tryb kompaktowy</Label>
+
+                <Skeleton className="h-6 w-11 rounded-full" />
+              </div>
+            </div>
+          </CardHeader>
+
+          <CardContent className={`${isCompact ? 'p-4' : ''}`}>
+            <div className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
+              <div>
+                <Label>Twój numer PA</Label>
+
+                <Skeleton
+                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
+                />
+              </div>
+
+              <div>
+                <Label>Link do strony produktu</Label>
+
+                <Skeleton
+                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
+                />
+              </div>
+
+              <div
+                className={`flex items-center ${isCompact ? 'gap-2' : 'gap-3'}`}
+              >
+                <Skeleton
+                  className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
+                />
+
+                <Skeleton
+                  className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
+                />
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" />
+
+                <span>Wczytywanie zapisanych wartości…</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
   }
 
   return (
@@ -205,6 +277,7 @@ export function ProductPageToQrcode() {
           <div className="flex items-start justify-between gap-3">
             <div className="flex flex-col items-start justify-start">
               <CardTitle className="text-xl">Generator kodu QR</CardTitle>
+
               <CardDescription>
                 link do strony produktu
                 z&nbsp;numerem&nbsp;PA&nbsp;zapraszającego
@@ -216,6 +289,7 @@ export function ProductPageToQrcode() {
               <Label htmlFor="compact" className="cursor-pointer text-right">
                 Tryb kompaktowy
               </Label>
+
               <Switch
                 id="compact"
                 checked={isCompact}
@@ -232,6 +306,7 @@ export function ProductPageToQrcode() {
           >
             <div>
               <Label htmlFor="aboSponsor">Twój numer PA</Label>
+
               <Input
                 id="aboSponsor"
                 type="text"
@@ -240,6 +315,7 @@ export function ProductPageToQrcode() {
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('aboSponsor')}
               />
+
               {errors.aboSponsor && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.aboSponsor.message}
@@ -249,6 +325,7 @@ export function ProductPageToQrcode() {
 
             <div>
               <Label htmlFor="linkUrl">Link do strony produktu</Label>
+
               <Input
                 id="linkUrl"
                 type="url"
@@ -256,6 +333,7 @@ export function ProductPageToQrcode() {
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('linkUrl')}
               />
+
               {errors.linkUrl && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.linkUrl.message}
@@ -301,24 +379,29 @@ export function ProductPageToQrcode() {
           <CardContent className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
             <div>
               <Label>Wygenerowany link</Label>
-              <div className="flex items-center gap-2">
+
+              <div className="relative">
                 <Input
                   readOnly
                   value={generatedUrl}
-                  className={`font-mono ${isCompact ? 'h-9 text-xs' : 'text-sm'}`}
+                  className={`font-mono pr-10 ${isCompact ? 'h-9 text-xs' : 'text-sm'}`}
                 />
-                <Button
+
+                <button
+                  type="button"
                   onClick={copyToClipboard}
-                  className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-muted-foreground hover:text-foreground"
+                  aria-label="Kopiuj link"
                 >
-                  Kopiuj
-                </Button>
+                  <Copy className="h-4 w-4" />
+                </button>
               </div>
             </div>
 
             {qrDataUrl && (
               <div className="grid gap-3 mx-auto">
                 <Label>Kod QR</Label>
+
                 <div className="grid grid-cols-[auto_1fr] items-start gap-3">
                   <Image
                     src={qrDataUrl}
@@ -327,6 +410,7 @@ export function ProductPageToQrcode() {
                     height={224}
                     className={`h-auto ${isCompact ? 'w-44' : 'w-56'} rounded-xl border`}
                   />
+
                   <div className="flex flex-col items-stretch gap-2">
                     <Button
                       asChild
@@ -337,6 +421,7 @@ export function ProductPageToQrcode() {
                         Otwórz link
                       </a>
                     </Button>
+
                     <Button
                       onClick={downloadPng}
                       className={`w-full ${isCompact ? 'h-9 px-3 text-sm' : ''}`}
