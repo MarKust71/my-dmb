@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
+import Image from 'next/image'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -82,6 +83,7 @@ export function ProductPageToQrcode() {
   }, [])
 
   const values = watch()
+
   useEffect(() => {
     saveToLocalStorage(values)
   }, [values])
@@ -145,10 +147,12 @@ export function ProductPageToQrcode() {
             zapraszającego
           </CardTitle>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
             <div>
               <Label htmlFor="aboSponsor">Twój numer PA</Label>
+
               <Input
                 id="aboSponsor"
                 type="text"
@@ -156,6 +160,7 @@ export function ProductPageToQrcode() {
                 placeholder="np. 123456"
                 {...register('aboSponsor')}
               />
+
               {errors.aboSponsor && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.aboSponsor.message}
@@ -165,12 +170,14 @@ export function ProductPageToQrcode() {
 
             <div>
               <Label htmlFor="linkUrl">Link do strony produktu</Label>
+
               <Input
                 id="linkUrl"
                 type="url"
                 placeholder="skopiuj i wklej tutaj adres strony produktu z przeglądarki"
                 {...register('linkUrl')}
               />
+
               {errors.linkUrl && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.linkUrl.message}
@@ -182,6 +189,7 @@ export function ProductPageToQrcode() {
               <Button type="submit" disabled={isWorking}>
                 {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
               </Button>
+
               <Button
                 type="button"
                 variant="outline"
@@ -208,12 +216,14 @@ export function ProductPageToQrcode() {
           <CardContent className="grid gap-4">
             <div>
               <Label>Wygenerowany link</Label>
+
               <div className="flex items-center gap-2">
                 <Input
                   readOnly
                   value={generatedUrl}
                   className="font-mono text-sm"
                 />
+
                 <Button onClick={copyToClipboard}>Kopiuj</Button>
               </div>
             </div>
@@ -221,18 +231,21 @@ export function ProductPageToQrcode() {
             {qrDataUrl && (
               <div className="grid gap-3">
                 <Label>Kod QR</Label>
+
                 <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <img
+                  <Image
                     src={qrDataUrl}
                     alt="QR code"
                     className="h-auto w-56 rounded-xl border"
                   />
+
                   <div className="flex items-center gap-2">
                     <Button asChild variant="outline">
                       <a href={generatedUrl} target="_blank" rel="noreferrer">
                         Otwórz link
                       </a>
                     </Button>
+
                     <Button onClick={downloadPng}>Pobierz PNG</Button>
                   </div>
                 </div>
@@ -242,10 +255,12 @@ export function ProductPageToQrcode() {
         </Card>
       )}
 
+      {/*
       <p className="mt-6 text-xs text-gray-500">
         Uwaga: walidujemy wyłącznie format URL; istnienia strony nie da się
         sprawdzić po stronie przeglądarki bez dodatkowych usług.
       </p>
+*/}
     </div>
   )
 }
