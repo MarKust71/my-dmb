@@ -55,7 +55,6 @@ import Github from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 import Facebook from 'next-auth/providers/facebook'
 import Credentials from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
 
 import { LoginSchema } from '@/schemas'
 import { getUserByEmail } from '@/data/auth/user'
@@ -86,11 +85,13 @@ const authConfig: NextAuthConfig = {
             return null
           }
 
+          /*
           const passwordsMatch = await bcrypt.compare(password, user.password)
 
           if (passwordsMatch) {
             return user
           }
+*/
         }
 
         return null
