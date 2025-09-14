@@ -90,3 +90,47 @@ body,
     width: 400px;
   }
 }
+
+/* Motyw Amway dla shadcn/ui bazujący na zmiennych HSL */
+.theme-amway {
+  /* tło i tekst */
+  --background: 0 0% 100%;         /* #ffffff */
+  --foreground: 240 6% 12%;        /* ~#1f1f23 */
+
+  /* karty i obramowania */
+  --card: 0 0% 100%;
+  --card-foreground: 240 6% 12%;
+  --border: 210 10% 85%;           /* ~#d3d8da */
+  --muted: 210 12% 92%;            /* ~#e6eaec */
+  --muted-foreground: 240 3% 50%;  /* ~#808184 */
+
+  /* primary (przyciski główne – czarne z białym tekstem) */
+  --primary: 0 0% 7%;              /* ~#121212 */
+  --primary-foreground: 0 0% 100%;
+
+  /* secondary (np. przyciski outline/sekundarne w szarości) */
+  --secondary: 210 10% 95%;        /* bardzo jasna szarość */
+  --secondary-foreground: 240 6% 12%;
+
+  /* akcenty */
+  --accent: 210 12% 92%;
+  --accent-foreground: 240 6% 12%;
+
+  /* ring/focus */
+  --ring: 240 6% 12%;
+
+  /* input/border */
+  --input: 210 10% 85%;
+
+  /* dodatkowe – nie są standardem shadcn, ale możesz użyć lokalnie */
+  --amway-link: 212 100% 40%;      /* niebieski link ~#0b5fff */
+  --amway-success: 149 100% 33%;   /* zielony ~#00a859 */
+}
+
+/* Linki wewnątrz motywu (opcjonalnie) */
+.theme-amway a {
+  color: hsl(var(--amway-link));
+}
+.theme-amway a:hover {
+  text-decoration: underline;
+}
