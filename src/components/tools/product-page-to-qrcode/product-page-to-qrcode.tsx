@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
 import Image from 'next/image'
-import { Copy, Loader2 } from 'lucide-react'
+import { Copy, Loader2, ExternalLink } from 'lucide-react'
 
 import {
   Card,
@@ -245,7 +245,7 @@ export function ProductPageToQrcode() {
               </div>
 
               <div
-                className={`flex items-center ${isCompact ? 'gap-2' : 'gap-3'}`}
+                className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
               >
                 <Skeleton
                   className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
@@ -369,6 +369,18 @@ export function ProductPageToQrcode() {
               >
                 {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
               </Button>
+            </div>
+
+            <div className="flex justify-center">
+              <a
+                href="https://mydmb.pl/c/mk"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700 mb-[-12px]"
+              >
+                Kontakt z autorem
+                <ExternalLink className="h-4 w-4 ml-1" aria-hidden="true" />
+              </a>
             </div>
           </form>
         </CardContent>
