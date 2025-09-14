@@ -180,6 +180,11 @@ const nextConfig = {
         destination: MRA_REGISTRATION_REDIRECT,
         permanent: true,
       },
+      {
+        source: '/narzedzia/produkt-qr',
+        destination: '/tools/product-page-to-qrcode',
+        permanent: true,
+      },
     ]
   },
 }
