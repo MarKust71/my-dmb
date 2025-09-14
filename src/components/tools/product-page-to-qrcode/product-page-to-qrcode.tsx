@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import QRCode from 'qrcode'
 import Image from 'next/image'
 import { Copy, Loader2, ExternalLink } from 'lucide-react'
 
@@ -22,6 +21,15 @@ import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 import { useQrStore } from '@/store/use-qr-store'
 import { Skeleton } from '@/components/ui/skeleton'
+import { generateQrPngDataUrl } from '@/components/tools/product-page-to-qrcode/helpers/generate-qr-png-data-url'
+
+import {
+  clearLocalStorage,
+  resolveProductInput,
+  loadFromLocalStorage,
+  saveToLocalStorage,
+  buildUrlWithAbo,
+} from './helpers'
 
 const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
 const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz kod produktu'
@@ -31,17 +39,6 @@ const contactAuthorUrl = 'https://mydmb.pl/c/mk'
 const contactAuthorLabel = 'Kontakt z autorem generatora'
 
 // ---- RHF schema -------------------------------------------------------------
-function resolveProductInput(input: string): string {
-  const trimmed = input.trim()
-
-  if (/^\d{4,6}$/.test(trimmed)) {
-    // podano kod produktu – budujemy pełny adres
-    return `https://www.amway.pl/p/${trimmed}`
-  }
-
-  return normalizeAmwayUrl(trimmed)
-}
-
 const formSchema = z.object({
   aboSponsor: z.string().regex(/^\d+$/, 'Dozwolone są wyłącznie cyfry.'),
   linkUrl: z.union([
@@ -57,65 +54,10 @@ const formSchema = z.object({
   ]),
 })
 
-type FormValues = z.infer<typeof formSchema>
+export type FormValues = z.infer<typeof formSchema>
 
 // ---- localStorage helpers ---------------------------------------------------
 const LS_KEY = 'abo-link-form'
-
-function loadFromLocalStorage(): Partial<FormValues> | undefined {
-  if (typeof window === 'undefined') return undefined
-
-  try {
-    const raw = window.localStorage.getItem(LS_KEY)
-    if (!raw) return undefined
-    return JSON.parse(raw) as FormValues
-  } catch {}
-
-  return undefined
-}
-
-function saveToLocalStorage(values: Partial<FormValues>) {
-  if (typeof window === 'undefined') return
-
-  try {
-    window.localStorage.setItem(LS_KEY, JSON.stringify(values))
-  } catch {}
-}
-
-function clearLocalStorage() {
-  if (typeof window === 'undefined') return
-
-  try {
-    window.localStorage.removeItem(LS_KEY)
-  } catch {}
-}
-
-// ---- Amway URL normalization -----------------------------------------------
-function normalizeAmwayUrl(input: string): string {
-  const url = new URL(input)
-
-  if (url.origin === 'https://www.amway.pl' && url.pathname.includes('/p/')) {
-    const idx = url.pathname.indexOf('/p/')
-    url.pathname = url.pathname.slice(idx) // od "/p/" do końca
-  }
-
-  return url.toString()
-}
-
-function buildUrlWithAbo(baseUrl: string, aboSponsor: string): string {
-  const url = new URL(baseUrl)
-  url.searchParams.set('aboSponsor', aboSponsor)
-
-  return url.toString()
-}
-
-async function generateQrPngDataUrl(text: string): Promise<string> {
-  return QRCode.toDataURL(text, {
-    errorCorrectionLevel: 'H',
-    margin: 1,
-    width: 640,
-  })
-}
 
 // ---- Component --------------------------------------------------------------
 export function ProductPageToQrcode() {
@@ -151,7 +93,7 @@ export function ProductPageToQrcode() {
 
   // 1) Hydratacja z localStorage + auto-compact na mobile
   useEffect(() => {
-    const stored = loadFromLocalStorage()
+    const stored = loadFromLocalStorage(LS_KEY)
     if (stored) reset(stored)
 
     // ustaw compact z media query tylko, gdy persist nie zdążył nadpisać
@@ -176,7 +118,7 @@ export function ProductPageToQrcode() {
       return
     }
 
-    saveToLocalStorage(values)
+    saveToLocalStorage(values, LS_KEY)
   }, [values, isHydrated, suppressNextSave, setSuppressNextSave])
 
   const onSubmit = async (data: FormValues) => {
@@ -364,7 +306,7 @@ export function ProductPageToQrcode() {
                       setSuppressNextSave(true) // nie zapisuj pustych po reset
                       reset({ aboSponsor: '', linkUrl: '' })
                       resetOutput()
-                      clearLocalStorage() // czyścimy LS TYLKO tutaj
+                      clearLocalStorage(LS_KEY) // czyścimy LS TYLKO tutaj
                       toast({
                         title: 'Wyczyszczono',
                         description: 'Formularz został wyczyszczony.',
