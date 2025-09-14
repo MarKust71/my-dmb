@@ -1,12 +1,9 @@
 import { ExternalLink, Loader2 } from 'lucide-react'
 
 import { CardContent } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Button } from '@/components/ui/button'
 import { useQrStore } from '@/store/use-qr-store'
 import {
   buildUrlWithAbo,
-  clearLocalStorage,
   resolveProductInput,
 } from '@/components/tools/product-page-to-qrcode/helpers'
 import { FormValues } from '@/components/tools/product-page-to-qrcode/product-page-to-qrcode.types'
@@ -14,6 +11,7 @@ import { generateQrPngDataUrl } from '@/components/tools/product-page-to-qrcode/
 import { useToast } from '@/components/ui/use-toast'
 import { FormCardContentAboSponsorInput } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-content-abo-sponsor-input'
 import { FormCardContentLinkUrlInput } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-content-link-url-input'
+import { FormCardButtons } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-buttons'
 
 import { FormCardContentProps } from './form-card-content.types'
 
@@ -34,9 +32,6 @@ export const FormCardContent = ({
   const setIsWorking = useQrStore((s) => s.setIsWorking)
   const setGeneratedUrl = useQrStore((s) => s.setGeneratedUrl)
   const setQrDataUrl = useQrStore((s) => s.setQrDataUrl)
-  const setSuppressNextSave = useQrStore((s) => s.setSuppressNextSave)
-  const resetOutput = useQrStore((s) => s.resetOutput)
-  const isWorking = useQrStore((s) => s.isWorking)
 
   const onSubmit = async (data: FormValues) => {
     setIsWorking(true)
@@ -84,49 +79,7 @@ export const FormCardContent = ({
 
         <FormCardContentLinkUrlInput register={register} errors={errors} />
 
-        <div
-          className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
-        >
-          {isHydrated ? (
-            <>
-              <Button
-                type="button"
-                variant="outline"
-                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-                onClick={() => {
-                  setSuppressNextSave(true) // nie zapisuj pustych po reset
-                  reset({ aboSponsor: '', linkUrl: '' })
-                  resetOutput()
-                  clearLocalStorage(lsKey) // czyścimy LS TYLKO tutaj
-                  toast({
-                    title: 'Wyczyszczono',
-                    description: 'Formularz został wyczyszczony.',
-                  })
-                }}
-              >
-                Wyczyść
-              </Button>
-
-              <Button
-                type="submit"
-                disabled={isWorking}
-                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-              >
-                {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
-              </Button>
-            </>
-          ) : (
-            <>
-              <Skeleton
-                className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-              />
-
-              <Skeleton
-                className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-              />
-            </>
-          )}
-        </div>
+        <FormCardButtons reset={reset} lsKey={lsKey} />
 
         {isHydrated ? (
           <div className="flex justify-center">
