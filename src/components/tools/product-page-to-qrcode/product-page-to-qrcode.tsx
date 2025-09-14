@@ -205,8 +205,8 @@ export function ProductPageToQrcode() {
 
             {/* Przełącznik widoczny na desktopie */}
             <div className="hidden items-center gap-2 md:flex">
-              <Label htmlFor="compact" className="cursor-pointer">
-                Compact
+              <Label htmlFor="compact" className="cursor-pointer text-right">
+                Tryb kompaktowy
               </Label>
 
               <Switch
@@ -264,14 +264,6 @@ export function ProductPageToQrcode() {
               className={`flex items-center justify-between  ${isCompact ? 'gap-2' : 'gap-3'}`}
             >
               <Button
-                type="submit"
-                disabled={isWorking}
-                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-              >
-                {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
-              </Button>
-
-              <Button
                 type="button"
                 variant="outline"
                 className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
@@ -288,6 +280,14 @@ export function ProductPageToQrcode() {
                 }}
               >
                 Wyczyść
+              </Button>
+
+              <Button
+                type="submit"
+                disabled={isWorking}
+                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+              >
+                {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
               </Button>
             </div>
           </form>
@@ -317,10 +317,10 @@ export function ProductPageToQrcode() {
             </div>
 
             {qrDataUrl && (
-              <div className="grid gap-3">
+              <div className="grid gap-3 mx-auto">
                 <Label>Kod QR</Label>
 
-                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="grid grid-cols-[auto_1fr] items-start gap-3">
                   <Image
                     src={qrDataUrl}
                     alt="QR code"
@@ -329,11 +329,12 @@ export function ProductPageToQrcode() {
                     className={`h-auto ${isCompact ? 'w-44' : 'w-56'} rounded-xl border`}
                   />
 
-                  <div className="flex items-center gap-2">
+                  {/* prawa kolumna: przyciski jeden pod drugim */}
+                  <div className="flex flex-col items-stretch gap-2">
                     <Button
                       asChild
                       variant="outline"
-                      className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                      className={`w-full ${isCompact ? 'h-9 px-3 text-sm' : ''}`}
                     >
                       <a href={generatedUrl} target="_blank" rel="noreferrer">
                         Otwórz link
@@ -342,7 +343,7 @@ export function ProductPageToQrcode() {
 
                     <Button
                       onClick={downloadPng}
-                      className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                      className={`w-full ${isCompact ? 'h-9 px-3 text-sm' : ''}`}
                     >
                       Pobierz PNG
                     </Button>
@@ -353,13 +354,6 @@ export function ProductPageToQrcode() {
           </CardContent>
         </Card>
       )}
-
-      {/*
-      <p className="mt-6 text-xs text-gray-500">
-        Uwaga: walidujemy wyłącznie format URL; istnienia strony nie da się
-        sprawdzić po stronie przeglądarki bez dodatkowych usług.
-      </p>
-*/}
     </div>
   )
 }
