@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -40,6 +40,26 @@ function saveToLocalStorage(values: Partial<FormValues>) {
   } catch {}
 }
 
+function clearLocalStorage() {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.removeItem(LS_KEY)
+  } catch {}
+}
+
+// 1) Normalizacja adresów Amway: jeśli URL zawiera dokładnie origin
+//    "https://www.amway.pl" oraz fragment "/p/", to wycinamy wszystko
+//    POMIĘDZY tymi elementami, np.:
+//    https://www.amway.pl/kategoria/jakas/p/123 -> https://www.amway.pl/p/123
+function normalizeAmwayUrl(input: string): string {
+  const url = new URL(input)
+  if (url.origin === 'https://www.amway.pl' && url.pathname.includes('/p/')) {
+    const idx = url.pathname.indexOf('/p/')
+    url.pathname = url.pathname.slice(idx) // od "/p/" do końca
+  }
+  return url.toString()
+}
+
 function buildUrlWithAbo(baseUrl: string, aboSponsor: string): string {
   const url = new URL(baseUrl)
   url.searchParams.set('aboSponsor', aboSponsor)
@@ -61,6 +81,9 @@ export function ProductPageToQrcode() {
   const [isWorking, setIsWorking] = useState(false)
   const { toast } = useToast()
 
+  const suppressNextSaveRef = useRef(false) // blokuje jednorazowe zapisywanie (np. po Wyczyść)
+  const [isHydrated, setIsHydrated] = useState(false) // chroni przed nadpisaniem LS pustymi danymi przy starcie
+
   const {
     register,
     handleSubmit,
@@ -76,29 +99,51 @@ export function ProductPageToQrcode() {
     mode: 'onBlur',
   })
 
+  // 1) Hydratacja z localStorage (tylko raz) i dopiero potem pozwalamy na auto-zapis
   useEffect(() => {
     const stored = loadFromLocalStorage()
-    if (stored) reset(stored)
+    if (stored) {
+      reset(stored)
+    }
+    setIsHydrated(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // 2) Auto-zapis do localStorage przy zmianach pól — ale dopiero po hydratacji
   const values = watch()
-
   useEffect(() => {
+    if (!isHydrated) return
+    if (suppressNextSaveRef.current) {
+      suppressNextSaveRef.current = false
+      return
+    }
     saveToLocalStorage(values)
-  }, [values])
+  }, [values, isHydrated])
 
   const onSubmit = async (data: FormValues) => {
     setIsWorking(true)
     try {
-      const url = buildUrlWithAbo(data.linkUrl, data.aboSponsor)
-      setGeneratedUrl(url)
-      const pngDataUrl = await generateQrPngDataUrl(url)
+      // Normalizujemy tylko jeśli spełnione warunki z prośby
+      const normalized = normalizeAmwayUrl(data.linkUrl)
+      const finalUrl = buildUrlWithAbo(normalized, data.aboSponsor)
+
+      setGeneratedUrl(finalUrl)
+      const pngDataUrl = await generateQrPngDataUrl(finalUrl)
       setQrDataUrl(pngDataUrl)
+
+      // Informacja, jeśli dokonano normalizacji adresu
+      if (normalized !== data.linkUrl) {
+        toast({
+          title: 'Znormalizowano adres',
+          description: 'Usunięto fragment ścieżki pomiędzy domeną a "/p/".',
+        })
+      }
+
       toast({
         title: 'Sukces',
         description: 'Link i kod QR zostały wygenerowane.',
       })
+      // Nie czyścimy localStorage — ma działać jak baza danych
     } catch (e) {
       toast({
         title: 'Błąd',
@@ -194,10 +239,11 @@ export function ProductPageToQrcode() {
                 type="button"
                 variant="outline"
                 onClick={() => {
+                  suppressNextSaveRef.current = true // nie zapisuj pustych po reset
                   reset({ aboSponsor: '', linkUrl: '' })
                   setGeneratedUrl('')
                   setQrDataUrl('')
-                  saveToLocalStorage({ aboSponsor: '', linkUrl: '' })
+                  clearLocalStorage() // czyścimy LS TYLKO tutaj
                   toast({
                     title: 'Wyczyszczono',
                     description: 'Formularz został wyczyszczony.',
@@ -236,6 +282,8 @@ export function ProductPageToQrcode() {
                   <Image
                     src={qrDataUrl}
                     alt="QR code"
+                    width={224}
+                    height={224}
                     className="h-auto w-56 rounded-xl border"
                   />
 
