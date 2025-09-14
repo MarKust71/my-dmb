@@ -1,8 +1,6 @@
 import { ExternalLink, Loader2 } from 'lucide-react'
 
 import { CardContent } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 import { useQrStore } from '@/store/use-qr-store'
@@ -15,11 +13,10 @@ import { FormValues } from '@/components/tools/product-page-to-qrcode/product-pa
 import { generateQrPngDataUrl } from '@/components/tools/product-page-to-qrcode/helpers/generate-qr-png-data-url'
 import { useToast } from '@/components/ui/use-toast'
 import { FormCardContentAboSponsorInput } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-content-abo-sponsor-input'
+import { FormCardContentLinkUrlInput } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-content-link-url-input'
 
 import { FormCardContentProps } from './form-card-content.types'
 
-const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
-const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz kod produktu'
 const contactAuthorUrl = 'https://mydmb.pl/c/mk'
 const contactAuthorLabel = 'Kontakt z autorem generatora'
 
@@ -85,31 +82,7 @@ export const FormCardContent = ({
       >
         <FormCardContentAboSponsorInput register={register} errors={errors} />
 
-        <div>
-          <Label htmlFor="linkUrl">{linkUrlLabel}</Label>
-
-          {isHydrated ? (
-            <>
-              <Input
-                id="linkUrl"
-                type="text"
-                placeholder={linkUrlPlaceholder}
-                className={`${isCompact ? 'h-9 text-sm' : ''}`}
-                {...register('linkUrl')}
-              />
-
-              {errors.linkUrl && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.linkUrl.message}
-                </p>
-              )}
-            </>
-          ) : (
-            <Skeleton
-              className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
-            />
-          )}
-        </div>
+        <FormCardContentLinkUrlInput register={register} errors={errors} />
 
         <div
           className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
