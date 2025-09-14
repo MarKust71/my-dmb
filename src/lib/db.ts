@@ -6,7 +6,12 @@ const libsql = createClient({
   url: `${process.env.TURSO_DATABASE_URL}`,
   authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
-const adapter = new PrismaLibSQL(libsql)
+
+// const adapter = new PrismaLibSQL(libsql)
+const adapter = new PrismaLibSQL({
+  url: `${process.env.TURSO_DATABASE_URL}`,
+  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
+})
 
 declare global {
   var prisma: PrismaClient | undefined

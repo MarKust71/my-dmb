@@ -1,11 +1,12 @@
 import { ReportDocument } from '@/components/products/mra/reports/report-document'
 import { ReportItemList } from '@/components/products/mra/reports/menu-item-list'
+import { PageProps } from '@/types'
 
-type Props = {
-  params: { id: string }
-}
+import { PageParams } from './page.types'
 
-export default function Component({ params: { id } }: Props) {
+export default async function Component({ params }: PageProps<PageParams>) {
+  const { id } = await params
+
   return (
     <div
       className={

@@ -2,20 +2,23 @@ import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
 
 import { Invite202404112000 } from '@/components/invite/202404112000'
+import { PageProps } from '@/types'
+
+import { PageParams } from './page.types'
 
 export async function generateMetadata({
-  params: { id },
-}: Props): Promise<Metadata> {
+  params,
+}: PageProps<PageParams>): Promise<Metadata> {
+  const { id } = await params
+
   return {
     title: `my-dMb App | Invite | ${id}`,
   }
 }
 
-type Props = {
-  params: { id: string }
-}
+const InvitationsPage = async ({ params }: PageProps<PageParams>) => {
+  const { id } = await params
 
-const InvitationsPage = ({ params: { id } }: Props) => {
   if (id) {
     switch (id) {
       case 'next':

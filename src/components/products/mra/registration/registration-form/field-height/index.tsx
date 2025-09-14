@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldHeightProps } from '@/components/products/mra/registration/registr
 export const FieldHeight = ({ form }: FieldHeightProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="height"
       render={({ field }) => (
         <FormItem>

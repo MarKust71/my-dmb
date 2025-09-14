@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldLastNameProps } from '@/components/products/mra/registration/regis
 export const FieldLastName = ({ form }: FieldLastNameProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="lastname"
       render={({ field }) => (
         <FormItem>

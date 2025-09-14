@@ -1,10 +1,12 @@
 import { redirect } from 'next/navigation'
 
-export default function Component({
-  params: { id },
-}: {
-  params: { id: string }
-}) {
+import { PageProps } from '@/types'
+
+import { PageParams } from './page.types'
+
+export default async function Component({ params }: PageProps<PageParams>) {
+  const { id } = await params
+
   if (id) {
     redirect(`/invite/${id}`)
   }

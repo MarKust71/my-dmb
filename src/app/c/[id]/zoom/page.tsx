@@ -1,12 +1,13 @@
 import { redirect } from 'next/navigation'
 
 import { UserId, UserIdShort } from '@/components/contact/contact-form.types'
+import type { PageProps } from '@/types'
 
-export default function Component({
-  params: { id },
-}: {
-  params: { id: string }
-}) {
+import { PageParams } from './page.types'
+
+export default async function Component({ params }: PageProps<PageParams>) {
+  const { id } = await params
+
   if (id === UserIdShort.MAREK_KUSTOSZ || id === UserId.MAREK_KUSTOSZ) {
     redirect(`/contact/${UserId.MAREK_KUSTOSZ}/zoom`)
   }

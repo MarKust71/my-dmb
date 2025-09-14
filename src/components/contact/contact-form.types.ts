@@ -4,7 +4,7 @@ export type ContactFormValues = {
   email: string
   name: string
   userContext: UserContext
-  gdprConsent: boolean
+  gdprConsent?: boolean
 }
 
 export type ContactFormProps = {

@@ -1,19 +1,23 @@
 import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
 
+import { PageProps } from '@/types'
+
+import { PageParams } from './page.types'
+
 export async function generateMetadata({
-  params: { id },
-}: Props): Promise<Metadata> {
+  params,
+}: PageProps<PageParams>): Promise<Metadata> {
+  const { id } = await params
+
   return {
     title: `dMb Global | Diamond Event | ${id}`,
   }
 }
 
-type Props = {
-  params: { id: string }
-}
+export default async function Component({ params }: PageProps<PageParams>) {
+  const { id } = await params
 
-export default function Component({ params: { id } }: Props) {
   if (id) {
     redirect(`/events/diamond-event/${id}`)
   }
