@@ -24,12 +24,11 @@ import { useQrStore } from '@/store/use-qr-store'
 import { Skeleton } from '@/components/ui/skeleton'
 
 const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
-const linkUrlPlaceholder =
-  'skopiuj i wklej tutaj adres strony produktu z przeglądarki ALBO wpisz kod produktu (4–6 cyfr)'
+const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz kod produktu'
 const aboSponsorLabel = 'Twój numer PA'
 const aboSponsorPlaceholder = 'np. 8286448'
 const contactAuthorUrl = 'https://mydmb.pl/c/mk'
-const contactAuthorLabel = 'Kontakt z autorem'
+const contactAuthorLabel = 'Kontakt z autorem generatora'
 
 // ---- RHF schema -------------------------------------------------------------
 function resolveProductInput(input: string): string {
@@ -250,10 +249,10 @@ export function ProductPageToQrcode() {
   if (!isHydrated) {
     return (
       <div
-        className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-3' : 'p-6'}`}
+        className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-1' : 'p-2'}`}
       >
         <Card>
-          <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
+          <CardHeader className={`${isCompact ? 'p-2' : 'p-4'} pb-0`}>
             <div className="flex items-start justify-between gap-3">
               <div className="flex flex-col items-start justify-start">
                 <CardTitle className="text-xl">Generator kodu QR</CardTitle>
@@ -268,7 +267,7 @@ export function ProductPageToQrcode() {
             </div>
           </CardHeader>
 
-          <CardContent className={`${isCompact ? 'p-4' : ''}`}>
+          <CardContent className={`${isCompact ? 'p-2' : 'p-4'}`}>
             <div className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
               <div>
                 <Label>{aboSponsorLabel}</Label>
@@ -312,17 +311,16 @@ export function ProductPageToQrcode() {
 
   return (
     <div
-      className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-3' : 'p-6'}`}
+      className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-1' : 'p-2'}`}
     >
       <Card>
-        <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
+        <CardHeader className={`${isCompact ? 'p-2' : 'p-4'} pb-0`}>
           <div className="flex items-start justify-between gap-3">
             <div className="flex flex-col items-start justify-start">
               <CardTitle className="text-xl">Generator kodu QR</CardTitle>
 
               <CardDescription>
-                link do strony produktu
-                z&nbsp;numerem&nbsp;PA&nbsp;zapraszającego
+                link do strony produktu z&nbsp;numerem&nbsp;PA zapraszającego
               </CardDescription>
             </div>
 
@@ -341,7 +339,7 @@ export function ProductPageToQrcode() {
           </div>
         </CardHeader>
 
-        <CardContent className={`${isCompact ? 'p-4' : ''}`}>
+        <CardContent className={`${isCompact ? 'p-2' : 'p-4'}`}>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}
@@ -418,7 +416,7 @@ export function ProductPageToQrcode() {
                 href={contactAuthorUrl}
                 target="_blank"
                 rel="noreferrer"
-                className={`inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700 ${isCompact ? 'mb-[-4px]' : 'mb-[-12px]'}`}
+                className={`inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700`}
               >
                 {contactAuthorLabel}
                 <ExternalLink className="h-4 w-4 ml-1" aria-hidden="true" />
@@ -429,8 +427,10 @@ export function ProductPageToQrcode() {
       </Card>
 
       {generatedUrl && (
-        <Card className={`${isCompact ? 'mt-4' : 'mt-6'}`}>
-          <CardContent className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
+        <Card className={`${isCompact ? 'mt-1' : 'mt-2'}`}>
+          <CardContent
+            className={`grid ${isCompact ? 'gap-3 p-2' : 'gap-4 p-4'}`}
+          >
             <div>
               <Label>Wygenerowany link</Label>
 
