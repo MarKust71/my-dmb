@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
 import Image from 'next/image'
+import { create } from 'zustand'
 
 import {
   Card,
@@ -20,14 +21,14 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 
-// Validation schema
+// ---- RHF schema -------------------------------------------------------------
 const formSchema = z.object({
   aboSponsor: z.string().regex(/^\d+$/, 'Dozwolone są wyłącznie cyfry.'),
   linkUrl: z.string().url('Podaj poprawny adres URL (z http/https).'),
 })
-
 type FormValues = z.infer<typeof formSchema>
 
+// ---- localStorage helpers ---------------------------------------------------
 const LS_KEY = 'abo-link-form'
 
 function loadFromLocalStorage(): Partial<FormValues> | undefined {
@@ -54,10 +55,7 @@ function clearLocalStorage() {
   } catch {}
 }
 
-// 1) Normalizacja adresów Amway: jeśli URL zawiera dokładnie origin
-//    "https://www.amway.pl" oraz fragment "/p/", to wycinamy wszystko
-//    POMIĘDZY tymi elementami, np.:
-//    https://www.amway.pl/kategoria/jakas/p/123 -> https://www.amway.pl/p/123
+// ---- Amway URL normalization -----------------------------------------------
 function normalizeAmwayUrl(input: string): string {
   const url = new URL(input)
   if (url.origin === 'https://www.amway.pl' && url.pathname.includes('/p/')) {
@@ -81,15 +79,59 @@ async function generateQrPngDataUrl(text: string): Promise<string> {
   })
 }
 
-export function ProductPageToQrcode() {
-  const [generatedUrl, setGeneratedUrl] = useState<string>('')
-  const [qrDataUrl, setQrDataUrl] = useState<string>('')
-  const [isWorking, setIsWorking] = useState(false)
-  const { toast } = useToast()
-  const [isCompact, setIsCompact] = useState(false)
+// ---- Zustand store ----------------------------------------------------------
+type QrState = {
+  generatedUrl: string
+  qrDataUrl: string
+  isWorking: boolean
+  isCompact: boolean
+  isHydrated: boolean
+  suppressNextSave: boolean
+  // actions
+  setGeneratedUrl: (v: string) => void
+  setQrDataUrl: (v: string) => void
+  setIsWorking: (v: boolean) => void
+  setIsCompact: (v: boolean) => void
+  setIsHydrated: (v: boolean) => void
+  setSuppressNextSave: (v: boolean) => void
+  resetOutput: () => void
+}
 
-  const suppressNextSaveRef = useRef(false) // blokuje jednorazowe zapisywanie (np. po Wyczyść)
-  const [isHydrated, setIsHydrated] = useState(false) // chroni przed nadpisaniem LS pustymi danymi przy starcie
+const useQrStore = create<QrState>((set) => ({
+  generatedUrl: '',
+  qrDataUrl: '',
+  isWorking: false,
+  isCompact: false,
+  isHydrated: false,
+  suppressNextSave: false,
+  setGeneratedUrl: (v) => set({ generatedUrl: v }),
+  setQrDataUrl: (v) => set({ qrDataUrl: v }),
+  setIsWorking: (v) => set({ isWorking: v }),
+  setIsCompact: (v) => set({ isCompact: v }),
+  setIsHydrated: (v) => set({ isHydrated: v }),
+  setSuppressNextSave: (v) => set({ suppressNextSave: v }),
+  resetOutput: () => set({ generatedUrl: '', qrDataUrl: '' }),
+}))
+
+// ---- Component --------------------------------------------------------------
+export function ProductPageToQrcode() {
+  const { toast } = useToast()
+
+  // selecty ze store (unikamy rerenderów na każdy stan dzięki selektorom)
+  const generatedUrl = useQrStore((s) => s.generatedUrl)
+  const qrDataUrl = useQrStore((s) => s.qrDataUrl)
+  const isWorking = useQrStore((s) => s.isWorking)
+  const isCompact = useQrStore((s) => s.isCompact)
+  const isHydrated = useQrStore((s) => s.isHydrated)
+  const suppressNextSave = useQrStore((s) => s.suppressNextSave)
+
+  const setGeneratedUrl = useQrStore((s) => s.setGeneratedUrl)
+  const setQrDataUrl = useQrStore((s) => s.setQrDataUrl)
+  const setIsWorking = useQrStore((s) => s.setIsWorking)
+  const setIsCompact = useQrStore((s) => s.setIsCompact)
+  const setIsHydrated = useQrStore((s) => s.setIsHydrated)
+  const setSuppressNextSave = useQrStore((s) => s.setSuppressNextSave)
+  const resetOutput = useQrStore((s) => s.resetOutput)
 
   const {
     register,
@@ -99,20 +141,14 @@ export function ProductPageToQrcode() {
     watch,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      aboSponsor: '',
-      linkUrl: '',
-    },
+    defaultValues: { aboSponsor: '', linkUrl: '' },
     mode: 'onBlur',
   })
 
-  // 1) Hydratacja z localStorage (tylko raz) i dopiero potem pozwalamy na auto-zapis
+  // 1) Hydratacja z localStorage + auto-compact na mobile
   useEffect(() => {
     const stored = loadFromLocalStorage()
-    if (stored) {
-      reset(stored)
-    }
-    // Ustal domyślnie tryb compact na mobile (<= md)
+    if (stored) reset(stored)
     if (typeof window !== 'undefined') {
       const mq = window.matchMedia('(max-width: 767px)')
       setIsCompact(mq.matches)
@@ -125,38 +161,33 @@ export function ProductPageToQrcode() {
   const values = watch()
   useEffect(() => {
     if (!isHydrated) return
-    if (suppressNextSaveRef.current) {
-      suppressNextSaveRef.current = false
+    if (suppressNextSave) {
+      setSuppressNextSave(false)
       return
     }
     saveToLocalStorage(values)
-  }, [values, isHydrated])
+  }, [values, isHydrated, suppressNextSave, setSuppressNextSave])
 
   const onSubmit = async (data: FormValues) => {
     setIsWorking(true)
     try {
-      // Normalizujemy tylko jeśli spełnione warunki z prośby
       const normalized = normalizeAmwayUrl(data.linkUrl)
       const finalUrl = buildUrlWithAbo(normalized, data.aboSponsor)
 
       setGeneratedUrl(finalUrl)
-      const pngDataUrl = await generateQrPngDataUrl(finalUrl)
-      setQrDataUrl(pngDataUrl)
+      setQrDataUrl(await generateQrPngDataUrl(finalUrl))
 
-      // Informacja, jeśli dokonano normalizacji adresu
       if (normalized !== data.linkUrl) {
         toast({
           title: 'Znormalizowano adres',
           description: 'Usunięto fragment ścieżki pomiędzy domeną a "/p/".',
         })
       }
-
       toast({
         title: 'Sukces',
         description: 'Link i kod QR zostały wygenerowane.',
       })
-      // Nie czyścimy localStorage — ma działać jak baza danych
-    } catch (e) {
+    } catch {
       toast({
         title: 'Błąd',
         description: 'Nie udało się wygenerować linku lub QR.',
@@ -202,21 +233,19 @@ export function ProductPageToQrcode() {
       <Card>
         <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
           <div className="flex items-start justify-between gap-3">
-            <div className={'flex flex-col items-start justify-start'}>
-              <CardTitle className={'text-xl'}>Generator kodu QR</CardTitle>
-
+            <div className="flex flex-col items-start justify-start">
+              <CardTitle className="text-xl">Generator kodu QR</CardTitle>
               <CardDescription>
                 link do strony produktu
                 z&nbsp;numerem&nbsp;PA&nbsp;zapraszającego
               </CardDescription>
             </div>
 
-            {/* Przełącznik widoczny na desktopie */}
+            {/* Desktop: przełącznik compact */}
             <div className="hidden items-center gap-2 md:flex">
               <Label htmlFor="compact" className="cursor-pointer text-right">
                 Tryb kompaktowy
               </Label>
-
               <Switch
                 id="compact"
                 checked={isCompact}
@@ -233,7 +262,6 @@ export function ProductPageToQrcode() {
           >
             <div>
               <Label htmlFor="aboSponsor">Twój numer PA</Label>
-
               <Input
                 id="aboSponsor"
                 type="text"
@@ -242,7 +270,6 @@ export function ProductPageToQrcode() {
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('aboSponsor')}
               />
-
               {errors.aboSponsor && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.aboSponsor.message}
@@ -252,7 +279,6 @@ export function ProductPageToQrcode() {
 
             <div>
               <Label htmlFor="linkUrl">Link do strony produktu</Label>
-
               <Input
                 id="linkUrl"
                 type="url"
@@ -260,7 +286,6 @@ export function ProductPageToQrcode() {
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('linkUrl')}
               />
-
               {errors.linkUrl && (
                 <p className="mt-1 text-sm text-red-600">
                   {errors.linkUrl.message}
@@ -269,17 +294,16 @@ export function ProductPageToQrcode() {
             </div>
 
             <div
-              className={`flex items-center justify-between  ${isCompact ? 'gap-2' : 'gap-3'}`}
+              className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
             >
               <Button
                 type="button"
                 variant="outline"
                 className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
                 onClick={() => {
-                  suppressNextSaveRef.current = true // nie zapisuj pustych po reset
+                  setSuppressNextSave(true) // nie zapisuj pustych po reset
                   reset({ aboSponsor: '', linkUrl: '' })
-                  setGeneratedUrl('')
-                  setQrDataUrl('')
+                  resetOutput()
                   clearLocalStorage() // czyścimy LS TYLKO tutaj
                   toast({
                     title: 'Wyczyszczono',
@@ -307,14 +331,12 @@ export function ProductPageToQrcode() {
           <CardContent className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
             <div>
               <Label>Wygenerowany link</Label>
-
               <div className="flex items-center gap-2">
                 <Input
                   readOnly
                   value={generatedUrl}
                   className={`font-mono ${isCompact ? 'h-9 text-xs' : 'text-sm'}`}
                 />
-
                 <Button
                   onClick={copyToClipboard}
                   className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
@@ -327,7 +349,6 @@ export function ProductPageToQrcode() {
             {qrDataUrl && (
               <div className="grid gap-3 mx-auto">
                 <Label>Kod QR</Label>
-
                 <div className="grid grid-cols-[auto_1fr] items-start gap-3">
                   <Image
                     src={qrDataUrl}
@@ -336,8 +357,6 @@ export function ProductPageToQrcode() {
                     height={224}
                     className={`h-auto ${isCompact ? 'w-44' : 'w-56'} rounded-xl border`}
                   />
-
-                  {/* prawa kolumna: przyciski jeden pod drugim */}
                   <div className="flex flex-col items-stretch gap-2">
                     <Button
                       asChild
@@ -348,7 +367,6 @@ export function ProductPageToQrcode() {
                         Otwórz link
                       </a>
                     </Button>
-
                     <Button
                       onClick={downloadPng}
                       className={`w-full ${isCompact ? 'h-9 px-3 text-sm' : ''}`}
