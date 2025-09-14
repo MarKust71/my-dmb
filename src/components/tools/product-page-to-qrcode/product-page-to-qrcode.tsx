@@ -7,7 +7,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
 import Image from 'next/image'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -195,13 +201,15 @@ export function ProductPageToQrcode() {
     >
       <Card>
         <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
-          <div className="flex items-center justify-between gap-3">
-            <CardTitle
-              className={`${isCompact ? 'text-base text-center' : ''}`}
-            >
-              Generator kodu QR z linkiem do strony produktu i&nbsp;numerem PA
-              zapraszającego
-            </CardTitle>
+          <div className="flex items-start justify-between gap-3">
+            <div className={'flex flex-col items-start justify-start'}>
+              <CardTitle className={'text-xl'}>Generator kodu QR</CardTitle>
+
+              <CardDescription>
+                link do strony produktu
+                z&nbsp;numerem&nbsp;PA&nbsp;zapraszającego
+              </CardDescription>
+            </div>
 
             {/* Przełącznik widoczny na desktopie */}
             <div className="hidden items-center gap-2 md:flex">
