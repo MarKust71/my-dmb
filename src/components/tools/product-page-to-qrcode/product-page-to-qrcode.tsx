@@ -6,7 +6,6 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import QRCode from 'qrcode'
 import Image from 'next/image'
-import { create } from 'zustand'
 
 import {
   Card,
@@ -20,6 +19,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
+import { useQrStore } from '@/store/use-qr-store'
 
 // ---- RHF schema -------------------------------------------------------------
 const formSchema = z.object({
@@ -79,40 +79,6 @@ async function generateQrPngDataUrl(text: string): Promise<string> {
   })
 }
 
-// ---- Zustand store ----------------------------------------------------------
-type QrState = {
-  generatedUrl: string
-  qrDataUrl: string
-  isWorking: boolean
-  isCompact: boolean
-  isHydrated: boolean
-  suppressNextSave: boolean
-  // actions
-  setGeneratedUrl: (v: string) => void
-  setQrDataUrl: (v: string) => void
-  setIsWorking: (v: boolean) => void
-  setIsCompact: (v: boolean) => void
-  setIsHydrated: (v: boolean) => void
-  setSuppressNextSave: (v: boolean) => void
-  resetOutput: () => void
-}
-
-const useQrStore = create<QrState>((set) => ({
-  generatedUrl: '',
-  qrDataUrl: '',
-  isWorking: false,
-  isCompact: false,
-  isHydrated: false,
-  suppressNextSave: false,
-  setGeneratedUrl: (v) => set({ generatedUrl: v }),
-  setQrDataUrl: (v) => set({ qrDataUrl: v }),
-  setIsWorking: (v) => set({ isWorking: v }),
-  setIsCompact: (v) => set({ isCompact: v }),
-  setIsHydrated: (v) => set({ isHydrated: v }),
-  setSuppressNextSave: (v) => set({ suppressNextSave: v }),
-  resetOutput: () => set({ generatedUrl: '', qrDataUrl: '' }),
-}))
-
 // ---- Component --------------------------------------------------------------
 export function ProductPageToQrcode() {
   const { toast } = useToast()
@@ -149,10 +115,14 @@ export function ProductPageToQrcode() {
   useEffect(() => {
     const stored = loadFromLocalStorage()
     if (stored) reset(stored)
+
+    // ustaw compact z media query tylko, gdy persist nie zdążył nadpisać
     if (typeof window !== 'undefined') {
       const mq = window.matchMedia('(max-width: 767px)')
-      setIsCompact(mq.matches)
+      const hydrated = (useQrStore as any).persist?.hasHydrated?.() ?? false
+      if (!hydrated) setIsCompact(mq.matches)
     }
+
     setIsHydrated(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
