@@ -43,6 +43,7 @@ export const publicRoutes = [
   '/i',
   '/invite',
   '/media/business-plan',
+  '/ml/n8n-personal-response-contact-popup',
   '/mra-registration',
   '/mra-reports',
   '/products',
@@ -51,6 +52,7 @@ export const publicRoutes = [
   '/products/mra/flyer',
   '/program',
   '/program/energy-program',
+  '/tools/product-page-to-qrcode',
 ]
 
 export const DEFAULT_REDIRECT = '/contact/marek-kustosz'

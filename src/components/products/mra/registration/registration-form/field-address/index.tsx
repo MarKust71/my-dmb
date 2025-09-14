@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldAddressProps } from '@/components/products/mra/registration/regist
 export const FieldAddress = ({ form }: FieldAddressProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="address"
       render={({ field }) => (
         <FormItem>

@@ -4,5 +4,5 @@ import { z } from 'zod'
 import { MraRegistrationFormSchema } from '@/schemas'
 
 export type FieldCityProps = {
-  form: UseFormReturn<z.infer<typeof MraRegistrationFormSchema>, any, undefined>
+  form: UseFormReturn<z.infer<typeof MraRegistrationFormSchema>, any, any>
 }

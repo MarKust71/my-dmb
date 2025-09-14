@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldWeightProps } from '@/components/products/mra/registration/registr
 export const FieldWeight = ({ form }: FieldWeightProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="weight"
       render={({ field }) => (
         <FormItem>

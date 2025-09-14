@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldPhoneProps } from '@/components/products/mra/registration/registra
 export const FieldPhone = ({ form }: FieldPhoneProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="phone"
       render={({ field }) => (
         <FormItem>

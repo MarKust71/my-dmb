@@ -9,12 +9,15 @@ import './page.scss'
 import { QrCodeUrlMarekKustosz } from '@/components/ui/qr-codes/qr-code-url-marek-kustosz'
 import { QrCodeUrlSylwiaStachow } from '@/components/ui/qr-codes/qr-code-url-sylwia-stachow'
 import { ContactActiveEnum } from '@/types/contact.types'
+import type { PageProps } from '@/types'
 
-import { Props } from './page.types'
+import { PageParams } from './page.types'
 
 export async function generateMetadata({
-  params: { id },
-}: Props): Promise<Metadata> {
+  params,
+}: PageProps<PageParams>): Promise<Metadata> {
+  const { id } = await params
+
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {
       return {
@@ -35,8 +38,14 @@ export async function generateMetadata({
   }
 }
 
-export default function Component({ params: { id }, searchParams }: Props) {
-  const active = searchParams.active as ContactActiveEnum
+export default async function Component({
+  params,
+  searchParams,
+}: PageProps<PageParams>) {
+  const { id } = await params
+  const sp = await searchParams
+
+  const active = sp.active as ContactActiveEnum
 
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {

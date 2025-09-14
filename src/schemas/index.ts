@@ -1,10 +1,12 @@
 import * as z from 'zod'
 
+import { UserContext } from '@/components/contact/contact-form.types'
+
 const dateTimeRegExp =
   /^(?:(?:(?!0000)\d{4}-(?:(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01]))|(?:(?:0[469]|11)-(?:0[1-9]|[12]\d|30))|(?:02-(?:0[1-9]|1\d|2[0-8]))))|(?:(?!0000)(?:(?:\d{2}(?:0[48]|[2468][048]|[13579][26]))|(?:[02468][048]|[13579][26])00)-02-29))\s(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/
 
 export const LoginSchema = z.object({
-  email: z.string().email({
+  email: z.email({
     message: 'Valid email address is required',
   }),
   password: z.string().min(1, {
@@ -16,7 +18,7 @@ export const RegisterSchema = z.object({
   name: z.string().min(1, {
     message: 'name is required',
   }),
-  email: z.string().email({
+  email: z.email({
     message: 'Valid email address is required',
   }),
   password: z.string().min(6, {
@@ -25,25 +27,25 @@ export const RegisterSchema = z.object({
 })
 
 export const ContactFormSchema = z.object({
-  email: z.string().email({
+  email: z.email({
     message: 'To nie jest poprawny email',
   }),
   name: z.string().min(1, {
     message: 'Podanie imienia jest wymagane',
   }),
-  userContext: z.string(),
-  gdprConsent: z.boolean().default(false),
+  userContext: z.enum(UserContext),
+  gdprConsent: z.boolean().default(false).optional(),
 })
 
 export const ContactCustomerSchema = z.object({
   name: z.string().min(1, {
     message: 'name is required',
   }),
-  email: z.string().email({
+  email: z.email({
     message: 'Valid email address is required',
   }),
   context: z.string(),
-  consent: z.string().datetime().optional(),
+  consent: z.iso.datetime().optional(),
 })
 
 export const MraRegistrationFormSchema = z.object({

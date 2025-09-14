@@ -1,3 +1,5 @@
+import { Control, FieldValues } from 'react-hook-form'
+
 import {
   FormControl,
   FormField,
@@ -11,7 +13,7 @@ import { FieldPostcodeProps } from '@/components/products/mra/registration/regis
 export const FieldPostcode = ({ form }: FieldPostcodeProps) => {
   return (
     <FormField
-      control={form.control}
+      control={form.control as unknown as Control<FieldValues>}
       name="postcode"
       render={({ field }) => (
         <FormItem>
