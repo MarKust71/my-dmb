@@ -9,8 +9,7 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "prettier-check": "prettier --check \"src/**/*.{ts,tsx}\"",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "vercel-build": "npx vercel build"
+    "prettier": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
