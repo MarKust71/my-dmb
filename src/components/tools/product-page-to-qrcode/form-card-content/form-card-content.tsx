@@ -14,11 +14,10 @@ import {
 import { FormValues } from '@/components/tools/product-page-to-qrcode/product-page-to-qrcode.types'
 import { generateQrPngDataUrl } from '@/components/tools/product-page-to-qrcode/helpers/generate-qr-png-data-url'
 import { useToast } from '@/components/ui/use-toast'
+import { FormCardContentAboSponsorInput } from '@/components/tools/product-page-to-qrcode/form-card-content/form-card-content-abo-sponsor-input'
 
 import { FormCardContentProps } from './form-card-content.types'
 
-const aboSponsorLabel = 'Twój numer PA'
-const aboSponsorPlaceholder = 'np. 8286448'
 const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
 const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz kod produktu'
 const contactAuthorUrl = 'https://mydmb.pl/c/mk'
@@ -84,32 +83,7 @@ export const FormCardContent = ({
         onSubmit={handleSubmit(onSubmit)}
         className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}
       >
-        <div>
-          <Label htmlFor="aboSponsor">{aboSponsorLabel}</Label>
-
-          {isHydrated ? (
-            <>
-              <Input
-                id="aboSponsor"
-                type="text"
-                inputMode="numeric"
-                placeholder={aboSponsorPlaceholder}
-                className={`${isCompact ? 'h-9 text-sm' : ''}`}
-                {...register('aboSponsor')}
-              />
-
-              {errors.aboSponsor && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.aboSponsor.message}
-                </p>
-              )}
-            </>
-          ) : (
-            <Skeleton
-              className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
-            />
-          )}
-        </div>
+        <FormCardContentAboSponsorInput register={register} errors={errors} />
 
         <div>
           <Label htmlFor="linkUrl">{linkUrlLabel}</Label>
