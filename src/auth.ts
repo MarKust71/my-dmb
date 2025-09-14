@@ -1,3 +1,4 @@
+/*
 import NextAuth, { Session } from 'next-auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { JWT } from 'next-auth/jwt'
@@ -66,3 +67,49 @@ export const {
   session: { strategy: 'jwt' },
   ...authConfig,
 })
+*/
+
+// src/auth.ts  (CIĘŻKI – tylko dla Node.js runtime)
+import NextAuth from 'next-auth'
+import Credentials from 'next-auth/providers/credentials'
+import Google from 'next-auth/providers/google'
+import Github from 'next-auth/providers/github'
+import Facebook from 'next-auth/providers/facebook'
+import bcrypt from 'bcryptjs'
+
+import authConfig from '@/auth.config'
+import { getUserByEmail } from '@/data/auth/user'
+// (opcjonalnie: import { LoginSchema } ...)
+
+export const runtime = 'nodejs' // ważne: ten plik NIE trafi do Edge
+
+const providers = [
+  Github({
+    clientId: process.env.GITHUB_CLIENT_ID!,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+  }),
+  Google({
+    clientId: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+  }),
+  Facebook({
+    clientId: process.env.FACEBOOK_CLIENT_ID!,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+  }),
+  Credentials({
+    async authorize(credentials) {
+      const { email, password } = credentials as any // tu możesz użyć swojego LoginSchema
+      const user = await getUserByEmail(email)
+      if (!user || !user.password) return null
+      const ok = await bcrypt.compare(password, user.password)
+      return ok ? user : null
+    },
+  }),
+]
+
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({ ...authConfig, providers })
