@@ -246,69 +246,6 @@ export function ProductPageToQrcode() {
     toast({ title: 'Pobrano', description: 'Kod QR został pobrany jako PNG.' })
   }
 
-  if (!isHydrated) {
-    return (
-      <div
-        className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-1' : 'p-2'}`}
-      >
-        <Card>
-          <CardHeader className={`${isCompact ? 'p-2' : 'p-4'} pb-0`}>
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex flex-col items-start justify-start">
-                <CardTitle className="text-xl">Generator kodu QR</CardTitle>
-                <CardDescription>Ładowanie danych…</CardDescription>
-              </div>
-
-              <div className="hidden items-center gap-2 md:flex">
-                <Label className="opacity-60">Tryb kompaktowy</Label>
-
-                <Skeleton className="h-6 w-11 rounded-full" />
-              </div>
-            </div>
-          </CardHeader>
-
-          <CardContent className={`${isCompact ? 'p-2' : 'p-4'}`}>
-            <div className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
-              <div>
-                <Label>{aboSponsorLabel}</Label>
-
-                <Skeleton
-                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
-                />
-              </div>
-
-              <div>
-                <Label>{linkUrlLabel}</Label>
-
-                <Skeleton
-                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
-                />
-              </div>
-
-              <div
-                className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
-              >
-                <Skeleton
-                  className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-                />
-
-                <Skeleton
-                  className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-                />
-              </div>
-
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Loader2 className="h-4 w-4 animate-spin" />
-
-                <span>Wczytywanie zapisanych wartości…</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
   return (
     <div
       className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-1' : 'p-2'}`}
@@ -319,22 +256,39 @@ export function ProductPageToQrcode() {
             <div className="flex flex-col items-start justify-start">
               <CardTitle className="text-xl">Generator kodu QR</CardTitle>
 
-              <CardDescription>
-                link do strony produktu z&nbsp;numerem&nbsp;PA zapraszającego
-              </CardDescription>
+              {isHydrated ? (
+                <CardDescription>
+                  link do strony produktu z&nbsp;numerem&nbsp;PA zapraszającego
+                </CardDescription>
+              ) : (
+                <CardDescription>Ładowanie danych…</CardDescription>
+              )}
             </div>
 
             {/* Desktop: przełącznik compact */}
             <div className="hidden items-center gap-2 md:flex">
-              <Label htmlFor="compact" className="cursor-pointer text-right">
-                Tryb kompaktowy
-              </Label>
+              {isHydrated ? (
+                <>
+                  <Label
+                    htmlFor="compact"
+                    className="cursor-pointer text-right"
+                  >
+                    Tryb kompaktowy
+                  </Label>
 
-              <Switch
-                id="compact"
-                checked={isCompact}
-                onCheckedChange={setIsCompact}
-              />
+                  <Switch
+                    id="compact"
+                    checked={isCompact}
+                    onCheckedChange={setIsCompact}
+                  />
+                </>
+              ) : (
+                <>
+                  <Label className="opacity-60">Tryb kompaktowy</Label>
+
+                  <Skeleton className="h-6 w-11 rounded-full" />
+                </>
+              )}
             </div>
           </div>
         </CardHeader>
@@ -347,81 +301,119 @@ export function ProductPageToQrcode() {
             <div>
               <Label htmlFor="aboSponsor">{aboSponsorLabel}</Label>
 
-              <Input
-                id="aboSponsor"
-                type="text"
-                inputMode="numeric"
-                placeholder={aboSponsorPlaceholder}
-                className={`${isCompact ? 'h-9 text-sm' : ''}`}
-                {...register('aboSponsor')}
-              />
+              {isHydrated ? (
+                <>
+                  <Input
+                    id="aboSponsor"
+                    type="text"
+                    inputMode="numeric"
+                    placeholder={aboSponsorPlaceholder}
+                    className={`${isCompact ? 'h-9 text-sm' : ''}`}
+                    {...register('aboSponsor')}
+                  />
 
-              {errors.aboSponsor && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.aboSponsor.message}
-                </p>
+                  {errors.aboSponsor && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.aboSponsor.message}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <Skeleton
+                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
+                />
               )}
             </div>
 
             <div>
               <Label htmlFor="linkUrl">{linkUrlLabel}</Label>
 
-              <Input
-                id="linkUrl"
-                type="text"
-                placeholder={linkUrlPlaceholder}
-                className={`${isCompact ? 'h-9 text-sm' : ''}`}
-                {...register('linkUrl')}
-              />
+              {isHydrated ? (
+                <>
+                  <Input
+                    id="linkUrl"
+                    type="text"
+                    placeholder={linkUrlPlaceholder}
+                    className={`${isCompact ? 'h-9 text-sm' : ''}`}
+                    {...register('linkUrl')}
+                  />
 
-              {errors.linkUrl && (
-                <p className="mt-1 text-sm text-red-600">
-                  {errors.linkUrl.message}
-                </p>
+                  {errors.linkUrl && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.linkUrl.message}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <Skeleton
+                  className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
+                />
               )}
             </div>
 
             <div
               className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
             >
-              <Button
-                type="button"
-                variant="outline"
-                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-                onClick={() => {
-                  setSuppressNextSave(true) // nie zapisuj pustych po reset
-                  reset({ aboSponsor: '', linkUrl: '' })
-                  resetOutput()
-                  clearLocalStorage() // czyścimy LS TYLKO tutaj
-                  toast({
-                    title: 'Wyczyszczono',
-                    description: 'Formularz został wyczyszczony.',
-                  })
-                }}
-              >
-                Wyczyść
-              </Button>
+              {isHydrated ? (
+                <>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                    onClick={() => {
+                      setSuppressNextSave(true) // nie zapisuj pustych po reset
+                      reset({ aboSponsor: '', linkUrl: '' })
+                      resetOutput()
+                      clearLocalStorage() // czyścimy LS TYLKO tutaj
+                      toast({
+                        title: 'Wyczyszczono',
+                        description: 'Formularz został wyczyszczony.',
+                      })
+                    }}
+                  >
+                    Wyczyść
+                  </Button>
 
-              <Button
-                type="submit"
-                disabled={isWorking}
-                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-              >
-                {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
-              </Button>
+                  <Button
+                    type="submit"
+                    disabled={isWorking}
+                    className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                  >
+                    {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Skeleton
+                    className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
+                  />
+
+                  <Skeleton
+                    className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
+                  />
+                </>
+              )}
             </div>
 
-            <div className="flex justify-center">
-              <a
-                href={contactAuthorUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={`inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700`}
-              >
-                {contactAuthorLabel}
-                <ExternalLink className="h-4 w-4 ml-1" aria-hidden="true" />
-              </a>
-            </div>
+            {isHydrated ? (
+              <div className="flex justify-center">
+                <a
+                  href={contactAuthorUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700`}
+                >
+                  {contactAuthorLabel}
+                  <ExternalLink className="h-4 w-4 ml-1" aria-hidden="true" />
+                </a>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" />
+
+                <span>Wczytywanie zapisanych wartości…</span>
+              </div>
+            )}
           </form>
         </CardContent>
       </Card>
