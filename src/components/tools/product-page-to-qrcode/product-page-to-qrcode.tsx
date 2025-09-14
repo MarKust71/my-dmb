@@ -23,11 +23,41 @@ import { useToast } from '@/components/ui/use-toast'
 import { useQrStore } from '@/store/use-qr-store'
 import { Skeleton } from '@/components/ui/skeleton'
 
+const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
+const linkUrlPlaceholder =
+  'skopiuj i wklej tutaj adres strony produktu z przeglądarki ALBO wpisz kod produktu (4–6 cyfr)'
+const aboSponsorLabel = 'Twój numer PA'
+const aboSponsorPlaceholder = 'np. 8286448'
+const contactAuthorUrl = 'https://mydmb.pl/c/mk'
+const contactAuthorLabel = 'Kontakt z autorem'
+
 // ---- RHF schema -------------------------------------------------------------
+function resolveProductInput(input: string): string {
+  const trimmed = input.trim()
+
+  if (/^\d{4,6}$/.test(trimmed)) {
+    // podano kod produktu – budujemy pełny adres
+    return `https://www.amway.pl/p/${trimmed}`
+  }
+
+  return normalizeAmwayUrl(trimmed)
+}
+
 const formSchema = z.object({
   aboSponsor: z.string().regex(/^\d+$/, 'Dozwolone są wyłącznie cyfry.'),
-  linkUrl: z.string().url('Podaj poprawny adres URL (z http/https).'),
+  linkUrl: z.union([
+    z.url(
+      'Podaj poprawny adres URL (z http/https) ALBO 4-6 cyfr kodu produktu'
+    ),
+    z
+      .string()
+      .regex(
+        /^\d{4,6}$/,
+        'Wpisz 4–6 cyfr kodu produktu ALBO poprawny adres URL (z http/https)'
+      ),
+  ]),
 })
+
 type FormValues = z.infer<typeof formSchema>
 
 // ---- localStorage helpers ---------------------------------------------------
@@ -35,16 +65,19 @@ const LS_KEY = 'abo-link-form'
 
 function loadFromLocalStorage(): Partial<FormValues> | undefined {
   if (typeof window === 'undefined') return undefined
+
   try {
     const raw = window.localStorage.getItem(LS_KEY)
     if (!raw) return undefined
     return JSON.parse(raw) as FormValues
   } catch {}
+
   return undefined
 }
 
 function saveToLocalStorage(values: Partial<FormValues>) {
   if (typeof window === 'undefined') return
+
   try {
     window.localStorage.setItem(LS_KEY, JSON.stringify(values))
   } catch {}
@@ -52,6 +85,7 @@ function saveToLocalStorage(values: Partial<FormValues>) {
 
 function clearLocalStorage() {
   if (typeof window === 'undefined') return
+
   try {
     window.localStorage.removeItem(LS_KEY)
   } catch {}
@@ -60,16 +94,19 @@ function clearLocalStorage() {
 // ---- Amway URL normalization -----------------------------------------------
 function normalizeAmwayUrl(input: string): string {
   const url = new URL(input)
+
   if (url.origin === 'https://www.amway.pl' && url.pathname.includes('/p/')) {
     const idx = url.pathname.indexOf('/p/')
     url.pathname = url.pathname.slice(idx) // od "/p/" do końca
   }
+
   return url.toString()
 }
 
 function buildUrlWithAbo(baseUrl: string, aboSponsor: string): string {
   const url = new URL(baseUrl)
   url.searchParams.set('aboSponsor', aboSponsor)
+
   return url.toString()
 }
 
@@ -122,6 +159,7 @@ export function ProductPageToQrcode() {
     if (typeof window !== 'undefined') {
       const mq = window.matchMedia('(max-width: 767px)')
       const hydrated = (useQrStore as any).persist?.hasHydrated?.() ?? false
+
       if (!hydrated) setIsCompact(mq.matches)
     }
 
@@ -144,15 +182,19 @@ export function ProductPageToQrcode() {
 
   const onSubmit = async (data: FormValues) => {
     setIsWorking(true)
-
     try {
-      const normalized = normalizeAmwayUrl(data.linkUrl)
-      const finalUrl = buildUrlWithAbo(normalized, data.aboSponsor)
+      const resolved = resolveProductInput(data.linkUrl)
+      const finalUrl = buildUrlWithAbo(resolved, data.aboSponsor)
 
       setGeneratedUrl(finalUrl)
       setQrDataUrl(await generateQrPngDataUrl(finalUrl))
 
-      if (normalized !== data.linkUrl) {
+      if (/^\d{4,6}$/.test(data.linkUrl.trim())) {
+        toast({
+          title: 'Rozpoznano kod produktu',
+          description: `Zbudowano adres: ${resolved}`,
+        })
+      } else if (resolved !== data.linkUrl.trim()) {
         toast({
           title: 'Znormalizowano adres',
           description: 'Usunięto fragment ścieżki pomiędzy domeną a "/p/".',
@@ -229,7 +271,7 @@ export function ProductPageToQrcode() {
           <CardContent className={`${isCompact ? 'p-4' : ''}`}>
             <div className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
               <div>
-                <Label>Twój numer PA</Label>
+                <Label>{aboSponsorLabel}</Label>
 
                 <Skeleton
                   className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
@@ -237,7 +279,7 @@ export function ProductPageToQrcode() {
               </div>
 
               <div>
-                <Label>Link do strony produktu</Label>
+                <Label>{linkUrlLabel}</Label>
 
                 <Skeleton
                   className={`${isCompact ? 'h-9' : 'h-10'} w-full rounded-xl`}
@@ -305,13 +347,13 @@ export function ProductPageToQrcode() {
             className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}
           >
             <div>
-              <Label htmlFor="aboSponsor">Twój numer PA</Label>
+              <Label htmlFor="aboSponsor">{aboSponsorLabel}</Label>
 
               <Input
                 id="aboSponsor"
                 type="text"
                 inputMode="numeric"
-                placeholder="np. 123456"
+                placeholder={aboSponsorPlaceholder}
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('aboSponsor')}
               />
@@ -324,12 +366,12 @@ export function ProductPageToQrcode() {
             </div>
 
             <div>
-              <Label htmlFor="linkUrl">Link do strony produktu</Label>
+              <Label htmlFor="linkUrl">{linkUrlLabel}</Label>
 
               <Input
                 id="linkUrl"
-                type="url"
-                placeholder="skopiuj i wklej tutaj adres strony produktu z przeglądarki"
+                type="text"
+                placeholder={linkUrlPlaceholder}
                 className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('linkUrl')}
               />
@@ -373,12 +415,12 @@ export function ProductPageToQrcode() {
 
             <div className="flex justify-center">
               <a
-                href="https://mydmb.pl/c/mk"
+                href={contactAuthorUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700 mb-[-12px]"
+                className={`inline-flex items-center gap-1 text-sm font-medium text-blue-600 underline hover:text-blue-700 ${isCompact ? 'mb-[-4px]' : 'mb-[-12px]'}`}
               >
-                Kontakt z autorem
+                {contactAuthorLabel}
                 <ExternalLink className="h-4 w-4 ml-1" aria-hidden="true" />
               </a>
             </div>
