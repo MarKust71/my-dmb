@@ -1,4 +1,4 @@
-import { FormValues } from '@/components/tools/product-page-to-qrcode'
+import { FormValues } from '../product-page-to-qrcode.types'
 
 export function saveToLocalStorage(values: Partial<FormValues>, lsKey: string) {
   if (typeof window === 'undefined') return

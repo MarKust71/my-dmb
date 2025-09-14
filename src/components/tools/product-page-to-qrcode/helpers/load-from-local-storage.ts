@@ -1,4 +1,4 @@
-import { FormValues } from '@/components/tools/product-page-to-qrcode'
+import { FormValues } from '../product-page-to-qrcode.types'
 
 export function loadFromLocalStorage(
   lsKey: string
