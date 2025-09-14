@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import { useToast } from '@/components/ui/use-toast'
 
 // Validation schema
@@ -74,12 +75,12 @@ async function generateQrPngDataUrl(text: string): Promise<string> {
   })
 }
 
-// export default function AboSponsorLinkTool() {
 export function ProductPageToQrcode() {
   const [generatedUrl, setGeneratedUrl] = useState<string>('')
   const [qrDataUrl, setQrDataUrl] = useState<string>('')
   const [isWorking, setIsWorking] = useState(false)
   const { toast } = useToast()
+  const [isCompact, setIsCompact] = useState(false)
 
   const suppressNextSaveRef = useRef(false) // blokuje jednorazowe zapisywanie (np. po Wyczyść)
   const [isHydrated, setIsHydrated] = useState(false) // chroni przed nadpisaniem LS pustymi danymi przy starcie
@@ -104,6 +105,11 @@ export function ProductPageToQrcode() {
     const stored = loadFromLocalStorage()
     if (stored) {
       reset(stored)
+    }
+    // Ustal domyślnie tryb compact na mobile (<= md)
+    if (typeof window !== 'undefined') {
+      const mq = window.matchMedia('(max-width: 767px)')
+      setIsCompact(mq.matches)
     }
     setIsHydrated(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -184,17 +190,39 @@ export function ProductPageToQrcode() {
   }
 
   return (
-    <div className="theme-amway mx-auto max-w-2xl p-6">
+    <div
+      className={`theme-amway ${isCompact ? 'am-compact' : ''} mx-auto max-w-2xl ${isCompact ? 'p-3' : 'p-6'}`}
+    >
       <Card>
-        <CardHeader>
-          <CardTitle>
-            Generator kodu QR z linkiem do strony produktu i&nbsp;numerem PA
-            zapraszającego
-          </CardTitle>
+        <CardHeader className={`${isCompact ? 'py-3' : ''}`}>
+          <div className="flex items-center justify-between gap-3">
+            <CardTitle
+              className={`${isCompact ? 'text-base text-center' : ''}`}
+            >
+              Generator kodu QR z linkiem do strony produktu i&nbsp;numerem PA
+              zapraszającego
+            </CardTitle>
+
+            {/* Przełącznik widoczny na desktopie */}
+            <div className="hidden items-center gap-2 md:flex">
+              <Label htmlFor="compact" className="cursor-pointer">
+                Compact
+              </Label>
+
+              <Switch
+                id="compact"
+                checked={isCompact}
+                onCheckedChange={setIsCompact}
+              />
+            </div>
+          </div>
         </CardHeader>
 
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+        <CardContent className={`${isCompact ? 'p-4' : ''}`}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}
+          >
             <div>
               <Label htmlFor="aboSponsor">Twój numer PA</Label>
 
@@ -203,6 +231,7 @@ export function ProductPageToQrcode() {
                 type="text"
                 inputMode="numeric"
                 placeholder="np. 123456"
+                className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('aboSponsor')}
               />
 
@@ -220,6 +249,7 @@ export function ProductPageToQrcode() {
                 id="linkUrl"
                 type="url"
                 placeholder="skopiuj i wklej tutaj adres strony produktu z przeglądarki"
+                className={`${isCompact ? 'h-9 text-sm' : ''}`}
                 {...register('linkUrl')}
               />
 
@@ -230,14 +260,21 @@ export function ProductPageToQrcode() {
               )}
             </div>
 
-            <div className="flex items-center gap-3">
-              <Button type="submit" disabled={isWorking}>
+            <div
+              className={`flex items-center justify-between  ${isCompact ? 'gap-2' : 'gap-3'}`}
+            >
+              <Button
+                type="submit"
+                disabled={isWorking}
+                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+              >
                 {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
               </Button>
 
               <Button
                 type="button"
                 variant="outline"
+                className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
                 onClick={() => {
                   suppressNextSaveRef.current = true // nie zapisuj pustych po reset
                   reset({ aboSponsor: '', linkUrl: '' })
@@ -258,8 +295,8 @@ export function ProductPageToQrcode() {
       </Card>
 
       {generatedUrl && (
-        <Card className="mt-6">
-          <CardContent className="grid gap-4">
+        <Card className={`${isCompact ? 'mt-4' : 'mt-6'}`}>
+          <CardContent className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}>
             <div>
               <Label>Wygenerowany link</Label>
 
@@ -267,10 +304,15 @@ export function ProductPageToQrcode() {
                 <Input
                   readOnly
                   value={generatedUrl}
-                  className="font-mono text-sm"
+                  className={`font-mono ${isCompact ? 'h-9 text-xs' : 'text-sm'}`}
                 />
 
-                <Button onClick={copyToClipboard}>Kopiuj</Button>
+                <Button
+                  onClick={copyToClipboard}
+                  className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                >
+                  Kopiuj
+                </Button>
               </div>
             </div>
 
@@ -284,17 +326,26 @@ export function ProductPageToQrcode() {
                     alt="QR code"
                     width={224}
                     height={224}
-                    className="h-auto w-56 rounded-xl border"
+                    className={`h-auto ${isCompact ? 'w-44' : 'w-56'} rounded-xl border`}
                   />
 
                   <div className="flex items-center gap-2">
-                    <Button asChild variant="outline">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                    >
                       <a href={generatedUrl} target="_blank" rel="noreferrer">
                         Otwórz link
                       </a>
                     </Button>
 
-                    <Button onClick={downloadPng}>Pobierz PNG</Button>
+                    <Button
+                      onClick={downloadPng}
+                      className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+                    >
+                      Pobierz PNG
+                    </Button>
                   </div>
                 </div>
               </div>
