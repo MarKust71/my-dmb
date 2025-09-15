@@ -53,6 +53,7 @@ export const publicRoutes = [
   '/program',
   '/program/energy-program',
   '/tools/product-page-to-qrcode',
+  '/products/artistry-holistic-promo',
 ]
 
 export const DEFAULT_REDIRECT = '/contact/marek-kustosz'
