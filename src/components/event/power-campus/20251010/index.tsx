@@ -111,7 +111,7 @@ export const PowerCampusCountdownBackdrop = () => {
         </div>
 
         {/* LICZNIK + LINKI KALENDARZA */}
-        {timeLeft && (
+        {(timeLeft || isOver) && (
           <div
             className="pointer-events-none absolute inset-x-0 bottom-6 flex items-end justify-center px-4"
             aria-live="polite"
@@ -120,7 +120,7 @@ export const PowerCampusCountdownBackdrop = () => {
             <div className="pointer-events-auto flex flex-col items-center gap-0 rounded-2xl bg-black/55 p-3 backdrop-blur md:text-lg md:px-4">
               {isOver ? (
                 <span className="text-center text-base font-semibold tracking-wide text-yellow-300 md:text-lg">
-                  Wydarzenie właśnie wystartowało! 🎉
+                  Wydarzenie już wystartowało! 🎉
                 </span>
               ) : (
                 <>
