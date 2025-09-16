@@ -57,14 +57,15 @@ export const publicRoutes = [
   '/ml/n8n-personal-response-contact-popup',
   '/mra-registration',
   '/mra-reports',
+  '/powercampus',
   '/products',
+  '/products/artistry-holistic-promo',
   '/products/mra',
   '/products/mra/registration',
   '/products/mra/flyer',
   '/program',
   '/program/energy-program',
   '/tools/product-page-to-qrcode',
-  '/products/artistry-holistic-promo',
 ]
 
 export const DEFAULT_REDIRECT = '/contact/marek-kustosz'
