@@ -101,73 +101,83 @@ export const PowerCampusCountdownBackdrop = () => {
           sizes="100vw"
           quality={90}
         />
+
         <div className="absolute inset-0 bg-black/35" />
       </div>
 
       {/* LICZNIK + LINKI KALENDARZA */}
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-6 flex items-end justify-center px-4"
-        aria-live="polite"
-      >
-        <div className="pointer-events-auto flex flex-col items-center gap-2 rounded-2xl bg-black/55 p-3 backdrop-blur md:gap-3 md:px-4 md:pb-0">
-          {isOver ? (
-            <span className="text-center text-base font-semibold tracking-wide text-yellow-300 md:text-lg">
-              Wydarzenie właśnie wystartowało! 🎉
-            </span>
-          ) : (
-            <>
-              {/* NAGŁÓWEK */}
-              <span className="text-xs font-medium tracking-wide text-yellow-200/90 md:text-sm uppercase">
-                spotykamy się już za
+      {timeLeft && !isOver && (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex items-end justify-center px-4"
+          aria-live="polite"
+        >
+          <div className="pointer-events-auto flex flex-col items-center gap-0 rounded-2xl bg-black/55 p-3 backdrop-blur md:text-lg md:px-4">
+            {isOver ? (
+              <span className="text-center text-base font-semibold tracking-wide text-yellow-300 md:text-lg">
+                Wydarzenie właśnie wystartowało! 🎉
               </span>
+            ) : (
+              <>
+                {/* NAGŁÓWEK */}
+                <span className="text-xs font-extrabold tracking-wide text-yellow-200/90 md:text-sm uppercase">
+                  spotykamy się już za
+                </span>
 
-              {/* RZĄD Z CZASEM */}
-              <div className="flex items-center gap-3 md:gap-4">
-                <TimeBox
-                  label="dni"
-                  value={timeLeft ? String(timeLeft.days) : '–'}
-                />
-                <Sep />
-                <TimeBox
-                  label="godz."
-                  value={timeLeft ? pad(timeLeft.hours) : '–'}
-                />
-                <Sep />
-                <TimeBox
-                  label="min."
-                  value={timeLeft ? pad(timeLeft.minutes) : '–'}
-                />
-                <Sep />
-                <TimeBox
-                  label="sek."
-                  value={timeLeft ? pad(timeLeft.seconds) : '–'}
-                />
-              </div>
+                {/* RZĄD Z CZASEM */}
+                <div className="flex items-center gap-3 md:gap-4">
+                  <TimeBox
+                    label="dni"
+                    value={timeLeft ? String(timeLeft.days) : '–'}
+                  />
 
-              {/* LINKI: Dodaj do kalendarza */}
-              {icsHref && (
-                <div className="mt-1 mb-1 flex items-center gap-2">
-                  <a
-                    href={googleHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full bg-yellow-300 px-3 py-1 text-xs font-semibold text-black transition hover:bg-yellow-200 md:text-sm text-center"
-                  >
-                    Dodaj do kalendarza (Google)
-                  </a>
-                  <a
-                    href={icsHref}
-                    download="powercampus-2025.ics"
-                    className="rounded-full border border-yellow-300/70 px-3 py-1 text-xs font-semibold text-yellow-200 transition hover:bg-yellow-300/10 md:text-sm text-center"
-                  >
-                    Pobierz ICS (Apple/Outlook)
-                  </a>
+                  <Sep />
+
+                  <TimeBox
+                    label="godz."
+                    value={timeLeft ? pad(timeLeft.hours) : '–'}
+                  />
+
+                  <Sep />
+
+                  <TimeBox
+                    label="min."
+                    value={timeLeft ? pad(timeLeft.minutes) : '–'}
+                  />
+
+                  <Sep />
+
+                  <TimeBox
+                    label="sek."
+                    value={timeLeft ? pad(timeLeft.seconds) : '–'}
+                  />
                 </div>
-              )}
-            </>
-          )}
+
+                {/* LINKI: Dodaj do kalendarza */}
+                {icsHref && (
+                  <div className="mt-1 mb-1 flex items-center gap-2">
+                    <a
+                      href={googleHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-yellow-300 px-3 py-1 text-xs font-semibold text-black transition hover:bg-yellow-200 md:text-sm text-center"
+                    >
+                      Dodaj do kalendarza (Google)
+                    </a>
+
+                    <a
+                      href={icsHref}
+                      download="powercampus-2025.ics"
+                      className="rounded-full border border-yellow-300/70 px-3 py-1 text-xs font-semibold text-yellow-200 transition hover:bg-yellow-300/10 md:text-sm text-center"
+                    >
+                      Pobierz ICS (Apple/Outlook)
+                    </a>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </main>
   )
 }
