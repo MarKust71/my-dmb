@@ -39,4 +39,4 @@ export const CAL_DETAILS = 'Trzydniowe wydarzenie (10–12 października 2025).'
 
 // Początek i koniec wydarzenia (PL = +02:00 dla tego terminu)
 export const EVENT_START = new Date('2025-10-10T19:00:00+02:00')
-export const EVENT_END = new Date('2025-10-12T15:30:00+02:00') // obejmuje cały 12.10
+export const EVENT_END = new Date('2025-10-12T15:30:00+02:00')
