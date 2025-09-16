@@ -3,8 +3,10 @@ const withPWA = require('next-pwa')({
   dest: 'public',
 })
 
-const DEFAULT_REDIRECT = '/'
+// const DEFAULT_REDIRECT = '/'
+const DEFAULT_REDIRECT = '/e/pc'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
+const POWER_CAMPUS_NEXT_REDIRECT = '/events/power-campus/next'
 const MRA_FLYER_REDIRECT = '/products/mra/flyer'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/XcSTsSE3j7kt9Umc7'
@@ -81,6 +83,7 @@ const nextConfig = {
         permanent: true,
       })),
       ...[
+        '/',
         '/api',
         '/auth',
         '/c',
@@ -105,6 +108,13 @@ const nextConfig = {
         destination: DIAMOND_EVENT_NEXT_REDIRECT,
         permanent: true,
       })),
+      ...['/events/power-campus', '/events/pc', '/e/power-campus', '/e/pc'].map(
+        (source) => ({
+          source,
+          destination: POWER_CAMPUS_NEXT_REDIRECT,
+          permanent: true,
+        })
+      ),
       {
         source: '/business-plan',
         destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
