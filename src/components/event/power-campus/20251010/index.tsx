@@ -114,7 +114,7 @@ export const PowerCampusCountdownBackdrop = () => {
         {(timeLeft || isOver) && (
           <div
             className="pointer-events-none absolute inset-x-0 bottom-6 flex items-end justify-center px-4"
-            aria-live="polite"
+            aria-live="assertive"
             role="status"
           >
             <div className="pointer-events-auto flex flex-col items-center gap-0 rounded-2xl bg-black/55 p-3 backdrop-blur md:text-lg md:px-4">
