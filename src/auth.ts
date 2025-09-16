@@ -102,6 +102,7 @@ const providers = [
       const user = await getUserByEmail(email)
       if (!user || !user.password) return null
       const ok = await bcrypt.compare(password, user.password)
+
       return ok ? user : null
     },
   }),

@@ -8,6 +8,7 @@ export function loadFromLocalStorage(
   try {
     const raw = window.localStorage.getItem(lsKey)
     if (!raw) return undefined
+
     return JSON.parse(raw) as FormValues
   } catch {}
 

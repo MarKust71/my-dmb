@@ -64,6 +64,7 @@ export function ProductPageToQrcode() {
 
     if (suppressNextSave) {
       setSuppressNextSave(false)
+
       return
     }
 

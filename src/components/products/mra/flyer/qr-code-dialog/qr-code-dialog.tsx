@@ -27,6 +27,7 @@ export const QrCodeDialog = () => {
 
     checkViewport()
     window.addEventListener('resize', checkViewport)
+
     return () => window.removeEventListener('resize', checkViewport)
   }, [])
 
