@@ -108,13 +108,17 @@ const nextConfig = {
         destination: DIAMOND_EVENT_NEXT_REDIRECT,
         permanent: true,
       })),
-      ...['/events/power-campus', '/events/pc', '/e/power-campus', '/e/pc'].map(
-        (source) => ({
-          source,
-          destination: POWER_CAMPUS_NEXT_REDIRECT,
-          permanent: true,
-        })
-      ),
+      ...[
+        '/events/power-campus',
+        '/events/pc',
+        '/e/power-campus',
+        '/e/pc',
+        '/powercampus',
+      ].map((source) => ({
+        source,
+        destination: POWER_CAMPUS_NEXT_REDIRECT,
+        permanent: true,
+      })),
       {
         source: '/business-plan',
         destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
