@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import Script from 'next/script'
 
 import { TimeLeft } from '@/helpers/diff.types'
 import { diff } from '@/helpers/diff'
@@ -11,20 +12,15 @@ import { buildICS } from '@/helpers/build-ics'
 import { fmtUtc } from '@/helpers/format-utc'
 import { pad } from '@/helpers/pad'
 
-/**
- * Odlicza do 2025-10-10 19:00 (czas lokalny użytkownika).
- */
-// 10 paź 2025, 19:00 czasu PL (CEST = +02:00 w tym dniu)
-const TARGET = new Date('2025-10-10T19:00:00+02:00')
-
-// Dane wydarzenia (dla linków kalendarza)
-const CAL_TITLE = 'dMb Global PowerCampus A70'
-const CAL_LOCATION = 'Q Hotel Plus, ul. Szwedzka 7, 55-040 Bielany Wrocławskie'
-const CAL_DETAILS = 'Trzydniowe wydarzenie (10–12 października 2025).'
-
-// Początek i koniec wydarzenia (PL = +02:00 dla tego terminu)
-const EVENT_START = new Date('2025-10-10T19:00:00+02:00')
-const EVENT_END = new Date('2025-10-12T15:30:00+02:00') // obejmuje cały 12.10
+import {
+  CAL_DETAILS,
+  CAL_LOCATION,
+  CAL_TITLE,
+  EVENT_END,
+  EVENT_START,
+  TARGET,
+  jsonLd,
+} from './constants'
 
 export const PowerCampusCountdownBackdrop = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
@@ -90,6 +86,14 @@ export const PowerCampusCountdownBackdrop = () => {
 
   return (
     <main className="relative isolate min-h-svh w-full overflow-hidden bg-black">
+      {/*w JSX strony, najlepiej blisko <main>:*/}
+      <Script
+        id="event-jsonld"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* TŁO */}
       <div className="absolute inset-0">
         <Image
@@ -106,7 +110,7 @@ export const PowerCampusCountdownBackdrop = () => {
       </div>
 
       {/* LICZNIK + LINKI KALENDARZA */}
-      {timeLeft && !isOver && (
+      {!isOver && (
         <div
           className="pointer-events-none absolute inset-x-0 bottom-6 flex items-end justify-center px-4"
           aria-live="polite"
