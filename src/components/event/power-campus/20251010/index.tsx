@@ -79,7 +79,7 @@ export const PowerCampusCountdownBackdrop = () => {
             <>
               {/* NAGŁÓWEK */}
               <span className="text-xs font-medium tracking-wide text-yellow-200/90 md:text-sm uppercase">
-                pozostało
+                spotykamy się już za
               </span>
 
               {/* RZĄD Z CZASEM */}
