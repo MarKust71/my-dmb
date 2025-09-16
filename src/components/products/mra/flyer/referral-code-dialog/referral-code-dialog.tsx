@@ -27,6 +27,7 @@ export const ReferralCodeDialog = () => {
   const handleProceed = () => {
     if (referralCode.trim() === '') {
       setError('Proszę wpisać kod polecenia')
+
       return
     }
     setError('')
