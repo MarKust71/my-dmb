@@ -57,7 +57,7 @@ export const PowerCampusCountdownBackdrop = () => {
           alt="PowerCampus A70 — Wrocław"
           fill
           priority
-          className="object-cover object-[80%_40%] md:object-center"
+          className="object-cover object-[80%_0%] md:object-top"
           sizes="100vw"
           quality={90}
         />
