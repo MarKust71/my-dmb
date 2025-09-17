@@ -1,7 +1,7 @@
-import { ProductPageToQrcode } from '@/components/tools/product-page-to-qrcode'
+import { redirect } from 'next/navigation'
 
 const Component = () => {
-  return <ProductPageToQrcode />
+  redirect('/generator-qr')
 }
 
 export default Component
