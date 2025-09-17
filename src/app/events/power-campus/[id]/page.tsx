@@ -2,7 +2,6 @@ import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
 
 import { PageProps } from '@/types'
-import { PowerCampusCountdownBackdrop } from '@/components/event/power-campus/20251010'
 
 import { PageParams } from './page.types'
 
@@ -24,7 +23,8 @@ const PowerCampusPage = async ({ params }: PageProps<PageParams>) => {
       case '':
       case 'next':
       case '20251010':
-        return <PowerCampusCountdownBackdrop />
+        redirect('/powercampus')
+        break
 
       case 'n':
         redirect('/events/power-campus/next')
