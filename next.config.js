@@ -3,10 +3,10 @@ const withPWA = require('next-pwa')({
   dest: 'public',
 })
 
-// const DEFAULT_REDIRECT = '/'
-const DEFAULT_REDIRECT = '/e/pc'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
-const POWER_CAMPUS_NEXT_REDIRECT = '/events/power-campus/next'
+// const POWER_CAMPUS_NEXT_REDIRECT = '/events/power-campus/next'
+const POWER_CAMPUS_REDIRECT = '/powercampus'
+// const TOOLS_PRODUCT_PAGE_TO_QRCODE_REDIRECT = '/narzedzia/produkt-qr'
 const MRA_FLYER_REDIRECT = '/products/mra/flyer'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/XcSTsSE3j7kt9Umc7'
@@ -19,6 +19,8 @@ const MAILERLITE_MAREK_KUSTOSZ_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/marek-kustosz'
 const MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/business-plan'
+// const DEFAULT_REDIRECT = '/'
+const DEFAULT_REDIRECT = POWER_CAMPUS_REDIRECT
 
 const nextConfig = {
   webpack(config) {
@@ -113,10 +115,10 @@ const nextConfig = {
         '/events/pc',
         '/e/power-campus',
         '/e/pc',
-        '/powercampus',
+        '/pc',
       ].map((source) => ({
         source,
-        destination: POWER_CAMPUS_NEXT_REDIRECT,
+        destination: POWER_CAMPUS_REDIRECT,
         permanent: true,
       })),
       {
