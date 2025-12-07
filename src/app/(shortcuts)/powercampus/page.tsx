@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { PowerCampusCountdownBackdrop } from '@/components/event/power-campus/20251010'
+import { PowerCampusCountdownBackdrop } from '@/components/event/power-campus/20260207'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

@@ -23,6 +23,7 @@ const PowerCampusPage = async ({ params }: PageProps<PageParams>) => {
       case '':
       case 'next':
       case '20251010':
+      case '20260207':
         redirect('/powercampus')
         break
 
