@@ -4,6 +4,7 @@ export const publicRoutes = [
   '/',
   '/api/webhooks/mailerlite', // TODO: secure it later!
   '/artistry-holistic-promo',
+  '/available-slots',
   '/body-cleansing-program',
   '/c',
   '/e',
@@ -71,6 +72,7 @@ export const publicRoutes = [
   `/contact/${UserId.MAREK_KUSTOSZ}`,
   `/contact/${UserId.SYLWIA_STACHOW}/zoom`,
   `/contact/${UserId.SYLWIA_STACHOW}`,
+  '/wolne-terminy',
 ]
 
 export const DEFAULT_REDIRECT = '/contact/marek-kustosz'
