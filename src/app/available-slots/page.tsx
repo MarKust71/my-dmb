@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const AvailableSlotsPage = async () => {
-  return <AvailableSlots />
+  return <AvailableSlots url={process.env.GOOGLE_CALENDAR_URL} />
 }
 
 export default AvailableSlotsPage
