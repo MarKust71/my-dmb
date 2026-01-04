@@ -18,14 +18,16 @@ const JoinPage = async () => {
     <main className="theme-dmb min-h-dvh bg-gradient-to-b from-background to-muted/40">
       <div className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <header className="mb-8">
-          <div className="mb-6 flex justify-center">
-            <Image
-              src="/img/dmb/dmb-global.png"
-              alt="dMb Global"
-              width={160}
-              height={60}
-              priority
-            />
+          <div className="mb-8 flex justify-center">
+            <div className="px-6 py-3">
+              <Image
+                src="/img/dmb/dmb-global.png"
+                alt="dMb Global"
+                width={160}
+                height={60}
+                priority
+              />
+            </div>
           </div>
 
           <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm">
