@@ -4,9 +4,8 @@ const withPWA = require('next-pwa')({
 })
 
 const JOIN_REDIRECT = '/join'
-const AVAILABLE_SLOTS_REDIRECT = '/available-slots'
+const GOOGLE_CALENDAR_REDIRECT = process.env.GOOGLE_CALENDAR_URL
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
-// const POWER_CAMPUS_NEXT_REDIRECT = '/events/power-campus/next'
 const POWER_CAMPUS_REDIRECT = '/powercampus'
 // const TOOLS_PRODUCT_PAGE_TO_QRCODE_REDIRECT = '/narzedzia/produkt-qr'
 const MRA_FLYER_REDIRECT = '/products/mra/flyer'
@@ -16,12 +15,10 @@ const MRA_REGISTRATION_GOOGLE_REDIRECT_WITH_CODE =
   'https://docs.google.com/forms/d/e/1FAIpQLSfZ1K3DqajCsG6RqHcdoepz8WB2q0AqH9iDyCVGK0HOXWV0lg/viewform?entry.1682302562='
 const N_FINANCE_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
 const N_HOME_REDIRECT = 'https://account.tapitag.co/230220241244$$NFMS'
-const GOOGLE_CALENDAR_REDIRECT = 'https://calendar.app.google/RPtGx3AJ7aXsmjxP6'
 const MAILERLITE_MAREK_KUSTOSZ_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/marek-kustosz'
 const MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/business-plan'
-// const DEFAULT_REDIRECT = '/'
 const DEFAULT_REDIRECT = POWER_CAMPUS_REDIRECT
 
 const nextConfig = {
@@ -76,9 +73,20 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      ...['/wolne-terminy', '/wolneterminy'].map((source) => ({
+      ...[
+        '/wolne-terminy',
+        '/wolneterminy',
+        '/umow-konsultacje',
+        '/umowkonsultacje',
+        '/available-slots',
+        '/availableslots',
+        '/kalendarz',
+        '/calendar',
+        '/terminy',
+        '/slots',
+      ].map((source) => ({
         source,
-        destination: AVAILABLE_SLOTS_REDIRECT,
+        destination: GOOGLE_CALENDAR_REDIRECT,
         permanent: true,
       })),
       ...[
@@ -136,11 +144,6 @@ const nextConfig = {
       {
         source: '/business-plan',
         destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
-        permanent: true,
-      },
-      {
-        source: '/umow-konsultacje',
-        destination: GOOGLE_CALENDAR_REDIRECT,
         permanent: true,
       },
       {
