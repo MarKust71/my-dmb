@@ -134,3 +134,48 @@ body,
 .theme-amway a:hover {
   text-decoration: underline;
 }
+
+/* Motyw dMb (premium: deep navy + gold) */
+.theme-dmb {
+  /* tło i tekst */
+  --background: 222 47% 11%;        /* ~#0F172A */
+  --foreground: 210 40% 98%;        /* ~#F9FAFB */
+
+  /* karty i popovery */
+  --card: 222 47% 13%;              /* ~#111827 */
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 47% 13%;
+  --popover-foreground: 210 40% 98%;
+
+  /* obramowania / inputy */
+  --border: 215 28% 17%;
+  --input: 215 28% 17%;
+
+  /* primary (złoto) */
+  --primary: 43 65% 47%;            /* ~#C9A227 */
+  --primary-foreground: 222 47% 11%;
+
+  /* secondary / muted */
+  --secondary: 215 25% 20%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 215 25% 18%;
+  --muted-foreground: 215 20% 65%;
+
+  --accent: 215 25% 20%;
+  --accent-foreground: 210 40% 98%;
+
+  /* ring/focus */
+  --ring: 43 65% 47%;
+
+  /* opcjonalnie: własny kolor linków */
+  --dmb-link: 43 70% 55%;
+}
+
+.theme-dmb a {
+  color: hsl(var(--dmb-link));
+}
+.theme-dmb a:hover {
+  text-decoration: underline;
+}
