@@ -50,6 +50,8 @@ export const publicRoutes = [
   '/generator-qr',
   '/i',
   '/invite',
+  '/join',
+  '/start',
   '/media/business-plan',
   '/ml/n8n-personal-response-contact-popup',
   '/mra-registration',

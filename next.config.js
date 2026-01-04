@@ -3,6 +3,7 @@ const withPWA = require('next-pwa')({
   dest: 'public',
 })
 
+const JOIN_REDIRECT = '/join'
 const AVAILABLE_SLOTS_REDIRECT = '/available-slots'
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 // const POWER_CAMPUS_NEXT_REDIRECT = '/events/power-campus/next'
@@ -127,6 +128,11 @@ const nextConfig = {
         destination: POWER_CAMPUS_REDIRECT,
         permanent: true,
       })),
+      {
+        source: '/start',
+        destination: JOIN_REDIRECT,
+        permanent: true,
+      },
       {
         source: '/business-plan',
         destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
