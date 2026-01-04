@@ -4,7 +4,6 @@ import { ExternalLink } from 'lucide-react'
 
 import { LinkCtaButtonProps } from '@/components/join/link-cta-button/link-cta-button.types'
 import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 export const LinkCtaButton = ({
@@ -23,9 +22,10 @@ export const LinkCtaButton = ({
     >
       <Card
         className={cn(
-          'rounded-2xl border bg-background p-4 shadow-sm transition-all group-hover:-translate-y-0.5',
+          'rounded-2xl border bg-card p-4 shadow-sm transition-all group-hover:-translate-y-0.5',
           'group-hover:shadow-md group-hover:border-primary/40',
-          featured && 'ring-4 ring-primary/40'
+          featured &&
+            'ring-2 ring-primary/35 bg-gradient-to-b from-card to-card/70'
         )}
       >
         <div className="flex items-start justify-between gap-3">
@@ -46,9 +46,14 @@ export const LinkCtaButton = ({
         </div>
 
         <div className="mt-4">
-          <Button className="w-full rounded-xl" variant="default">
+          <div
+            className={cn(
+              'w-full rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-medium',
+              'text-primary-foreground shadow-sm transition-opacity group-hover:opacity-95'
+            )}
+          >
             Przejdź
-          </Button>
+          </div>
         </div>
       </Card>
     </a>
