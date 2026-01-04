@@ -4,6 +4,7 @@ import './globals.css'
 import { SessionProvider } from 'next-auth/react'
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
@@ -32,20 +33,24 @@ export default async function RootLayout({
             sizes="180x180"
             href="/apple-touch-icon.png"
           />
+
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
             href="/favicon-32x32.png"
           />
+
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+
           <link rel="manifest" href="/manifest.json" />
         </head>
+
         <Script
           id="mailerlite-popup"
           strategy="afterInteractive"
@@ -59,6 +64,7 @@ export default async function RootLayout({
             `,
           }}
         />
+
         <body
           className={cn(
             'min-h-screen font-sans antialiased grainy',
@@ -69,6 +75,7 @@ export default async function RootLayout({
           {children}
 
           <Toaster />
+          <SpeedInsights />
         </body>
 
         <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_ID}`} />
