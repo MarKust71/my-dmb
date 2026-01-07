@@ -3,4 +3,5 @@ export type LinkCtaButtonProps = {
   href: string
   description?: string
   featured?: boolean
+  disabled?: boolean
 }
