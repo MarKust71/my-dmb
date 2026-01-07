@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 
-import { LinkCtaButton } from '@/components/join/link-cta-button'
 import { cn } from '@/lib/utils'
+import { LinkCtaButton } from '@/components/join/link-cta-button'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -58,6 +58,7 @@ const JoinPage = async () => {
               description="Wybierasz start profesjonalny, natychmiastową pomoc i najszybsze efekty"
               href={URL_ONE}
               featured
+              disabled
             />
           </div>
 
