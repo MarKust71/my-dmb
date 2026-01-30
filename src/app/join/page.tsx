@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const URL_ONE = 'https://www.amway.pl/pl/?opt=2&aboSponsor=7024281903'
+const URL_ONE = 'https://www.amway.pl/pl/?opt=2&aboSponsor=7023833738'
 const URL_TWO = 'https://www.amway.pl/pl/?opt=2&aboSponsor=8286448'
 const URL_THREE = 'https://www.amway.pl/pl/?opt=1&aboSponsor=8286448'
 
