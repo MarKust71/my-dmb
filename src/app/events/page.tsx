@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Metadata } from 'next'
 
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
-import { Separator } from '@/components/ui/separator'
 import DmbLogo from '@/assets/images/dmb-logo.png'
 import { EventList } from '@/components/ui/lists/event-list/event-list'
 
