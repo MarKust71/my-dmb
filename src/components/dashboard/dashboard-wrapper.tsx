@@ -1,15 +1,10 @@
-type DashboardWrapperProps = {
-  children: React.ReactNode
-}
+import { DashboardWrapperProps } from './dashboard-wrapper.types'
 
 export const DashboardWrapper = ({ children }: DashboardWrapperProps) => {
   return (
-    <div
-      className={
-        'w-full h-full flex flex-col items-start justify-start bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 overflow-y-auto'
-      }
-    >
+    <main className="theme-dmb relative min-h-dvh w-full overflow-y-auto bg-gradient-to-b from-background to-muted/40">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(900px_circle_at_50%_-200px,hsl(var(--primary)/0.18),transparent_55%)]" />
       {children}
-    </div>
+    </main>
   )
 }
