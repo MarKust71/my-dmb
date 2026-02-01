@@ -11,7 +11,7 @@ import { EventBoxLinkProps } from './event-box-link.types'
 export const EventBoxLink = ({
   url,
   className,
-  stroke = '#18181b',
+  stroke = 'hsl(var(--muted-foreground))',
 }: EventBoxLinkProps) => {
   const { toast } = useToast()
 
@@ -22,14 +22,16 @@ export const EventBoxLink = ({
     try {
       await navigator.clipboard.writeText(url)
       toast({
-        className: 'font-bold justify-center bg-[#999DAD]',
+        className:
+          'justify-center bg-card text-foreground shadow-sm ring-1 ring-border',
         description: `Skopiowano link! ${url}`,
         duration: 3000,
       })
     } catch (error) {
       console.error('Failed to copy!', error)
       toast({
-        className: 'font-bold justify-center',
+        className:
+          'justify-center bg-card text-foreground shadow-sm ring-1 ring-border',
         description: `Nie udało się skopiować linka :( ${error}`,
         duration: 3000,
         variant: 'destructive',
@@ -38,18 +40,25 @@ export const EventBoxLink = ({
   }
 
   return (
-    <div className={'flex flex-row items-center gap-2'}>
+    <div className={'mt-2 flex flex-row items-center gap-2'}>
       <Link
         href={url}
         target={'_blank'}
         onClick={(event) => event.stopPropagation()}
       >
-        <Button variant={'link'} size={'auto'} className={className}>
+        <Button
+          variant={'link'}
+          size={'auto'}
+          className={
+            className ??
+            'h-auto p-0 text-sm text-primary underline-offset-4 hover:underline'
+          }
+        >
           {url}
         </Button>
       </Link>
 
-      <Button variant={'link'} size={'auto'} onClick={handleCopyIconClick}>
+      <Button variant={'ghost'} size={'icon'} onClick={handleCopyIconClick}>
         <IconCopy width={14} height={14} fill={'none'} stroke={stroke} />
       </Button>
     </div>

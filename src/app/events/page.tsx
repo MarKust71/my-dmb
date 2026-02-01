@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const EventsPage = () => {
   return (
     <DashboardWrapper>
-      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto w-full max-w-xl px-4 py-12 sm:px-6 sm:py-16">
         <header className="mb-10">
           <div className="mb-10 flex justify-center">
             <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
@@ -37,12 +37,12 @@ const EventsPage = () => {
             Wydarzenia systemowe
           </h1>
 
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Kliknij w kafelek wydarzenia, aby przejść do dedykowanej strony lub
-            skopiuj link do spotkania.
+          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+            Kliknij w kafelek wydarzenia, aby przejść do dedykowanej strony
+            lub&nbsp;skopiuj link do spotkania.
           </p>
 
-          <Separator className="mt-6" />
+          {/*<Separator className="mt-6" />*/}
         </header>
 
         <section className="grid gap-4">

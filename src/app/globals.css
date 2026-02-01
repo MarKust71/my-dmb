@@ -173,7 +173,7 @@ body,
   --dmb-link: 43 70% 55%;
 }
 
-.theme-dmb a {
+.theme-dmb a, h2 {
   color: hsl(var(--dmb-link));
 }
 .theme-dmb a:hover {

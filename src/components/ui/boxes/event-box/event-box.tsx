@@ -1,31 +1,23 @@
 import Link from 'next/link'
 
 import { EventBoxProps } from '@/components/ui/boxes/event-box/event-box.types'
+import { cn } from '@/lib/utils'
 
-export const EventBox = ({ children, href }: EventBoxProps) => {
+export const EventBox = ({ children, href, className }: EventBoxProps) => {
   const Wrapper = href ? Link : 'div'
 
-  if (href) {
-    return (
-      <Wrapper className={'w-full'} href={href} passHref>
-        <div
-          className={
-            'flex flex-col items-center bg-white/25 p-2 min-w-full rounded shadow-md hover:shadow-lg transition-shadow hover:bg-white/35'
-          }
-        >
-          {children}
-        </div>
-      </Wrapper>
-    )
-  }
-
   return (
-    <div
-      className={
-        'flex flex-col items-center bg-white/25 p-2 min-w-full rounded shadow-md hover:shadow-lg transition-shadow hover:bg-white/35'
-      }
+    <Wrapper
+      href={href ?? ''}
+      className={cn(
+        'group block rounded-xl bg-card/80 p-4 shadow-sm ring-1 ring-border transition-all',
+        'hover:bg-card hover:shadow-md',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+        href && 'cursor-pointer',
+        className
+      )}
     >
-      {children}
-    </div>
+      <div className="grid gap-1">{children}</div>
+    </Wrapper>
   )
 }
