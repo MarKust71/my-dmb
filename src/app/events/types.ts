@@ -3,4 +3,5 @@ export type DmbEvent = {
   subheader: string
   url: string
   route?: string
+  hidden?: boolean
 }
