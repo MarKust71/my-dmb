@@ -136,11 +136,11 @@ const nextConfig = {
         destination: POWER_CAMPUS_REDIRECT,
         permanent: true,
       })),
-      {
-        source: '/start',
+      ...['/start', '/dolacz'].map((source) => ({
+        source,
         destination: JOIN_REDIRECT,
         permanent: true,
-      },
+      })),
       {
         source: '/business-plan',
         destination: MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT,
