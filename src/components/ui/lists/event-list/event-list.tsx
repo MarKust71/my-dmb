@@ -20,6 +20,16 @@ const dmbEvents: DmbEvent[] = [
     url: 'https://zoom.us/j/89796337110',
   },
   {
+    header: 'PREZENTACJA PLANU BIZNESOWEGO (EN)',
+    subheader: 'każdy wtorek, godz. 20:00',
+    url: 'https://zoom.us/j/89312736924',
+  },
+  {
+    header: 'PREZENTACJA PLANU BIZNESOWEGO (UKR)',
+    subheader: 'każda środa, godz. 19:00',
+    url: 'https://zoom.us/j/87294606915',
+  },
+  {
     header: 'INTERNATIONAL AWARD CEREMONY',
     subheader: 'pierwsza niedziela miesiąca, godz. 19:00',
     url: 'https://zoom.us/j/88601812540',
