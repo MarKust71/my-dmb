@@ -1,19 +1,9 @@
-import { PrismaClient } from '@prisma/client'
-// import { createClient } from '@libsql/client'
-import { PrismaLibSQL } from '@prisma/adapter-libsql'
+import { PrismaPg } from '@prisma/adapter-pg'
 
-/*
-const libsql = createClient({
-  url: `${process.env.TURSO_DATABASE_URL}`,
-  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
-})
+import { PrismaClient } from '@/generated/prisma/client'
 
-const adapter = new PrismaLibSQL(libsql)
-*/
-const adapter = new PrismaLibSQL({
-  url: `${process.env.TURSO_DATABASE_URL}`,
-  authToken: `${process.env.TURSO_AUTH_TOKEN}`,
-})
+const connectionString = `${process.env.DATABASE_URL}`
+const adapter = new PrismaPg({ connectionString })
 
 declare global {
   var prisma: PrismaClient | undefined

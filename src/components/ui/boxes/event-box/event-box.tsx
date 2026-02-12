@@ -8,7 +8,7 @@ export const EventBox = ({ children, href, className }: EventBoxProps) => {
 
   return (
     <Wrapper
-      href={href ?? ''}
+      href={href ?? '#'}
       className={cn(
         'group block rounded-xl bg-card/80 p-4 shadow-sm ring-1 ring-border transition-all',
         'hover:bg-card hover:shadow-md',
