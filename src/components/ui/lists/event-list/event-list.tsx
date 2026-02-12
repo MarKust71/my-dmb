@@ -46,12 +46,12 @@ const dmbEvents: DmbEvent[] = [
 
 export const EventList = () => {
   return (
-    <>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {dmbEvents
         .filter((event) => !event.hidden)
         .map((event, idx) => (
           <div key={`${event.header}-${idx}`}>{EventListElement(event)}</div>
         ))}
-    </>
+    </div>
   )
 }
