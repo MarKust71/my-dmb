@@ -1,16 +1,17 @@
+// import { auth } from '@/auth'
 import NextAuth from 'next-auth'
 
-import authConfig from '@/auth.config'
 import {
   apiAuthPrefix,
   authRoutes,
   DEFAULT_LOGIN_REDIRECT,
   publicRoutes,
 } from '@/routes'
+import authConfig from '@/auth.config'
 
 const { auth } = NextAuth(authConfig)
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const { nextUrl } = req
   const isLoggedIn = !!req.auth
 
@@ -39,6 +40,12 @@ export default auth((req) => {
   }
 })
 
+// Optionally, don't invoke Proxy on some paths
+/*
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+}
+*/
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 }

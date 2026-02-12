@@ -69,6 +69,7 @@ export const {
 })
 */
 
+/*
 // src/auth.ts  (CIĘŻKI – tylko dla Node.js runtime)
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
@@ -114,3 +115,15 @@ export const {
   signIn,
   signOut,
 } = NextAuth({ ...authConfig, providers })
+*/
+
+import NextAuth from 'next-auth'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+
+import authConfig from './auth.config'
+
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: 'jwt' },
+  ...authConfig,
+})
