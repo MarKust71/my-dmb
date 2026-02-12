@@ -134,3 +134,26 @@ model MraContext {
 
   @@unique([contextId])
 }
+
+model MraApplication {
+  id        String    @id @default(cuid())
+  lastname  String
+  firstname String
+  email     String
+  phone     String
+  postcode  String
+  city      String?
+  address   String?
+  birthDate DateTime?
+  height    Int?
+  weigth    Int?
+  consent   DateTime?
+  contextId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  context MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
+
+  @@unique([email, contextId])
+}
