@@ -150,8 +150,8 @@ model MraApplication {
   consent   DateTime?
   contextId String
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   context MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
 
