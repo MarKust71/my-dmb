@@ -93,3 +93,16 @@ model Authenticator {
 
   @@id([userId, credentialID])
 }
+
+model Customer {
+  id      String    @id @default(cuid())
+  name    String
+  email   String
+  context String
+  consent DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([email, context])
+}
