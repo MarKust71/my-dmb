@@ -122,3 +122,15 @@ model MailerLiteSubscriber {
   @@unique([email])
   @@unique([mailerLiteId])
 }
+
+model MraContext {
+  id             String           @id @default(cuid())
+  contextId      String
+  name           String
+  MraApplication MraApplication[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([contextId])
+}
