@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 
 import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
@@ -76,6 +77,7 @@ export default async function RootLayout({
 
           <Toaster />
           <SpeedInsights />
+          <Analytics />
         </body>
 
         <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_ID}`} />
