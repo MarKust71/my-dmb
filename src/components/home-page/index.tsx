@@ -4,132 +4,133 @@ import Image from 'next/image'
 import { Facebook, Globe, Instagram } from 'lucide-react'
 import { motion } from 'framer-motion'
 
+import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import { Card } from '@/components/ui/card'
 import DmbLogo from '@/assets/images/dmb-logo.png'
 
 export default function HomePage() {
+  const links = [
+    {
+      href: 'https://www.instagram.com/thedmbusiness/',
+      icon: <Instagram className="mb-2" />,
+      top: 'Obserwuj',
+      mid: '@thedmbusiness',
+      bot: 'na Instagramie',
+    },
+    {
+      href: 'https://dmb.global',
+      icon: <Globe className="mb-2" />,
+      top: 'Odwiedź',
+      mid: 'dmb.global',
+      bot: '',
+    },
+    {
+      href: 'https://www.facebook.com/dmbglobalevents',
+      icon: <Facebook className="mb-2" />,
+      top: 'Dołącz do',
+      mid: 'DMB Global Events',
+      bot: 'na Facebooku',
+    },
+  ]
+
   return (
-    <main
-      className="min-h-screen flex flex-col items-center justify-center text-center
-      bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 px-6 py-12 space-y-10"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Image src={DmbLogo} alt={'dmb-logo'} className={'mb-16'} />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-      >
-        <h1
-          className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-yellow-300
-        bg-clip-text text-transparent"
-        >
-          Największa na świecie międzynarodowa społeczność ambitnych i
-          przedsiębiorczych
-        </h1>
-        <h2
-          className="text-xl md:text-2xl mb-8 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text
-        text-transparent"
-        >
-          System wsparcia dla tych, którzy pragną sukcesów, niezależności
-          finansowej, zdrowia i urody.
-        </h2>
-      </motion.div>
-
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-4xl"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.2 }}
-      >
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <Card
-            className="bg-white/5 hover:bg-white/10 px-6 py-4 transition-transform transform
-          hover:-translate-y-1"
-          >
-            <a
-              href="https://www.instagram.com/thedmbusiness/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-white"
+    <DashboardWrapper>
+      <main className="theme-dmb">
+        <div className="mx-auto w-full max-w-xl px-4 py-12 sm:px-6 sm:py-16 sm:max-w-4xl">
+          <header className="mb-10 text-center">
+            <motion.div
+              className="mb-10 flex justify-center"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <Instagram className="mb-2" />
-              <div className="font-semibold">Obserwuj</div>
-              <div className="font-bold uppercase my-2">@thedmbusiness</div>
-              <div>na Instagramie</div>
-            </a>
-          </Card>
-        </motion.div>
+              <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
+                <Image
+                  src={DmbLogo}
+                  alt="dmb-logo"
+                  width={150}
+                  height={150}
+                  priority
+                />
+              </div>
+            </motion.div>
 
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <Card
-            className="bg-white/5 hover:bg-white/10 px-6 py-4 transition-transform transform
-          hover:-translate-y-1 min-h-full"
-          >
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-white"
+            <motion.div
+              className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.55 }}
             >
-              <Globe className="mb-2" />
-              <div className="font-semibold">Odwiedź</div>
-              <div className="font-bold uppercase my-2">dmb.global</div>
-            </a>
-          </Card>
-        </motion.div>
+              Strona główna
+            </motion.div>
 
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <Card
-            className="bg-white/5 hover:bg-white/10 px-6 py-4 transition-transform transform
-          hover:-translate-y-1"
-          >
-            <a
-              href="https://www.facebook.com/dmbglobalevents"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center text-white"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.38, duration: 0.6 }}
             >
-              <Facebook className="mb-2" />
-              <div className="font-semibold">Dołącz do</div>
-              <div className="font-bold uppercase my-2">DMB Global Events</div>
-              <div>na Facebooku</div>
-            </a>
-          </Card>
-        </motion.div>
-      </motion.div>
+              <h1 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
+                Największa na świecie międzynarodowa społeczność ambitnych
+                i&nbsp;przedsiębiorczych
+              </h1>
 
-      <motion.blockquote
-        className="italic text-white text-lg max-w-2xl mx-auto mt-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 1 }}
-      >
-        „Tworzymy przestrzeń dla ludzi z wizją, którzy chcą żyć na własnych
-        zasadach.”
-      </motion.blockquote>
-    </main>
+              <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+                System wsparcia dla ceniących wolność wyboru, rodzinę, dawanie
+                innym nadziei i&nbsp;możliwości rozwoju oraz&nbsp;oczekujących
+                realnej nagrody za&nbsp;zaangażowanie
+              </p>
+            </motion.div>
+          </header>
+
+          <section className="grid gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {links.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.55 + idx * 0.08 }}
+                  className="h-full"
+                >
+                  <Card className="h-full rounded-2xl bg-card/80 p-0 shadow-sm ring-1 ring-border transition hover:bg-card">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-full flex-col items-center justify-start px-6 py-5 text-center text-foreground"
+                    >
+                      {item.icon}
+                      <div className="text-sm font-medium text-muted-foreground">
+                        {item.top}
+                      </div>
+                      <div className="my-2 text-sm font-semibold uppercase tracking-wide text-primary">
+                        {item.mid}
+                      </div>
+                      {item.bot ? (
+                        <div className="text-sm text-muted-foreground">
+                          {item.bot}
+                        </div>
+                      ) : null}
+                    </a>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.blockquote
+              className="mt-6 rounded-2xl bg-card/60 px-6 py-5 text-sm italic text-muted-foreground shadow-sm ring-1 ring-border sm:text-base"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.85, duration: 0.8 }}
+            >
+              „Tworzymy przestrzeń dla ludzi z wizją, którzy chcą żyć na
+              własnych zasadach.”
+            </motion.blockquote>
+          </section>
+        </div>
+      </main>
+    </DashboardWrapper>
   )
 }
