@@ -75,7 +75,8 @@ export const publicRoutes = [
   `/contact/${UserId.SYLWIA_STACHOW}`,
 ]
 
-export const DEFAULT_LOGIN_REDIRECT = '/dashboard'
+// export const DEFAULT_LOGIN_REDIRECT = '/dashboard'
+export const DEFAULT_LOGIN_REDIRECT = '/'
 
 export const authRoutes = ['/auth/login', '/auth/register']
 

@@ -19,7 +19,7 @@ enum SocialProvider {
 export const AuthSocialButtons = () => {
   const handleClick = (provider: 'google' | 'github' | 'facebook') => {
     signIn(provider, {
-      callbackUrl: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
     })
   }
 
