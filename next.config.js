@@ -7,7 +7,7 @@ const JOIN_REDIRECT = '/join'
 const GOOGLE_CALENDAR_REDIRECT = process.env.GOOGLE_CALENDAR_URL
 const DIAMOND_EVENT_NEXT_REDIRECT = '/events/diamond-event/next'
 const POWER_CAMPUS_REDIRECT = '/powercampus'
-// const TOOLS_PRODUCT_PAGE_TO_QRCODE_REDIRECT = '/narzedzia/produkt-qr'
+const TOOLS_PRODUCT_PAGE_TO_QRCODE_REDIRECT = '/generator-qr'
 const MRA_FLYER_REDIRECT = '/products/mra/flyer'
 const MRA_REGISTRATION_REDIRECT = '/products/mra/registration'
 const MRA_REGISTRATION_GOOGLE_REDIRECT = 'https://forms.gle/XcSTsSE3j7kt9Umc7'
@@ -19,7 +19,7 @@ const MAILERLITE_MAREK_KUSTOSZ_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/marek-kustosz'
 const MAILERLITE_BUSINESS_PLAN_LANDINGPAGE_REDIRECT =
   'https://subscribepage.io/business-plan'
-const DEFAULT_REDIRECT = POWER_CAMPUS_REDIRECT
+const DEFAULT_REDIRECT = '/'
 
 const nextConfig = {
   webpack(config) {
@@ -100,7 +100,6 @@ const nextConfig = {
         permanent: true,
       })),
       ...[
-        '/',
         '/api',
         '/auth',
         '/c',
@@ -211,11 +210,11 @@ const nextConfig = {
         destination: MRA_REGISTRATION_REDIRECT,
         permanent: true,
       },
-      {
-        source: '/narzedzia/produkt-qr',
-        destination: '/tools/product-page-to-qrcode',
+      ...['/narzedzia/produkt-qr', '/tools/product-qr'].map((source) => ({
+        source,
+        destination: TOOLS_PRODUCT_PAGE_TO_QRCODE_REDIRECT,
         permanent: true,
-      },
+      })),
     ]
   },
 }
