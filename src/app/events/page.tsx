@@ -20,7 +20,7 @@ const EventsPage = () => {
             <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
               <Image
                 src={DmbLogo}
-                alt="dmb-logo"
+                alt="dMb Global"
                 width={150}
                 height={150}
                 priority

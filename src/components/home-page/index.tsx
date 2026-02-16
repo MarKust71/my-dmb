@@ -37,7 +37,7 @@ export default function HomePage() {
     <DashboardWrapper>
       <main className="theme-dmb">
         <div className="mx-auto w-full max-w-xl px-4 py-12 sm:px-6 sm:py-16 sm:max-w-4xl">
-          <header className="mb-10 text-center">
+          <header className="mb-10">
             <motion.div
               className="mb-10 flex justify-center"
               initial={{ opacity: 0, y: -12 }}
@@ -47,7 +47,7 @@ export default function HomePage() {
               <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
                 <Image
                   src={DmbLogo}
-                  alt="dmb-logo"
+                  alt="dMb Global"
                   width={150}
                   height={150}
                   priority
