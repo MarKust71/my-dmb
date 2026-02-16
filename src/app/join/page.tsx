@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 import { LinkCtaButton } from '@/components/join/link-cta-button'
+import DmbLogo from '@/assets/images/dmb-logo.png'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -29,10 +30,10 @@ const JoinPage = async () => {
           <div className="mb-10 flex justify-center">
             <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
               <Image
-                src="/img/dmb/dmb-global.png"
+                src={DmbLogo}
                 alt="dMb Global"
-                width={180}
-                height={70}
+                width={150}
+                height={150}
                 priority
               />
             </div>
