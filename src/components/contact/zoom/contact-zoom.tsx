@@ -1,84 +1,78 @@
 'use client'
 
-import { detectTouchScreenDevice } from '@/lib/is-touch-screen-device'
-import { cn } from '@/lib/utils'
-import { EventBoxLink } from '@/components/ui/boxes/event-box/event-box-link'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { EventBoxLink } from '@/components/ui/boxes/event-box/event-box-link'
+import { cn } from '@/lib/utils'
 
 export const ContactZoom = () => {
-  const isTouchScreenDevice = detectTouchScreenDevice()
-
-  const url = 'https://us06web.zoom.us/j/2581716586'
+  const url = 'https://zoom.us/j/2581716586'
 
   const onButtonClick = () => {
-    window.open(url, '_blank')
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   return (
-    <>
-      <div
-        className={
-          'flex flex-row justify-start md:justify-center w-full min-h-screen'
-        }
-      >
+    <section className="theme-dmb w-full bg-background text-foreground">
+      <div className="mx-auto w-full max-w-6xl p-4 sm:p-8">
         <div
           className={cn(
-            !isTouchScreenDevice && 'min-w-[768px] w-full',
-            'min-h-screen',
-            'bg-[url("/img/contact/zoom/zoom-consultation-online-h.png")] bg-contain bg-no-repeat'
+            'relative overflow-hidden rounded-2xl border border-border',
+            'min-h-[calc(100vh-2rem)] sm:min-h-[720px]',
+            'bg-[url("/img/contact/zoom/zoom-consultation-online-h.png")] bg-cover bg-right bg-no-repeat'
           )}
         >
-          <div className={'mt-[5.5%] ml-[7%] w-[45%]'}>
-            <p
-              className={
-                'text-[#3159bc] text-[38.4px] md:text-[5vw] font-black leading-none'
-              }
+          <div className="absolute inset-0 bg-background/55 lg:bg-background/30" />
+          <div className="flex flex-col justify-between relative z-10 h-full min-h-[calc(100vh-2rem)] p-5 sm:min-h-[720px] sm:p-10">
+            <header className="">
+              <p className="text-primary text-3xl text-right font-black leading-tight sm:text-5xl sm:text-left">
+                KONSULTACJE
+              </p>
+              <p className="text-primary text-3xl text-right font-black leading-tight sm:text-5xl sm:text-left">
+                ONLINE
+              </p>
+
+              <p className="mt-4 max-w-xl text-sm text-muted-foreground text-right sm:text-base sm:text-left">
+                Wejdź do pokoju Zoom
+                <br />
+                jednym kliknięciem
+              </p>
+            </header>
+
+            <Card
+              className={cn(
+                'max-w-md min-w-max',
+                'border-border bg-card/90 backdrop-blur supports-[backdrop-filter]:bg-card/70'
+              )}
             >
-              {'KONSULTACJE'}
-            </p>
-
-            <p
-              className={
-                'text-[#3159bc] text-[38.4px] md:text-[5vw] font-black leading-none'
-              }
-            >
-              {'ONLINE'}
-            </p>
-
-            <div className={'mb-[20%]'} />
-
-            <Card className={'w-[80%] shadow-md bg-[#3159bc] text-white'}>
-              <CardHeader
-                className={'text-[2vw] leading-none font-semibold p-[4%]'}
-              >
+              <CardHeader className="text-base font-semibold pb-4 sm:text-lg">
                 Spotkanie w pokoju ZOOM
               </CardHeader>
 
-              <CardContent
-                className={'flex flex-row justify-end -mr-[5vw] p-[4%] pt-0'}
-              >
-                <Button
-                  onClick={onButtonClick}
-                  className={
-                    'bg-[#4571FF] text-[2vw] font-semibold uppercase self-end px-[8%] py-[2%] h-[10%]'
-                  }
-                >
+              <CardContent className="pt-0 pb-4">
+                <Button onClick={onButtonClick} size="lg" className="w-full">
                   Przejdź do pokoju
                 </Button>
               </CardContent>
 
-              <CardFooter className={'justify-center p-[4%] pt-0'}>
-                <EventBoxLink
-                  url={url}
-                  className={'text-white text-[1.2vw]'}
-                  stroke={'#fff'}
-                />
+              <CardFooter className="flex flex-col items-start">
+                <p className="text-sm text-muted-foreground">
+                  lub skopiuj link do spotkania:
+                </p>
+
+                <div className={'w-full flex flex-row justify-center'}>
+                  <EventBoxLink
+                    url={url}
+                    className="text-sm text-muted-foreground mt-0"
+                    stroke="currentColor"
+                  />
+                </div>
               </CardFooter>
             </Card>
+            {/*</div>*/}
           </div>
         </div>
       </div>
-    </>
+    </section>
   )
 }

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { IconCopy } from '@/components/ui/icons/icon-copy'
 import { useToast } from '@/components/ui/use-toast'
+import { cn } from '@/lib/utils'
 
 import { EventBoxLinkProps } from './event-box-link.types'
 
@@ -40,7 +41,7 @@ export const EventBoxLink = ({
   }
 
   return (
-    <div className={'mt-2 flex flex-row items-center gap-2'}>
+    <div className={cn('mt-2 flex flex-row items-center gap-2', className)}>
       <Link
         href={url}
         target={'_blank'}
