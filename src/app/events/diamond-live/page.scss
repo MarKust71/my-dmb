@@ -1,24 +1,55 @@
-body {
+/* Usuń czarne tło z body — tło kontrolujemy przez wrapper z klasą theme-dmb + bg-background */
+/* body {
   background-color: #000;
-}
+} */
 
 .zoom-button {
-  -webkit-box-shadow:0 0 8px 2px #CDD9FF;
-  -moz-box-shadow: 0 0 8px 2px #CDD9FF;
-  box-shadow: 0 0 8px 2px #CDD9FF;
-  animation: animate 2s linear infinite;
+  /* wygląd i czytelność z motywu */
+  color: hsl(var(--primary-foreground));
+  border: 1px solid hsl(var(--border));
+
+  /* „glow” pod ring z motywu */
+  -webkit-box-shadow: 0 0 10px 2px hsl(var(--ring));
+  -moz-box-shadow: 0 0 10px 2px hsl(var(--ring));
+  box-shadow: 0 0 10px 2px hsl(var(--ring));
+
+  /* animowany gradient oparty o primary/accent z motywu */
   background: linear-gradient(
       120deg,
-      #074CE5 30%,
-      #3184FC 38%,
-      #3184FC 40%,
-      #074CE5 48%
-  ) 100% 0;
-  background-size: 200% 100%;
+      hsl(var(--primary)) 30%,
+      hsl(var(--accent)) 38%,
+      hsl(var(--accent)) 40%,
+      hsl(var(--primary)) 48%
+  )
+  100% 0 / 200% 100%;
 
-  @keyframes animate {
-    100% {
-      background-position: -100% 0;
-    }
+  animation: zoomShine 2s linear infinite;
+
+  /* ergonomia */
+  min-height: 44px; /* wygodny tap na mobile */
+  padding: 0.9rem 1.1rem;
+}
+
+.zoom-button:hover {
+  filter: brightness(1.05);
+}
+
+.zoom-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px hsl(var(--ring)),
+    0 0 10px 2px hsl(var(--ring));
+}
+
+@keyframes zoomShine {
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* Mobile: przycisk i tak dostaje w-full z TSX, ale zostawiamy asekuracyjnie */
+@media (max-width: 640px) {
+  .zoom-button {
+    width: 100%;
   }
 }
