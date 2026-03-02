@@ -14,21 +14,28 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const DiamondLivePage = () => {
   return (
-    <div className={'min-h-screen max-w-screen-md mx-auto bg-black'}>
-      <Image
-        src={DiamondLiveImage}
-        alt={'diamond-live-image'}
-        className={'mx-auto'}
-      />
+    <div className="theme-dmb min-h-screen bg-background text-foreground">
+      <div className="mx-auto w-full max-w-screen-md px-4 py-6 sm:px-6 sm:py-10">
+        <div className="space-y-6">
+          <Image
+            src={DiamondLiveImage}
+            alt="diamond-live-image"
+            priority
+            className="mx-auto w-full h-auto rounded-xl"
+          />
 
-      <a
-        href={'https://us06web.zoom.us/j/89796337110'}
-        className={'flex justify-center py-4 mx-auto'}
-      >
-        <Button className={'zoom-button'}>
-          Kliknij i dołącz do spotkania ZOOM
-        </Button>
-      </a>
+          <div className="flex justify-center">
+            <a
+              href="https://us06web.zoom.us/j/89796337110"
+              className="w-full sm:w-auto"
+            >
+              <Button className="zoom-button w-full sm:w-auto">
+                Kliknij i dołącz do spotkania ZOOM
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
