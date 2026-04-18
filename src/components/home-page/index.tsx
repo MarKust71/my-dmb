@@ -18,6 +18,7 @@ export default function HomePage() {
       mid: '@thedmbusiness',
       bot: 'na Instagramie',
     },
+    /*
     {
       href: 'https://dmb.global',
       icon: <Globe className="mb-2" />,
@@ -25,6 +26,7 @@ export default function HomePage() {
       mid: 'dmb.global',
       bot: '',
     },
+*/
     {
       href: 'https://www.facebook.com/dmbglobalevents',
       icon: <Facebook className="mb-2" />,
@@ -33,6 +35,8 @@ export default function HomePage() {
       bot: 'na Facebooku',
     },
   ]
+
+  const gridCols = Math.min(3, links.length)
 
   return (
     <DashboardWrapper>
@@ -86,7 +90,7 @@ export default function HomePage() {
           <UpcomingEvents />
 
           <section className="grid gap-4">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className={`grid grid-cols-1 gap-4 md:grid-cols-${gridCols}`}>
               {links.map((item, idx) => (
                 <motion.div
                   key={idx}
