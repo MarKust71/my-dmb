@@ -76,9 +76,9 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-                System wsparcia dla ceniących wolność wyboru, rodzinę, dawanie
-                innym nadziei i&nbsp;możliwości rozwoju oraz&nbsp;oczekujących
-                realnej nagrody za&nbsp;zaangażowanie
+                Niezawodny system wsparcia dla ceniących wolność wyboru,
+                rodzinę, dawanie innym nadziei i&nbsp;możliwości rozwoju
+                oraz&nbsp;oczekujących realnej nagrody za&nbsp;zaangażowanie
               </p>
             </motion.div>
           </header>

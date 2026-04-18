@@ -28,6 +28,7 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
 
   return (
     <motion.div
+      className={'h-full'}
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -35,7 +36,7 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
     >
       <Card
         className={[
-          'overflow-hidden rounded-2xl bg-card/80 shadow-sm ring-1 ring-border transition-all',
+          'h-full overflow-hidden rounded-2xl bg-card/80 shadow-sm ring-1 ring-border transition-all',
           event.href ? 'hover:bg-card hover:shadow-md cursor-pointer' : '',
         ].join(' ')}
       >
@@ -44,13 +45,7 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
           className="flex h-full flex-row items-stretch"
         >
           {/* Dane eventu — lewa strona */}
-          <div className="flex flex-1 flex-col justify-center gap-2 px-5 py-4">
-            {/*
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-              Nadchodzące wydarzenie
-            </p>
-*/}
-
+          <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">
             <h3 className="text-base font-semibold leading-snug tracking-tight text-foreground sm:text-lg">
               {event.title}
             </h3>
