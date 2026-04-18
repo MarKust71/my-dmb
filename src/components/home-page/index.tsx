@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import { Card } from '@/components/ui/card'
 import DmbLogo from '@/assets/images/dmb-logo.png'
+import { UpcomingEvents } from '@/components/home-page/upcoming-events'
 
 export default function HomePage() {
   const links = [
@@ -70,8 +71,8 @@ export default function HomePage() {
               transition={{ delay: 0.38, duration: 0.6 }}
             >
               <h1 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-                Największa na świecie międzynarodowa społeczność ambitnych
-                i&nbsp;przedsiębiorczych
+                Największa na świecie międzynarodowa społeczność
+                ludzi&nbsp;ambitnych i&nbsp;przedsiębiorczych
               </h1>
 
               <p className="mt-2 text-sm text-muted-foreground sm:text-base">
@@ -81,6 +82,8 @@ export default function HomePage() {
               </p>
             </motion.div>
           </header>
+
+          <UpcomingEvents />
 
           <section className="grid gap-4">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
