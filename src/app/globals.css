@@ -176,6 +176,6 @@ body,
 .theme-dmb a, .theme-dmb h2 {
   color: hsl(var(--dmb-link));
 }
-.theme-dmb a:hover {
-  text-decoration: underline;
-}
+/*.theme-dmb a:hover {*/
+/*  text-decoration: underline;*/
+/*}*/

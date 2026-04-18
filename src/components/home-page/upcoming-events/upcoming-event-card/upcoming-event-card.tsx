@@ -43,7 +43,7 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
       >
         <Wrapper
           href={event.href ?? '#'}
-          className="flex h-full flex-row items-stretch no-underline"
+          className="flex h-full flex-row items-stretch [&_*]:no-underline"
         >
           {/* Dane eventu — lewa strona */}
           <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">

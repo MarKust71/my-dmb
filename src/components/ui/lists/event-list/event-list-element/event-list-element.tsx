@@ -7,7 +7,11 @@ import { DmbEvent } from '@/app/events/types'
 export const EventListElement = (event: DmbEvent) => {
   return (
     <div className="grid gap-2">
-      <EventBox key={event.header} href={event.route}>
+      <EventBox
+        key={event.header}
+        href={event.route}
+        className={event.route ? 'cursor-pointer' : 'cursor-default'}
+      >
         <EventBoxHeader>{event.header}</EventBoxHeader>
 
         <EventBoxSubheader>{event.subheader}</EventBoxSubheader>
