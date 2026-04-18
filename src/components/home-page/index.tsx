@@ -8,6 +8,7 @@ import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import { Card } from '@/components/ui/card'
 import DmbLogo from '@/assets/images/dmb-logo.png'
 import { UpcomingEvents } from '@/components/home-page/upcoming-events'
+import { OnlineEvents } from '@/components/home-page/online-events'
 
 export default function HomePage() {
   const gridColsClass: Record<number, string> = {
@@ -96,6 +97,10 @@ export default function HomePage() {
           </header>
 
           <UpcomingEvents />
+
+          <div className={'mb-4'} />
+
+          <OnlineEvents />
 
           <section className="grid gap-4">
             <div

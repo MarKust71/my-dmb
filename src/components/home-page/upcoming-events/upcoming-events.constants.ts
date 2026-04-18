@@ -1,6 +1,6 @@
-import { UpcomingEvent } from './upcoming-events.types'
+import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 
-export const UPCOMING_EVENTS: UpcomingEvent[] = [
+export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'start-up-event-20260425',
     title: 'Start-Up Tarnowskie Góry',

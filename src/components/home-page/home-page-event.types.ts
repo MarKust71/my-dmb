@@ -1,4 +1,4 @@
-export type UpcomingEvent = {
+export type HomePageEvent = {
   id: string
   title: string
   date: string // ISO: 'YYYY-MM-DD'

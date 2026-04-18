@@ -6,10 +6,10 @@ import { CalendarDays, Clock, MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 import { Card } from '@/components/ui/card'
-import { UpcomingEvent } from '../upcoming-events.types'
+import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 
 type Props = {
-  event: UpcomingEvent
+  event: HomePageEvent
   index: number
 }
 
@@ -23,7 +23,7 @@ const formatDate = (iso: string): string => {
   })
 }
 
-export const UpcomingEventCard = ({ event, index }: Props) => {
+export const HomePageEventCard = ({ event, index }: Props) => {
   const Wrapper = event.href ? Link : 'div'
 
   return (
@@ -42,6 +42,7 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
         ].join(' ')}
       >
         <Wrapper
+          target={event.href ? '_blank' : undefined}
           href={event.href ?? '#'}
           className="flex h-full flex-row items-stretch [&_*]:no-underline"
         >
@@ -54,7 +55,11 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
             <div className="mt-1 flex flex-col gap-1.5">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CalendarDays className="h-4 w-4 shrink-0" />
-                <span>{formatDate(event.date)}</span>
+                <span>
+                  {formatDate(event.date) === 'Invalid Date'
+                    ? event.date
+                    : formatDate(event.date)}
+                </span>
               </div>
 
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
