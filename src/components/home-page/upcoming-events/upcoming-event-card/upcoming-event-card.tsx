@@ -37,12 +37,13 @@ export const UpcomingEventCard = ({ event, index }: Props) => {
       <Card
         className={[
           'h-full overflow-hidden rounded-2xl bg-card/80 shadow-sm ring-1 ring-border transition-all',
-          event.href ? 'hover:bg-card hover:shadow-md cursor-pointer' : '',
+          'hover:bg-card hover:shadow-md',
+          event.href ? 'cursor-pointer' : 'cursor-default',
         ].join(' ')}
       >
         <Wrapper
           href={event.href ?? '#'}
-          className="flex h-full flex-row items-stretch"
+          className="flex h-full flex-row items-stretch no-underline"
         >
           {/* Dane eventu — lewa strona */}
           <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">
