@@ -18,7 +18,7 @@ export const OnlineEvents = () => {
         className="mb-4 flex items-center gap-3"
       >
         <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-          Wydarzenia cyklinczne online
+          Wydarzenia cykliczne online
         </h2>
 
         <div className="h-px flex-1 bg-border" />
