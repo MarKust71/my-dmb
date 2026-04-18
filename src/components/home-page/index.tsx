@@ -10,6 +10,12 @@ import DmbLogo from '@/assets/images/dmb-logo.png'
 import { UpcomingEvents } from '@/components/home-page/upcoming-events'
 
 export default function HomePage() {
+  const gridColsClass: Record<number, string> = {
+    1: 'md:grid-cols-1',
+    2: 'md:grid-cols-2',
+    3: 'md:grid-cols-3',
+  }
+
   const links = [
     {
       href: 'https://www.instagram.com/thedmbusiness/',
@@ -17,26 +23,28 @@ export default function HomePage() {
       top: 'Obserwuj',
       mid: '@thedmbusiness',
       bot: 'na Instagramie',
+      active: true,
     },
-    /*
     {
       href: 'https://dmb.global',
       icon: <Globe className="mb-2" />,
       top: 'Odwiedź',
       mid: 'dmb.global',
       bot: '',
+      active: false,
     },
-*/
     {
       href: 'https://www.facebook.com/dmbglobalevents',
       icon: <Facebook className="mb-2" />,
       top: 'Dołącz do',
       mid: 'DMB Global Events',
       bot: 'na Facebooku',
+      active: true,
     },
   ]
 
-  const gridCols = Math.min(3, links.length)
+  const activeLinks = links.filter((item) => item.active)
+  const gridCols = Math.min(3, activeLinks.length)
 
   return (
     <DashboardWrapper>
@@ -90,8 +98,10 @@ export default function HomePage() {
           <UpcomingEvents />
 
           <section className="grid gap-4">
-            <div className={`grid grid-cols-1 gap-4 md:grid-cols-${gridCols}`}>
-              {links.map((item, idx) => (
+            <div
+              className={`grid grid-cols-1 gap-4 ${gridColsClass[gridCols] ?? 'md:grid-cols-3'}`}
+            >
+              {activeLinks.map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 14 }}
