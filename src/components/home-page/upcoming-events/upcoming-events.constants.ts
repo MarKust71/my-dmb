@@ -29,6 +29,6 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     timeEnd: '19:00',
     location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
     // href: '/events/diamond-event/20260615',
-    image: '/img/event/diamond-event-katowice-20260509.jpeg',
+    image: '/img/event/diamond-event-katowice-20260509-1.jpeg',
   },
 ]
