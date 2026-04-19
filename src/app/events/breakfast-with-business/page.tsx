@@ -10,7 +10,7 @@ const nbsp = '\u00A0'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Event | Breakfast with Business',
+    title: 'myDMB App | Event | Breakfast with Business',
   }
 }
 

@@ -12,7 +12,7 @@ import WhatsappContact from '@/components/whatsapp-contact'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Product | Body Cleansing Program',
+    title: 'myDMB App | Product | Body Cleansing Program',
   }
 }
 

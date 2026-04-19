@@ -12,7 +12,7 @@ export async function generateMetadata({
   const { id } = await params
 
   return {
-    title: `my-dMb App | Invite | ${id}`,
+    title: `myDMB App | Invite | ${id}`,
   }
 }
 

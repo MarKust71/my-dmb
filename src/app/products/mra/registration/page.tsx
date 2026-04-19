@@ -5,7 +5,7 @@ import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Product | MRA | Registration',
+    title: 'myDMB App | Product | MRA | Registration',
   }
 }
 
