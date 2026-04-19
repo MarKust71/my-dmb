@@ -25,7 +25,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     id: 'diamond-event-20260509',
     title: 'Diamond Event Katowice',
     date: '2026-05-09',
-    timeStart: '14:00',
+    timeStart: '13:00',
     timeEnd: '19:00',
     location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
     // href: '/events/diamond-event/20260615',
