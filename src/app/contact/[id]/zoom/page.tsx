@@ -15,19 +15,19 @@ export async function generateMetadata({
   switch (id) {
     case UserId.MAREK_KUSTOSZ: {
       return {
-        title: `my-dMb App | Contact | ${UserContext.MAREK_KUSTOSZ} | Zoom`,
+        title: `myDMB App | Contact | ${UserContext.MAREK_KUSTOSZ} | Zoom`,
       }
     }
 
     case UserId.SYLWIA_STACHOW: {
       return {
-        title: `my-dMb App | Contact | ${UserContext.SYLWIA_STACHOW} | Zoom`,
+        title: `myDMB App | Contact | ${UserContext.SYLWIA_STACHOW} | Zoom`,
       }
     }
 
     default:
       return {
-        title: 'my-dMb App',
+        title: 'myDMB App',
       }
   }
 }

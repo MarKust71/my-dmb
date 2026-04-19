@@ -8,7 +8,7 @@ import './page.scss'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Event | Diamond Live',
+    title: 'myDMB App | Event | Diamond Live',
   }
 }
 

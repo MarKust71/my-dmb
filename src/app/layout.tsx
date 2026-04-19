@@ -14,8 +14,8 @@ import { Toaster } from '@/components/ui/toaster'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'my-dMb App',
-  description: 'supported by "dMb Global" community',
+  title: 'myDMB | strona domowa',
+  description: 'wspierana przez społeczność "dMb Global"',
 }
 
 export default async function RootLayout({

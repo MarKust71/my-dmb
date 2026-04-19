@@ -10,7 +10,7 @@ import { InitMraContext } from '@/components/products/mra/init-mra-context'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Dashboard',
+    title: 'myDMB App | Dashboard',
   }
 }
 

@@ -4,7 +4,7 @@ import Flyer from '@/components/products/mra/flyer/flyer'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Product | MRA | Flyer',
+    title: 'myDMB App | Product | MRA | Flyer',
   }
 }
 

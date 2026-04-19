@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Product | MRA',
+    title: 'myDMB App | Product | MRA',
   }
 }
 

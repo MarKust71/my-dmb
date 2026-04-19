@@ -1,6 +1,6 @@
 {
-  "name": "my-dMb App",
-  "short_name": "my-dMb App",
+  "name": "myDMB App",
+  "short_name": "myDMB App",
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
   "start_url": "/",
@@ -466,6 +466,6 @@
       "type": "image/png"
     }
   ],
-  "id": "my-dmb-id",
-  "description": "my-dMb PWA application"
+  "id": "myDMB-id",
+  "description": "myDMB PWA application"
 }

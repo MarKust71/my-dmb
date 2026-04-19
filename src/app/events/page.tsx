@@ -7,7 +7,7 @@ import { EventList } from '@/components/ui/lists/event-list/event-list'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: `my-dMb App | Events`,
+    title: `myDMB App | Events`,
   }
 }
 

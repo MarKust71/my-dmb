@@ -13,7 +13,7 @@ import { CarouselItemContent } from '@/components/artistry/carousel-item-content
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Product | Artistry Holistic Promo',
+    title: 'myDMB App | Product | Artistry Holistic Promo',
   }
 }
 

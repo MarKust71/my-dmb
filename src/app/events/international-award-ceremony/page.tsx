@@ -8,7 +8,7 @@ import './page.scss'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'my-dMb App | Event | International Award Ceremony',
+    title: 'myDMB App | Event | International Award Ceremony',
   }
 }
 
