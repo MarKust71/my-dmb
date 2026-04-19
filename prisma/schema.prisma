@@ -1,42 +1,24 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-/**
- * generator client {
- * provider = "prisma-client"
- * output   = "./src/generated/prisma"
- * }
- * datasource db {
- * provider = "postgresql"
- * }
- */
-
-datasource db {
-  provider = "postgresql"
-}
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
 }
 
 model User {
   id            String          @id @default(cuid())
   name          String?
   email         String          @unique
-  password      String?
   emailVerified DateTime?
   image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  password      String?
   accounts      Account[]
-  sessions      Session[]
-  // Optional for WebAuthn support
   Authenticator Authenticator[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  sessions      Session[]
 }
 
 model Account {
@@ -51,11 +33,9 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
 }
@@ -64,10 +44,9 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model VerificationToken {
@@ -78,7 +57,6 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-// Optional for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -88,55 +66,46 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
 }
 
 model Customer {
-  id      String    @id @default(cuid())
-  name    String
-  email   String
-  context String
-  consent DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(cuid())
+  name      String
+  email     String
+  context   String
+  consent   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 
   @@unique([email, context])
 }
 
 model MailerLiteSubscriber {
   id                                 String    @id @default(cuid())
-  email                              String
+  email                              String    @unique
   name                               String?
-  mailerLiteId                       String
+  mailerLiteId                       String    @unique
   dmbBusinessPlanAccessCode          String?
   dmbBusinessPlanAccessCodeValidFrom DateTime?
   dmbBusinessPlanAccessCodeValidTo   DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([email])
-  @@unique([mailerLiteId])
+  createdAt                          DateTime  @default(now())
+  updatedAt                          DateTime  @updatedAt
 }
 
 model MraContext {
   id             String           @id @default(cuid())
-  contextId      String
+  contextId      String           @unique
   name           String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
   MraApplication MraApplication[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([contextId])
 }
 
 model MraApplication {
-  id        String    @id @default(cuid())
+  id        String     @id @default(cuid())
   lastname  String
   firstname String
   email     String
@@ -149,11 +118,9 @@ model MraApplication {
   weigth    Int?
   consent   DateTime?
   contextId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  context MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  context   MraContext @relation(fields: [contextId], references: [id], onDelete: Cascade)
 
   @@unique([email, contextId])
 }
