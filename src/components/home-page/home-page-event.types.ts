@@ -7,4 +7,5 @@ export type HomePageEvent = {
   location?: string
   image?: string // ścieżka do grafiki (np. '/img/event/power-campus.jpeg')
   href?: string // link do dedykowanej strony eventu
+  inactive?: boolean // jeśli nie podane, wyliczane automatycznie na podstawie date + timeEnd
 }
