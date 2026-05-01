@@ -7,7 +7,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from '@/components/ui/drawer'
 import {
   Popover,
@@ -19,7 +18,10 @@ import { useMediaQuery } from '@/hooks/use-media-query'
 
 type Props = {
   event: CalendarEvent
-  trigger: React.ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  // anchor potrzebny dla Popover na desktop — ref do elementu triggera
+  anchor?: React.RefObject<HTMLElement | null>
 }
 
 const CalendarOptions = ({
@@ -64,29 +66,38 @@ const CalendarOptions = ({
   </div>
 )
 
-export const AddToCalendar = ({ event, trigger }: Props) => {
+export const AddToCalendar = ({ event, open, onOpenChange, anchor }: Props) => {
   const { icsHref, googleHref, icsFilename } = useCalendarLinks(event)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
+  const options = (
+    <CalendarOptions
+      googleHref={googleHref}
+      icsHref={icsHref}
+      icsFilename={icsFilename}
+      title={event.title}
+    />
+  )
+
   if (isDesktop) {
     return (
-      <Popover>
-        <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-        <PopoverContent className="theme-dmb w-72 p-4" align="start">
-          <CalendarOptions
-            googleHref={googleHref}
-            icsHref={icsHref}
-            icsFilename={icsFilename}
-            title={event.title}
+      <Popover open={open} onOpenChange={onOpenChange}>
+        {/* Niewidoczny anchor dla Popover — pozycjonuje się przy przycisku */}
+        <PopoverTrigger asChild>
+          <span
+            ref={anchor as React.RefObject<HTMLSpanElement>}
+            className="sr-only"
           />
+        </PopoverTrigger>
+        <PopoverContent className="theme-dmb w-72 p-4" align="start">
+          {options}
         </PopoverContent>
       </Popover>
     )
   }
 
   return (
-    <Drawer>
-      <DrawerTrigger asChild>{trigger}</DrawerTrigger>
+    <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent className="theme-dmb">
         <DrawerHeader className="pb-2">
           <DrawerTitle className="flex items-center gap-2 text-base">
@@ -95,14 +106,7 @@ export const AddToCalendar = ({ event, trigger }: Props) => {
           </DrawerTitle>
           <p className="text-sm text-muted-foreground">{event.title}</p>
         </DrawerHeader>
-        <div className="flex flex-col gap-3 px-4 pb-8 pt-2">
-          <CalendarOptions
-            googleHref={googleHref}
-            icsHref={icsHref}
-            icsFilename={icsFilename}
-            title={event.title}
-          />
-        </div>
+        <div className="flex flex-col gap-3 px-4 pb-8 pt-2">{options}</div>
       </DrawerContent>
     </Drawer>
   )

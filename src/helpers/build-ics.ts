@@ -8,14 +8,14 @@ export const buildICS = (
   calTitle: string,
   calLocation: string,
   calDetails: string,
-  uid?: string
+  uid?: string,
+  recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY'
 ) => {
   const dtstamp = fmtUtc(new Date())
   const dtstart = fmtUtc(eventStart)
   const dtend = fmtUtc(eventEnd)
   const eventUid = uid ?? `event-${dtstart}@mydmb.app`
 
-  // CRLF zgodnie ze specyfikacją
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -30,6 +30,7 @@ export const buildICS = (
     `SUMMARY:${icsEscape(calTitle)}`,
     `LOCATION:${icsEscape(calLocation)}`,
     `DESCRIPTION:${icsEscape(calDetails)}`,
+    ...(recurrence ? [`RRULE:FREQ=${recurrence}`] : []),
     'END:VEVENT',
     'END:VCALENDAR',
   ]

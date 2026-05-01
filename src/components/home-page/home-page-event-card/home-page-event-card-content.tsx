@@ -4,11 +4,12 @@ import Image from 'next/image'
 import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { formatDate } from '@/helpers/format-date'
 
-export const HomePageEventCardContent = ({
-  event,
-}: {
+type Props = {
   event: HomePageEvent
-}) => (
+  onAddToCalendar?: (e: React.MouseEvent) => void
+}
+
+export const HomePageEventCardContent = ({ event, onAddToCalendar }: Props) => (
   <div className="flex h-full w-full flex-row items-stretch">
     {/* Dane eventu — lewa strona */}
     <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">
@@ -41,13 +42,14 @@ export const HomePageEventCardContent = ({
         )}
       </div>
 
-      {/* Ikona kalendarza — widoczna tylko gdy brak href */}
-      {!event.href && (
-        <div className="mt-2 flex items-center gap-1.5 text-xs text-primary/60">
-          <CalendarPlus className="h-3.5 w-3.5" />
-          <span>Dodaj do kalendarza</span>
-        </div>
-      )}
+      {/* Przycisk "Dodaj do kalendarza" — zawsze widoczny */}
+      <button
+        onClick={onAddToCalendar}
+        className="mt-2 flex w-fit items-center gap-1.5 rounded-md px-1 py-0.5 text-xs text-primary/60 transition hover:text-primary"
+      >
+        <CalendarPlus className="h-3.5 w-3.5" />
+        <span>Dodaj do kalendarza</span>
+      </button>
     </div>
 
     {/* Grafika — prawa strona */}

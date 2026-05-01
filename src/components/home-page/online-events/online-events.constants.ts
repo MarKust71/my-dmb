@@ -10,6 +10,7 @@ export const ONLINE_EVENTS: HomePageEvent[] = [
     location: 'zoom.us/j/89796337110',
     href: 'https://zoom.us/j/89796337110',
     image: '/img/event/diamond-live-event.jpeg',
+    recurrence: 'WEEKLY',
   },
   {
     id: 'biznes-espresso-event',
@@ -20,5 +21,6 @@ export const ONLINE_EVENTS: HomePageEvent[] = [
     location: 'zoom.us/j/981646663',
     href: 'https://zoom.us/j/981646663',
     image: '/img/event/biznes-espresso-event.jpeg',
+    recurrence: 'WEEKLY',
   },
 ]

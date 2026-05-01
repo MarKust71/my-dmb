@@ -12,6 +12,7 @@ export type CalendarEvent = {
   location: string
   details?: string
   uid?: string
+  recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY'
 }
 
 export const useCalendarLinks = (event: CalendarEvent) => {
@@ -24,7 +25,8 @@ export const useCalendarLinks = (event: CalendarEvent) => {
       event.title,
       event.location,
       event.details ?? '',
-      event.uid
+      event.uid,
+      event.recurrence
     )
     const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
     const url = URL.createObjectURL(blob)
@@ -38,6 +40,7 @@ export const useCalendarLinks = (event: CalendarEvent) => {
     event.location,
     event.details,
     event.uid,
+    event.recurrence,
   ])
 
   const googleHref = useMemo(() => {
@@ -48,10 +51,18 @@ export const useCalendarLinks = (event: CalendarEvent) => {
       dates,
       location: event.location,
       details: event.details ?? '',
+      ...(event.recurrence ? { recur: `RRULE:FREQ=${event.recurrence}` } : {}),
     })
 
     return `${base}&${params.toString()}`
-  }, [event.start, event.end, event.title, event.location, event.details])
+  }, [
+    event.start,
+    event.end,
+    event.title,
+    event.location,
+    event.details,
+    event.recurrence,
+  ])
 
   const icsFilename = `${event.uid ?? event.title.toLowerCase().replace(/\s+/g, '-')}.ics`
 
