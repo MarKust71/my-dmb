@@ -7,10 +7,12 @@ import { motion } from 'framer-motion'
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import { Card } from '@/components/ui/card'
 import DmbLogo from '@/assets/images/dmb-logo.png'
-import { UpcomingEvents } from '@/components/home-page/upcoming-events'
-import { OnlineEvents } from '@/components/home-page/online-events'
 
-export default function HomePage() {
+import { UpcomingEvents } from './upcoming-events'
+import { OnlineEvents } from './online-events'
+import { HomePageProps } from './home-page-event.types'
+
+export default function HomePage({ upcomingEvents }: HomePageProps) {
   const gridColsClass: Record<number, string> = {
     1: 'md:grid-cols-1',
     2: 'md:grid-cols-2',
@@ -96,7 +98,7 @@ export default function HomePage() {
             </motion.div>
           </header>
 
-          <UpcomingEvents />
+          <UpcomingEvents events={upcomingEvents} />
 
           <div className={'mb-4'} />
 

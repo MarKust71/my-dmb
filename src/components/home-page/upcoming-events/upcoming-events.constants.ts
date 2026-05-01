@@ -8,7 +8,6 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     timeStart: '16:00',
     timeEnd: '19:00',
     location: 'Tarnowskie Góry, ul. Opolska 5',
-    // href: '/events/power-campus/20260510',
     image: '/img/event/start-up-event-tarnowskie-gory-20260425.jpeg',
   },
   {
@@ -18,7 +17,6 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     timeStart: '14:00',
     timeEnd: '17:00',
     location: 'Warszawa, ul. Zgoda 11',
-    // href: '/events/diamond-event/20260615',
     image: '/img/event/start-up-event-warszawa-20260426.jpeg',
   },
   {
@@ -28,7 +26,6 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     timeStart: '13:00',
     timeEnd: '19:00',
     location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
-    // href: '/events/diamond-event/20260615',
     image: '/img/event/diamond-event-katowice-20260509-1.jpeg',
   },
 ]

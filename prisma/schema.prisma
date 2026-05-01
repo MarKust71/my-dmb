@@ -124,3 +124,18 @@ model MraApplication {
 
   @@unique([email, contextId])
 }
+
+model Event {
+  id         String   @id @default(cuid())
+  title      String
+  date       String   // ISO: 'YYYY-MM-DD'
+  timeStart  String   // 'HH:MM'
+  timeEnd    String   // 'HH:MM'
+  location   String?
+  image      String?  // lokalna ścieżka np. '/img/event/...' (docelowo Firebase URL)
+  href       String?
+  recurrence String?  // 'WEEKLY' | 'DAILY' | 'MONTHLY'
+  inactive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
