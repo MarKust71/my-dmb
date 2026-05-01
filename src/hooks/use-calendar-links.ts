@@ -5,15 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { buildICS } from '@/helpers/build-ics'
 import { fmtUtc } from '@/helpers/format-utc'
 
-export type CalendarEvent = {
-  start: Date
-  end: Date
-  title: string
-  location: string
-  details?: string
-  uid?: string
-  recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY'
-}
+import { CalendarEvent } from './use-calendar-links.types'
 
 export const useCalendarLinks = (event: CalendarEvent) => {
   const [icsHref, setIcsHref] = useState<string | null>(null)

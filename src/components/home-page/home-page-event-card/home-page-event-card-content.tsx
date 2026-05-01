@@ -1,15 +1,14 @@
 import { CalendarDays, CalendarPlus, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
 
-import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { formatDate } from '@/helpers/format-date'
 
-type Props = {
-  event: HomePageEvent
-  onAddToCalendar?: (e: React.MouseEvent) => void
-}
+import { HomePageEventCardContentProps } from './home-page-event-card.types'
 
-export const HomePageEventCardContent = ({ event, onAddToCalendar }: Props) => (
+export const HomePageEventCardContent = ({
+  event,
+  onAddToCalendar,
+}: HomePageEventCardContentProps) => (
   <div className="flex h-full w-full flex-row items-stretch">
     {/* Dane eventu — lewa strona */}
     <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">

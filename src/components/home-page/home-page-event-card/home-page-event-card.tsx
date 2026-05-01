@@ -10,12 +10,8 @@ import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { parseDateOrWeekday } from '@/helpers/next-weekday'
 import { cn } from '@/lib/utils'
 
+import { HomePageEventCardProps } from './home-page-event-card.types'
 import { HomePageEventCardContent } from './home-page-event-card-content'
-
-type Props = {
-  event: HomePageEvent
-  index: number
-}
 
 const toCalendarEvent = (event: HomePageEvent) => {
   const baseDate = parseDateOrWeekday(event.date) ?? new Date()
@@ -40,7 +36,7 @@ const toCalendarEvent = (event: HomePageEvent) => {
   }
 }
 
-export const HomePageEventCard = ({ event, index }: Props) => {
+export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
   const [calendarOpen, setCalendarOpen] = useState(false)
   const anchorRef = useRef<HTMLElement>(null)
 
