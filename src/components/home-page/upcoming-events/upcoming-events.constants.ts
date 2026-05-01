@@ -7,7 +7,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     date: '2026-04-25',
     timeStart: '16:00',
     timeEnd: '19:00',
-    location: 'Tarnowskie Góry, ul. Opolska 5',
+    location: 'Tarnowskie Góry, ul. Opolska 5',
     image: '/img/event/start-up-event-tarnowskie-gory-20260425.jpeg',
   },
   {
@@ -16,7 +16,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     date: '2026-04-26',
     timeStart: '14:00',
     timeEnd: '17:00',
-    location: 'Warszawa, ul. Zgoda 11',
+    location: 'Warszawa, ul. Zgoda 11',
     image: '/img/event/start-up-event-warszawa-20260426.jpeg',
   },
   {
@@ -25,7 +25,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     date: '2026-05-09',
     timeStart: '13:00',
     timeEnd: '19:00',
-    location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
+    location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
     image: '/img/event/diamond-event-katowice-20260509-1.jpeg',
   },
 ]

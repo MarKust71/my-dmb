@@ -8,9 +8,8 @@ const adapter = new PrismaPg({ connectionString })
 const prisma = new PrismaClient({ adapter })
 
 async function main() {
-  console.log('Seeding events...')
-
   const events = [
+    // Nadchodzące wydarzenia
     {
       id: 'start-up-event-20260425',
       title: 'Start-Up Tarnowskie Góry',
@@ -38,7 +37,32 @@ async function main() {
       location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
       image: '/img/event/diamond-event-katowice-20260509-1.jpeg',
     },
+    // Wydarzenia cykliczne online
+    {
+      id: 'diamond-live-event',
+      title: 'Diamond Live',
+      date: 'każdy poniedziałek',
+      timeStart: '20:00',
+      timeEnd: '21:00',
+      location: 'zoom.us/j/89796337110',
+      href: 'https://zoom.us/j/89796337110',
+      image: '/img/event/diamond-live-event.jpeg',
+      recurrence: 'WEEKLY',
+    },
+    {
+      id: 'biznes-espresso-event',
+      title: 'Biznes Espresso',
+      date: 'każda sobota',
+      timeStart: '9:00',
+      timeEnd: '10:00',
+      location: 'zoom.us/j/981646663',
+      href: 'https://zoom.us/j/981646663',
+      image: '/img/event/biznes-espresso-event.jpeg',
+      recurrence: 'WEEKLY',
+    },
   ]
+
+  console.log('Seeding events...')
 
   for (const event of events) {
     await prisma.event.upsert({

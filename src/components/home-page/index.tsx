@@ -12,7 +12,7 @@ import { UpcomingEvents } from './upcoming-events'
 import { OnlineEvents } from './online-events'
 import { HomePageProps } from './home-page-event.types'
 
-export default function HomePage({ upcomingEvents }: HomePageProps) {
+export default function HomePage({ upcomingEvents, onlineEvents }: HomePageProps) {
   const gridColsClass: Record<number, string> = {
     1: 'md:grid-cols-1',
     2: 'md:grid-cols-2',
@@ -102,7 +102,7 @@ export default function HomePage({ upcomingEvents }: HomePageProps) {
 
           <div className={'mb-4'} />
 
-          <OnlineEvents />
+          <OnlineEvents events={onlineEvents} />
 
           <section className="grid gap-4">
             <div

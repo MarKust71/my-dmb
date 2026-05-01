@@ -13,10 +13,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { useCalendarLinks } from '@/hooks/use-calendar-links'
+import { useCalendarLinks, CalendarEvent } from '@/hooks/use-calendar-links'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
-import { CalendarOptionsProps } from './add-to-calendar.types'
+type Props = {
+  event: CalendarEvent
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  // anchor potrzebny dla Popover na desktop — ref do elementu triggera
+  anchor?: React.RefObject<HTMLElement | null>
+}
 
 const CalendarOptions = ({
   googleHref,
@@ -60,12 +66,7 @@ const CalendarOptions = ({
   </div>
 )
 
-export const AddToCalendar = ({
-  event,
-  open,
-  onOpenChange,
-  anchor,
-}: CalendarOptionsProps) => {
+export const AddToCalendar = ({ event, open, onOpenChange, anchor }: Props) => {
   const { icsHref, googleHref, icsFilename } = useCalendarLinks(event)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 

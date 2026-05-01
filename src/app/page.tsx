@@ -1,9 +1,12 @@
 import './page.scss'
 import HomePage from '@/components/home-page'
-import { getUpcomingEvents } from '@/actions/events'
+import { getUpcomingEvents, getOnlineEvents } from '@/actions/events'
 
 export default async function Home() {
-  const upcomingEvents = await getUpcomingEvents()
+  const [upcomingEvents, onlineEvents] = await Promise.all([
+    getUpcomingEvents(),
+    getOnlineEvents(),
+  ])
 
-  return <HomePage upcomingEvents={upcomingEvents} />
+  return <HomePage upcomingEvents={upcomingEvents} onlineEvents={onlineEvents} />
 }

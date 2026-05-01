@@ -2,11 +2,14 @@
 
 import { motion } from 'framer-motion'
 
+import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { HomePageEventCard } from '@/components/home-page/home-page-event-card'
 
-import { UpcomingEventsProps } from './upcoming-events.types'
+type Props = {
+  events: HomePageEvent[]
+}
 
-export const UpcomingEvents = ({ events }: UpcomingEventsProps) => {
+export const UpcomingEvents = ({ events }: Props) => {
   if (events.length === 0) return null
 
   return (

@@ -13,4 +13,5 @@ export type HomePageEvent = {
 
 export type HomePageProps = {
   upcomingEvents: HomePageEvent[]
+  onlineEvents: HomePageEvent[]
 }

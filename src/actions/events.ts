@@ -7,7 +7,7 @@ export const getUpcomingEvents = async (): Promise<HomePageEvent[]> => {
   const now = new Date()
 
   const events = await prisma.event.findMany({
-    where: { inactive: false },
+    where: { inactive: false, recurrence: null },
     orderBy: { date: 'asc' },
   })
 
@@ -19,4 +19,13 @@ export const getUpcomingEvents = async (): Promise<HomePageEvent[]> => {
 
     return eventEnd > now
   }) as HomePageEvent[]
+}
+
+export const getOnlineEvents = async (): Promise<HomePageEvent[]> => {
+  const events = await prisma.event.findMany({
+    where: { inactive: false, recurrence: { not: null } },
+    orderBy: { createdAt: 'asc' },
+  })
+
+  return events as HomePageEvent[]
 }
