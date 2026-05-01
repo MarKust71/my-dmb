@@ -7,12 +7,13 @@ export const buildICS = (
   eventEnd: Date,
   calTitle: string,
   calLocation: string,
-  calDetails: string
+  calDetails: string,
+  uid?: string
 ) => {
   const dtstamp = fmtUtc(new Date())
   const dtstart = fmtUtc(eventStart)
   const dtend = fmtUtc(eventEnd)
-  const uid = `powercampus-a70-${dtstart}@example.local`
+  const eventUid = uid ?? `event-${dtstart}@mydmb.app`
 
   // CRLF zgodnie ze specyfikacją
   const lines = [
@@ -20,9 +21,9 @@ export const buildICS = (
     'VERSION:2.0',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'PRODID:-//YourApp//PowerCampus//PL',
+    'PRODID:-//dMb//Events//PL',
     'BEGIN:VEVENT',
-    `UID:${uid}`,
+    `UID:${eventUid}`,
     `DTSTAMP:${dtstamp}`,
     `DTSTART:${dtstart}`,
     `DTEND:${dtend}`,
