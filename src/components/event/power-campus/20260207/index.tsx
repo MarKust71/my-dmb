@@ -98,7 +98,7 @@ export const PowerCampusCountdownBackdrop = () => {
         {/* TŁO */}
         <div className="absolute inset-0">
           <Image
-            src="/img/event/power-campus-202602.jpeg"
+            src="https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fpower-campus-202602.jpeg?alt=media&token=369424ab-7252-479b-8d3c-920a2518dd7a"
             alt="PowerCampus A70 — Wrocław"
             fill
             priority
