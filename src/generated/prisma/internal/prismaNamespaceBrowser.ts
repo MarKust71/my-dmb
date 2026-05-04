@@ -59,7 +59,8 @@ export const ModelName = {
   Customer: 'Customer',
   MailerLiteSubscriber: 'MailerLiteSubscriber',
   MraContext: 'MraContext',
-  MraApplication: 'MraApplication'
+  MraApplication: 'MraApplication',
+  Event: 'Event'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -203,6 +204,24 @@ export const MraApplicationScalarFieldEnum = {
 } as const
 
 export type MraApplicationScalarFieldEnum = (typeof MraApplicationScalarFieldEnum)[keyof typeof MraApplicationScalarFieldEnum]
+
+
+export const EventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  date: 'date',
+  timeStart: 'timeStart',
+  timeEnd: 'timeEnd',
+  location: 'location',
+  image: 'image',
+  href: 'href',
+  recurrence: 'recurrence',
+  inactive: 'inactive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
 
 
 export const SortOrder = {

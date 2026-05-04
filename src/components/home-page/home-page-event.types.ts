@@ -10,3 +10,8 @@ export type HomePageEvent = {
   inactive?: boolean // jeśli nie podane, wyliczane automatycznie na podstawie date + timeEnd
   recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY' // dla wydarzeń cyklicznych
 }
+
+export type HomePageProps = {
+  upcomingEvents: HomePageEvent[]
+  onlineEvents: HomePageEvent[]
+}
