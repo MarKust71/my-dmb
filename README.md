@@ -50,3 +50,4 @@ npx prisma generate && npx prisma db push
 
 https://authjs.dev/reference/adapter/prisma
 
+https://console.firebase.google.com/u/0/project/my-dmb/overview
