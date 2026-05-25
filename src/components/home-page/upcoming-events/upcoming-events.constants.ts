@@ -40,7 +40,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     date: '2026-06-07',
     timeStart: '14:00',
     timeEnd: '19:00',
-    location: 'Warszawa',
+    location: 'Novotel Warszawa Airport, Warszawa, ul. 1 Sierpnia 1',
     // href: '/events/diamond-event/20260615',
     image:
       'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fdiamond-event-katowice-20260509-1.jpeg?alt=media&token=fcf9aa56-a02e-4093-a818-43826a96b5da',
