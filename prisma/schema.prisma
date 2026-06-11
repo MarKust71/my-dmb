@@ -128,11 +128,12 @@ model MraApplication {
 model Event {
   id         String   @id @default(cuid())
   title      String
-  date       String   // ISO: 'YYYY-MM-DD'
+  dateStart  String   // ISO: 'YYYY-MM-DD' lub tekst np. 'każdy poniedziałek'
+  dateEnd    String?  // ISO: 'YYYY-MM-DD' — tylko dla wydarzeń wielodniowych
   timeStart  String   // 'HH:MM'
   timeEnd    String   // 'HH:MM'
   location   String?
-  image      String?  // lokalna ścieżka np. '/img/event/...' (docelowo Firebase URL)
+  image      String?  // Firebase Storage URL
   href       String?
   recurrence String?  // 'WEEKLY' | 'DAILY' | 'MONTHLY'
   inactive   Boolean  @default(false)

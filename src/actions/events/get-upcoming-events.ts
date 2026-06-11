@@ -8,12 +8,12 @@ export const getUpcomingEvents = async (): Promise<HomePageEvent[]> => {
 
   const events = await prisma.event.findMany({
     where: { inactive: false, recurrence: null },
-    orderBy: { date: 'asc' },
+    orderBy: { dateStart: 'asc' },
   })
 
   // Filtrujemy po stronie JS — date+timeEnd musi być w przyszłości
   return events.filter((event) => {
-    const [year, month, day] = event.date.split('-').map(Number)
+    const [year, month, day] = event.dateStart.split('-').map(Number)
     const [hours, minutes] = event.timeEnd.split(':').map(Number)
     const eventEnd = new Date(year, month - 1, day, hours, minutes)
 

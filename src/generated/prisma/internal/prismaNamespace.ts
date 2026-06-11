@@ -1322,7 +1322,8 @@ export type MraApplicationScalarFieldEnum = (typeof MraApplicationScalarFieldEnu
 export const EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  date: 'date',
+  dateStart: 'dateStart',
+  dateEnd: 'dateEnd',
   timeStart: 'timeStart',
   timeEnd: 'timeEnd',
   location: 'location',
