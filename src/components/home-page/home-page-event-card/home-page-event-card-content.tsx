@@ -11,34 +11,36 @@ export const HomePageEventCardContent = ({
 }: HomePageEventCardContentProps) => (
   <div className="flex h-full w-full flex-row items-stretch">
     {/* Dane eventu — lewa strona */}
-    <div className="flex flex-1 flex-col justify-start gap-2 px-5 py-4">
-      <h3 className="text-base font-semibold leading-snug tracking-tight text-foreground sm:text-lg">
-        {event.title}
-      </h3>
+    <div className="flex flex-1 flex-col justify-between gap-2 px-5 py-4">
+      <div className={'flex flex-1 flex-col gap-2'}>
+        <h3 className="text-base font-semibold leading-snug tracking-tight text-foreground sm:text-lg/6">
+          {event.title}
+        </h3>
 
-      <div className="mt-1 flex flex-col gap-1.5">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <CalendarDays className="h-4 w-4 shrink-0" />
-          <span>
-            {formatDate(event.date) === 'Invalid Date'
-              ? event.date
-              : formatDate(event.date)}
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <Clock className="h-4 w-4 shrink-0" />
-          <span>
-            {event.timeStart} – {event.timeEnd}
-          </span>
-        </div>
-
-        {event.location && (
+        <div className="mt-1 flex flex-col gap-1.5">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <MapPin className="h-4 w-4 shrink-0" />
-            <span>{event.location}</span>
+            <CalendarDays className="h-4 w-4 shrink-0" />
+            <span>
+              {formatDate(event.date) === 'Invalid Date'
+                ? event.date
+                : formatDate(event.date)}
+            </span>
           </div>
-        )}
+
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Clock className="h-4 w-4 shrink-0" />
+            <span>
+              {event.timeStart} – {event.timeEnd}
+            </span>
+          </div>
+
+          {event.location && (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 shrink-0" />
+              <span>{event.location}</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Przycisk "Dodaj do kalendarza" — zawsze widoczny */}
