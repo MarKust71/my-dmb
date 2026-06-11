@@ -65,6 +65,6 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     location: 'Park Hotel Diament, Zabrze, ul. 3 Maja 122A',
     // href: '/events/diamond-event/20260615',
     image:
-      'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fpower-campus-20260710.jpeg?alt=media&token=063c7765-849b-473d-a16f-2fab265d84c9',
+      'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fpower-campus-20260710-1.jpg?alt=media&token=e68d96c6-a2c1-45c2-ba10-2ff53a4689b0',
   },
 ]
