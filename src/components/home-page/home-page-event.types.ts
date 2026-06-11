@@ -1,7 +1,8 @@
 export type HomePageEvent = {
   id: string
   title: string
-  date: string // ISO: 'YYYY-MM-DD' lub tekst np. 'każdy poniedziałek'
+  dateStart: string // ISO: 'YYYY-MM-DD' lub tekst np. 'każdy poniedziałek'
+  dateEnd?: string // ISO: 'YYYY-MM-DD'
   timeStart: string // 'HH:MM'
   timeEnd: string // 'HH:MM'
   location?: string

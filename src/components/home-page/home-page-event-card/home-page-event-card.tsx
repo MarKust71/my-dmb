@@ -6,41 +6,13 @@ import { motion } from 'framer-motion'
 
 import { Card } from '@/components/ui/card'
 import { AddToCalendar } from '@/components/add-to-calendar'
-import { HomePageEvent } from '@/components/home-page/home-page-event.types'
-import { parseDateOrWeekday } from '@/helpers/next-weekday'
 import { cn } from '@/lib/utils'
+import { toCalendarEvent } from '@/helpers/to-calendar-event'
 
+import { HomePageEventCardProps } from './home-page-event-card.types'
 import { HomePageEventCardContent } from './home-page-event-card-content'
 
-type Props = {
-  event: HomePageEvent
-  index: number
-}
-
-const toCalendarEvent = (event: HomePageEvent) => {
-  const baseDate = parseDateOrWeekday(event.date) ?? new Date()
-
-  const [startH, startM] = event.timeStart.split(':').map(Number)
-  const [endH, endM] = event.timeEnd.split(':').map(Number)
-
-  const start = new Date(baseDate)
-  start.setHours(startH, startM, 0, 0)
-
-  const end = new Date(baseDate)
-  end.setHours(endH, endM, 0, 0)
-
-  return {
-    uid: event.id,
-    title: event.title,
-    location: event.location ?? '',
-    details: '',
-    start,
-    end,
-    recurrence: event.recurrence,
-  }
-}
-
-export const HomePageEventCard = ({ event, index }: Props) => {
+export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
   const [calendarOpen, setCalendarOpen] = useState(false)
   const anchorRef = useRef<HTMLElement>(null)
 

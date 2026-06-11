@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { buildICS } from '@/helpers/build-ics'
 import { fmtUtc } from '@/helpers/format-utc'
+import { fmtDate } from '@/helpers/fmt-date'
 
 export type CalendarEvent = {
   start: Date
@@ -26,7 +27,8 @@ export const useCalendarLinks = (event: CalendarEvent) => {
       event.location,
       event.details ?? '',
       event.uid,
-      event.recurrence
+      event.recurrence,
+      event.allDay
     )
     const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' })
     const url = URL.createObjectURL(blob)
@@ -41,10 +43,15 @@ export const useCalendarLinks = (event: CalendarEvent) => {
     event.details,
     event.uid,
     event.recurrence,
+    event.allDay,
   ])
 
   const googleHref = useMemo(() => {
-    const dates = `${fmtUtc(event.start)}/${fmtUtc(event.end)}`
+    // Google Calendar: całodniowe = "YYYYMMDD/YYYYMMDD", z godziną = "YYYYMMDDTHHMMSSZ/..."
+    const dates = event.allDay
+      ? `${fmtDate(event.start)}/${fmtDate(event.end)}`
+      : `${fmtUtc(event.start)}/${fmtUtc(event.end)}`
+
     const base = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     const params = new URLSearchParams({
       text: event.title,
@@ -62,6 +69,7 @@ export const useCalendarLinks = (event: CalendarEvent) => {
     event.location,
     event.details,
     event.recurrence,
+    event.allDay,
   ])
 
   const icsFilename = `${event.uid ?? event.title.toLowerCase().replace(/\s+/g, '-')}.ics`

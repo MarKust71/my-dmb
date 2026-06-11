@@ -5,12 +5,22 @@ import { motion } from 'framer-motion'
 import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { HomePageEventCard } from '@/components/home-page/home-page-event-card'
 
-type Props = {
-  events: HomePageEvent[]
+import { UPCOMING_EVENTS } from './upcoming-events.constants'
+
+const isInactive = (event: HomePageEvent): boolean => {
+  if (event.inactive !== undefined) return event.inactive
+
+  const [year, month, day] = event.dateStart.split('-').map(Number)
+  const [hours, minutes] = event.timeEnd.split(':').map(Number)
+  const eventEnd = new Date(year, month - 1, day, hours, minutes)
+
+  return new Date() > eventEnd
 }
 
-export const UpcomingEvents = ({ events }: Props) => {
-  if (events.length === 0) return null
+export const UpcomingEvents = () => {
+  const activeEvents = UPCOMING_EVENTS.filter((event) => !isInactive(event))
+
+  if (activeEvents.length === 0) return null
 
   return (
     <section className="w-full">
@@ -29,7 +39,7 @@ export const UpcomingEvents = ({ events }: Props) => {
       </motion.div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {events.map((event, idx) => (
+        {activeEvents.map((event, idx) => (
           <HomePageEventCard key={event.id} event={event} index={idx} />
         ))}
       </div>
