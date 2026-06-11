@@ -4,7 +4,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'start-up-event-20260425',
     title: 'Start-Up Tarnowskie Góry',
-    date: '2026-04-25',
+    dateStart: '2026-04-25',
     timeStart: '16:00',
     timeEnd: '19:00',
     location: 'Tarnowskie Góry, ul. Opolska 5',
@@ -15,7 +15,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'start-up-event-20260426',
     title: 'Start-Up Warszawa',
-    date: '2026-04-26',
+    dateStart: '2026-04-26',
     timeStart: '14:00',
     timeEnd: '17:00',
     location: 'Warszawa, ul. Zgoda 11',
@@ -26,7 +26,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'diamond-event-20260509',
     title: 'Diamond Event Katowice',
-    date: '2026-05-09',
+    dateStart: '2026-05-09',
     timeStart: '13:00',
     timeEnd: '19:00',
     location: 'Hotel voco by IHG, Katowice, al. Wojciecha Korfantego 9',
@@ -37,7 +37,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'diamond-event-20260607',
     title: 'Diamond Event Warszawa',
-    date: '2026-06-07',
+    dateStart: '2026-06-07',
     timeStart: '14:00',
     timeEnd: '19:00',
     location: 'Novotel Warszawa Airport, Warszawa, ul. 1 Sierpnia 1',
@@ -48,7 +48,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'diamond-event-20260621',
     title: 'Diamond Event Höchberg',
-    date: '2026-06-21',
+    dateStart: '2026-06-21',
     timeStart: '14:00',
     timeEnd: '19:00',
     location: 'Hotel Tari, Höchberg (Niemcy), Hauptstraße 3',
@@ -59,7 +59,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   {
     id: 'power-campus-20260710',
     title: 'Power Campus Trening Zabrze',
-    date: '2026-07-10',
+    dateStart: '2026-07-10',
     timeStart: '19:00',
     timeEnd: '24:00',
     location: 'Park Hotel Diament, Zabrze, ul. 3 Maja 122A',

@@ -4,7 +4,7 @@ export const ONLINE_EVENTS: HomePageEvent[] = [
   {
     id: 'diamond-live-event',
     title: 'Diamond Live',
-    date: 'każdy poniedziałek',
+    dateStart: 'każdy poniedziałek',
     timeStart: '20:00',
     timeEnd: '21:00',
     location: 'zoom.us/j/89796337110',
@@ -16,7 +16,7 @@ export const ONLINE_EVENTS: HomePageEvent[] = [
   {
     id: 'biznes-espresso-event',
     title: 'Biznes Espresso',
-    date: 'każda sobota',
+    dateStart: 'każda sobota',
     timeStart: '9:00',
     timeEnd: '10:00',
     location: 'zoom.us/j/981646663',

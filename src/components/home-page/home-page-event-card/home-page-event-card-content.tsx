@@ -21,9 +21,9 @@ export const HomePageEventCardContent = ({
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <CalendarDays className="h-4 w-4 shrink-0" />
             <span>
-              {formatDate(event.date) === 'Invalid Date'
-                ? event.date
-                : formatDate(event.date)}
+              {formatDate(event.dateStart) === 'Invalid Date'
+                ? event.dateStart
+                : formatDate(event.dateStart)}
             </span>
           </div>
 
