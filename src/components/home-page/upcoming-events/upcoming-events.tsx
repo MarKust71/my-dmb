@@ -10,7 +10,7 @@ import { UPCOMING_EVENTS } from './upcoming-events.constants'
 const isInactive = (event: HomePageEvent): boolean => {
   if (event.inactive !== undefined) return event.inactive
 
-  const [year, month, day] = event.date.split('-').map(Number)
+  const [year, month, day] = event.dateStart.split('-').map(Number)
   const [hours, minutes] = event.timeEnd.split(':').map(Number)
   const eventEnd = new Date(year, month - 1, day, hours, minutes)
 

@@ -6,4 +6,5 @@ export type CalendarEvent = {
   details?: string
   uid?: string
   recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY'
+  allDay?: boolean
 }
