@@ -60,6 +60,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     id: 'power-campus-20260710',
     title: 'Power Campus Training',
     dateStart: '2026-07-10',
+    dateEnd: '2026-07-12',
     timeStart: '19:00',
     timeEnd: '24:00',
     location: 'Park Hotel Diament, Zabrze, ul. 3 Maja 122A',
