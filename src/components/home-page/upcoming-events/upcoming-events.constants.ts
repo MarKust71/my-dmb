@@ -58,7 +58,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
   },
   {
     id: 'power-campus-20260710',
-    title: 'Power Campus Trening Zabrze',
+    title: 'Power Campus Training',
     dateStart: '2026-07-10',
     timeStart: '19:00',
     timeEnd: '24:00',
