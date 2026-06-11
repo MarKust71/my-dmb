@@ -124,3 +124,19 @@ model MraApplication {
 
   @@unique([email, contextId])
 }
+
+model Event {
+  id         String   @id @default(cuid())
+  title      String
+  dateStart  String   // ISO: 'YYYY-MM-DD' lub tekst np. 'każdy poniedziałek'
+  dateEnd    String?  // ISO: 'YYYY-MM-DD' — tylko dla wydarzeń wielodniowych
+  timeStart  String   // 'HH:MM'
+  timeEnd    String   // 'HH:MM'
+  location   String?
+  image      String?  // Firebase Storage URL
+  href       String?
+  recurrence String?  // 'WEEKLY' | 'DAILY' | 'MONTHLY'
+  inactive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

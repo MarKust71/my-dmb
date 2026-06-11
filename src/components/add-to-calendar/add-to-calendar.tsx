@@ -16,8 +16,7 @@ import {
 import { useCalendarLinks } from '@/hooks/use-calendar-links'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { CalendarOptionsProps } from '@/components/add-to-calendar/add-to-calendar.types'
-
-import { AddToCalendarOptions } from './add-to-calendar-options'
+import { AddToCalendarOptions } from '@/components/add-to-calendar/add-to-calendar-options'
 
 export const AddToCalendar = ({
   event,
