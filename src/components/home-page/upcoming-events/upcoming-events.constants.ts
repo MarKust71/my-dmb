@@ -68,4 +68,38 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     image:
       'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fpower-campus-20260710-1.jpg?alt=media&token=e68d96c6-a2c1-45c2-ba10-2ff53a4689b0',
   },
+  {
+    id: 'diamond-event-20260829',
+    title: 'Diamond Event Warszawa',
+    dateStart: '2026-08-29',
+    timeStart: '14:00',
+    timeEnd: '19:00',
+    location: 'Warszawa',
+    // href: '/events/diamond-event/20260615',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fdiamond-event-katowice-20260509-1.jpeg?alt=media&token=fcf9aa56-a02e-4093-a818-43826a96b5da',
+  },
+  {
+    id: 'diamond-event-20260830',
+    title: 'Diamond Event Śląsk',
+    dateStart: '2026-08-30',
+    timeStart: '14:00',
+    timeEnd: '19:00',
+    location: 'Śląsk',
+    // href: '/events/diamond-event/20260615',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fdiamond-event-katowice-20260509-1.jpeg?alt=media&token=fcf9aa56-a02e-4093-a818-43826a96b5da',
+  },
+  {
+    id: 'power-campus-20261023',
+    title: 'Power Campus Gliwice',
+    dateStart: '2026-10-23',
+    dateEnd: '2026-10-25',
+    timeStart: '19:00',
+    timeEnd: '24:00',
+    location: 'PreZero Arena Gliwice, ul. Akademicka 50',
+    // href: '/events/diamond-event/20260615',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fpower-campus-2025-10.jpg?alt=media&token=6f663733-0b61-455c-bcde-286dfcec349f',
+  },
 ]
