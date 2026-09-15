@@ -25,6 +25,12 @@ export async function generateMetadata({
       }
     }
 
+    case UserId.RENATA_DWILEWICZ: {
+      return {
+        title: `myDMB App | Contact | ${UserContext.RENATA_DWILEWICZ} | Zoom`,
+      }
+    }
+
     default:
       return {
         title: 'myDMB App',
@@ -32,10 +38,22 @@ export async function generateMetadata({
   }
 }
 
-const Component = () => {
+const Component = async ({ params }: PageProps<PageParams>) => {
+  const { id } = await params
+
+  const backgroundImageClass =
+    id === UserId.RENATA_DWILEWICZ
+      ? 'bg-[url("/img/contact/zoom/renata-dwilewicz.png")] bg-cover bg-[position:50%_20%] bg-no-repeat'
+      : undefined
+
+  const url =
+    id === UserId.RENATA_DWILEWICZ
+      ? 'https://zoom.us/j/85891761093'
+      : undefined
+
   return (
     <div className={'min-h-screen flex flex-col'}>
-      <ContactZoom />
+      <ContactZoom backgroundImageClass={backgroundImageClass} url={url} />
     </div>
   )
 }

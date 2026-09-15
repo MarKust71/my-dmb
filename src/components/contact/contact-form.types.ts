@@ -31,11 +31,13 @@ export enum ContactType {
 export enum UserContext {
   SYLWIA_STACHOW = 'Sylwia Stachów',
   MAREK_KUSTOSZ = 'Marek Kustosz',
+  RENATA_DWILEWICZ = 'Renata Dwilewicz',
 }
 
 export enum UserId {
   SYLWIA_STACHOW = 'sylwia-stachow',
   MAREK_KUSTOSZ = 'marek-kustosz',
+  RENATA_DWILEWICZ = 'renata-dwilewicz',
 }
 
 export enum UserIdShort {
