@@ -5,9 +5,15 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { EventBoxLink } from '@/components/ui/boxes/event-box/event-box-link'
 import { cn } from '@/lib/utils'
 
-export const ContactZoom = () => {
-  const url = 'https://zoom.us/j/2581716586'
+type ContactZoomProps = {
+  url?: string
+  backgroundImageClass?: string
+}
 
+export const ContactZoom = ({
+  url = 'https://zoom.us/j/2581716586',
+  backgroundImageClass = 'bg-[url("/img/contact/zoom/zoom-consultation-online-h.png")] bg-cover bg-right bg-no-repeat',
+}: ContactZoomProps) => {
   const onButtonClick = () => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -19,7 +25,7 @@ export const ContactZoom = () => {
           className={cn(
             'relative overflow-hidden rounded-2xl border border-border',
             'min-h-[calc(100vh-2rem)] sm:min-h-[720px]',
-            'bg-[url("/img/contact/zoom/zoom-consultation-online-h.png")] bg-cover bg-right bg-no-repeat'
+            backgroundImageClass
           )}
         >
           <div className="absolute inset-0 bg-background/55 lg:bg-background/30" />
