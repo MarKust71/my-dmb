@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { redirect } from 'next/navigation'
 
 import { UserContext, UserId } from '@/components/contact/contact-form.types'
 import './page.scss'
@@ -44,8 +45,14 @@ export async function generateMetadata({
   }
 }
 
+const VALID_USER_IDS: string[] = Object.values(UserId)
+
 const Component = async ({ params }: PageProps<PageParams>) => {
   const { id } = await params
+
+  if (!VALID_USER_IDS.includes(id)) {
+    redirect('/')
+  }
 
   const { backgroundImageClass, url } = (() => {
     switch (id) {
