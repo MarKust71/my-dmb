@@ -1,5 +1,8 @@
 'use client'
 
+import { useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { EventBoxLink } from '@/components/ui/boxes/event-box/event-box-link'
@@ -14,6 +17,8 @@ export const ContactZoom = ({
   url = 'https://zoom.us/j/2581716586',
   backgroundImageClass = 'bg-[url("/img/contact/zoom/zoom-consultation-online-h.png")] bg-cover bg-right bg-no-repeat',
 }: ContactZoomProps) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+
   const onButtonClick = () => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -51,29 +56,56 @@ export const ContactZoom = ({
                 'border-border bg-card/90 backdrop-blur supports-[backdrop-filter]:bg-card/70'
               )}
             >
-              <CardHeader className="text-base font-semibold pb-4 sm:text-lg">
-                Spotkanie w pokoju ZOOM
-              </CardHeader>
+              <button
+                type="button"
+                onClick={() => setIsExpanded((prev) => !prev)}
+                aria-expanded={isExpanded}
+                aria-controls="contact-zoom-details"
+                className="flex w-full items-center justify-between gap-3 p-6 pb-4 text-left sm:pointer-events-none sm:cursor-default"
+              >
+                <CardHeader className="p-0 text-base font-semibold sm:text-lg">
+                  Spotkanie w pokoju ZOOM
+                </CardHeader>
 
-              <CardContent className="pt-0 pb-4">
-                <Button onClick={onButtonClick} size="lg" className="w-full">
-                  Przejdź do pokoju
-                </Button>
-              </CardContent>
+                <ChevronDown
+                  className={cn(
+                    'h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 sm:hidden',
+                    isExpanded ? 'rotate-180' : 'animate-bounce'
+                  )}
+                />
+              </button>
 
-              <CardFooter className="flex flex-col items-start">
-                <p className="text-sm text-muted-foreground">
-                  lub skopiuj link do spotkania:
-                </p>
+              <div
+                id="contact-zoom-details"
+                className={cn(
+                  'grid transition-all duration-300 ease-in-out sm:!grid-rows-[1fr] sm:!opacity-100',
+                  isExpanded
+                    ? 'grid-rows-[1fr] opacity-100'
+                    : 'grid-rows-[0fr] opacity-0'
+                )}
+              >
+                <div className="overflow-hidden">
+                  <CardContent className="pt-0 pb-4">
+                    <Button onClick={onButtonClick} size="lg" className="w-full">
+                      Przejdź do pokoju
+                    </Button>
+                  </CardContent>
 
-                <div className={'w-full flex flex-row justify-center'}>
-                  <EventBoxLink
-                    url={url}
-                    className="text-sm text-muted-foreground mt-0"
-                    stroke="currentColor"
-                  />
+                  <CardFooter className="flex flex-col items-start">
+                    <p className="text-sm text-muted-foreground">
+                      lub skopiuj link do spotkania:
+                    </p>
+
+                    <div className={'w-full flex flex-row justify-center'}>
+                      <EventBoxLink
+                        url={url}
+                        className="text-sm text-muted-foreground mt-0"
+                        stroke="currentColor"
+                      />
+                    </div>
+                  </CardFooter>
                 </div>
-              </CardFooter>
+              </div>
             </Card>
             {/*</div>*/}
           </div>
