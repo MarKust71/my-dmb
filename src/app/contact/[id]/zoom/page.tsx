@@ -31,6 +31,12 @@ export async function generateMetadata({
       }
     }
 
+    case UserId.RADEK_DWILEWICZ: {
+      return {
+        title: `myDMB App | Contact | ${UserContext.RADEK_DWILEWICZ} | Zoom`,
+      }
+    }
+
     default:
       return {
         title: 'myDMB App',
@@ -41,15 +47,26 @@ export async function generateMetadata({
 const Component = async ({ params }: PageProps<PageParams>) => {
   const { id } = await params
 
-  const backgroundImageClass =
-    id === UserId.RENATA_DWILEWICZ
-      ? 'bg-[url("/img/contact/zoom/renata-dwilewicz.png")] bg-cover bg-[position:50%_20%] bg-no-repeat'
-      : undefined
+  const { backgroundImageClass, url } = (() => {
+    switch (id) {
+      case UserId.RENATA_DWILEWICZ:
+        return {
+          backgroundImageClass:
+            'bg-[url("/img/contact/zoom/renata-dwilewicz.png")] bg-cover bg-[position:50%_20%] bg-no-repeat',
+          url: 'https://zoom.us/j/85891761093',
+        }
 
-  const url =
-    id === UserId.RENATA_DWILEWICZ
-      ? 'https://zoom.us/j/85891761093'
-      : undefined
+      case UserId.RADEK_DWILEWICZ:
+        return {
+          backgroundImageClass:
+            'bg-[url("/img/contact/zoom/radek-dwilewicz.png")] bg-cover bg-[position:50%_40%] bg-no-repeat',
+          url: 'https://zoom.us/j/88466979766',
+        }
+
+      default:
+        return { backgroundImageClass: undefined, url: undefined }
+    }
+  })()
 
   return (
     <div className={'min-h-screen flex flex-col'}>

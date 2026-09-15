@@ -32,12 +32,14 @@ export enum UserContext {
   SYLWIA_STACHOW = 'Sylwia Stachów',
   MAREK_KUSTOSZ = 'Marek Kustosz',
   RENATA_DWILEWICZ = 'Renata Dwilewicz',
+  RADEK_DWILEWICZ = 'Radek Dwilewicz',
 }
 
 export enum UserId {
   SYLWIA_STACHOW = 'sylwia-stachow',
   MAREK_KUSTOSZ = 'marek-kustosz',
   RENATA_DWILEWICZ = 'renata-dwilewicz',
+  RADEK_DWILEWICZ = 'radek-dwilewicz',
 }
 
 export enum UserIdShort {
