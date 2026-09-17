@@ -59,7 +59,7 @@ export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
       <AddToCalendar
         event={toCalendarEvent(event)}
         open={calendarOpen}
-        onOpenChange={setCalendarOpen}
+        onOpenChangeAction={setCalendarOpen}
         anchor={anchorRef}
       />
     </motion.div>
