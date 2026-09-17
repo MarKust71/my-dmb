@@ -4,6 +4,7 @@ type DmbPageContentProps = {
   badge?: string
   title: string
   description?: string
+  showLogo?: boolean
   children: React.ReactNode
 }
 
@@ -11,6 +12,7 @@ export const DmbPageContent = ({
   badge,
   title,
   description,
+  showLogo,
   children,
 }: DmbPageContentProps) => {
   return (
@@ -31,15 +33,19 @@ export const DmbPageContent = ({
             )}
           </div>
 
-          <div className="shrink-0">
-            <DmbLogo size={50} />
-          </div>
+          {showLogo && (
+            <div className="shrink-0">
+              <DmbLogo size={50} />
+            </div>
+          )}
         </div>
 
         <div className="hidden sm:block">
-          <div className="mb-10 flex justify-center">
-            <DmbLogo size={150} />
-          </div>
+          {showLogo && (
+            <div className="mb-10 flex justify-center">
+              <DmbLogo size={150} />
+            </div>
+          )}
 
           {badge && (
             <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm">
