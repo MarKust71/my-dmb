@@ -62,3 +62,8 @@ export type MraContext = Prisma.MraContextModel
  * 
  */
 export type MraApplication = Prisma.MraApplicationModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel

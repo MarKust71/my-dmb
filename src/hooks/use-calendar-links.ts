@@ -6,7 +6,15 @@ import { buildICS } from '@/helpers/build-ics'
 import { fmtUtc } from '@/helpers/format-utc'
 import { fmtDate } from '@/helpers/fmt-date'
 
-import { CalendarEvent } from './use-calendar-links.types'
+export type CalendarEvent = {
+  start: Date
+  end: Date
+  title: string
+  location: string
+  details?: string
+  uid?: string
+  recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY'
+}
 
 export const useCalendarLinks = (event: CalendarEvent) => {
   const [icsHref, setIcsHref] = useState<string | null>(null)

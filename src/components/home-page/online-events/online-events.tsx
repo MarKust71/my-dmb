@@ -2,11 +2,15 @@
 
 import { motion } from 'framer-motion'
 
+import { HomePageEvent } from '@/components/home-page/home-page-event.types'
 import { HomePageEventCard } from '@/components/home-page/home-page-event-card'
-import { ONLINE_EVENTS } from '@/components/home-page/online-events/online-events.constants'
 
-export const OnlineEvents = () => {
-  if (ONLINE_EVENTS.length === 0) return null
+type Props = {
+  events: HomePageEvent[]
+}
+
+export const OnlineEvents = ({ events }: Props) => {
+  if (events.length === 0) return null
 
   return (
     <section className="w-full">
@@ -25,7 +29,7 @@ export const OnlineEvents = () => {
       </motion.div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {ONLINE_EVENTS.map((event, idx) => (
+        {events.map((event, idx) => (
           <HomePageEventCard key={event.id} event={event} index={idx} />
         ))}
       </div>
