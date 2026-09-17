@@ -10,15 +10,25 @@ import { useQrStore } from '@/store/use-qr-store'
 import { FormCardHeader } from './form-card-header'
 import { FormCardContent } from './form-card-content'
 import { GeneratedUrlCard } from './generated-url-card'
-import { loadFromLocalStorage, saveToLocalStorage } from './helpers'
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+  sanitizeDigits,
+} from './helpers'
 import { FormSchema } from './schema/form-schema'
-import { FormValues } from './product-page-to-qrcode.types'
+import {
+  FormValues,
+  ProductPageToQrcodeProps,
+} from './product-page-to-qrcode.types'
 
 // ---- localStorage helpers ---------------------------------------------------
 const LS_KEY = 'abo-link-form'
 
 // ---- Component --------------------------------------------------------------
-export function ProductPageToQrcode() {
+export function ProductPageToQrcode({
+  aboSponsor,
+  product,
+}: ProductPageToQrcodeProps) {
   // selecty ze store (unikamy rerenderów na każdy stan dzięki selektorom)
   const generatedUrl = useQrStore((s) => s.generatedUrl)
   const isCompact = useQrStore((s) => s.isCompact)
@@ -32,6 +42,7 @@ export function ProductPageToQrcode() {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
     watch,
   } = useForm<FormValues>({
@@ -44,6 +55,11 @@ export function ProductPageToQrcode() {
   useEffect(() => {
     const stored = loadFromLocalStorage(LS_KEY)
     if (stored) reset(stored)
+
+    // query params nadpisują wartości wczytane z localStorage
+    const sanitizedAboSponsor = aboSponsor ? sanitizeDigits(aboSponsor) : ''
+    if (sanitizedAboSponsor) setValue('aboSponsor', sanitizedAboSponsor)
+    if (product) setValue('linkUrl', product)
 
     // ustaw compact z media query tylko, gdy persist nie zdążył nadpisać
     if (typeof window !== 'undefined') {
