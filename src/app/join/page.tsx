@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 
 import { LinkCtaButton } from '@/components/join/link-cta-button'
-import { DmbLogo } from '@/components/ui/dmb-logo'
-import { DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
+import { DmbPageContent, DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -17,25 +16,11 @@ const URL_THREE = 'https://www.amway.pl/pl/?opt=1&aboSponsor=8286448'
 const JoinPage = async () => {
   return (
     <DmbPageWrapper>
-      <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-        <header className="mb-10">
-          <div className="mb-10 flex justify-center">
-            <DmbLogo size={150} />
-          </div>
-
-          <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm">
-            Panel szybkich akcji
-          </div>
-
-          <h1 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Wybierz swoją własną drogę
-          </h1>
-
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Trzy najważniejsze łącza w jednym miejscu
-          </p>
-        </header>
-
+      <DmbPageContent
+        badge="Panel szybkich akcji"
+        title="Wybierz swoją własną drogę"
+        description="Trzy najważniejsze łącza w jednym miejscu"
+      >
         <section className="grid gap-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <LinkCtaButton
@@ -64,7 +49,7 @@ const JoinPage = async () => {
           Tip: łącza otworzą się w nowym oknie. Zawsze możesz tu wrócić i wybrać
           lepszy wartiant.
         </footer>
-      </div>
+      </DmbPageContent>
     </DmbPageWrapper>
   )
 }
