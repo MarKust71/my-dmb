@@ -22,66 +22,116 @@ export const FormCardButtons = ({
   const resetOutput = useQrStore((s) => s.resetOutput)
   const isWorking = useQrStore((s) => s.isWorking)
 
+  const handleClear = () => {
+    setSuppressNextSave(true) // nie zapisuj pustych po reset
+    reset({ aboSponsor: '', linkUrl: '' })
+    resetOutput()
+    clearLocalStorage(lsKey) // czyścimy LS TYLKO tutaj
+    toast({
+      title: 'Wyczyszczono',
+      description: 'Formularz został wyczyszczony.',
+    })
+  }
+
+  const handleSearch = () => {
+    window.open(buildAmwaySearchUrl(linkUrl), '_blank', 'noopener,noreferrer')
+  }
+
+  const buttonClassName = isCompact ? 'h-9 px-3 text-sm' : ''
+  const skeletonClassName = `${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`
+  const gapClassName = isCompact ? 'gap-2' : 'gap-3'
+
   return (
-    <div
-      className={`flex items-center justify-between ${isCompact ? 'gap-2' : 'gap-3'}`}
-    >
-      {isHydrated ? (
-        <>
-          <div className={`flex items-center ${isCompact ? 'gap-2' : 'gap-3'}`}>
-            <Button
-              type="button"
-              variant="outline"
-              className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-              onClick={() => {
-                setSuppressNextSave(true) // nie zapisuj pustych po reset
-                reset({ aboSponsor: '', linkUrl: '' })
-                resetOutput()
-                clearLocalStorage(lsKey) // czyścimy LS TYLKO tutaj
-                toast({
-                  title: 'Wyczyszczono',
-                  description: 'Formularz został wyczyszczony.',
-                })
-              }}
+    <>
+      {/* Mobile: Wyczyść + Generuj w jednej linii, Wyszukaj poniżej po lewej */}
+      <div className={`flex flex-col sm:hidden ${gapClassName}`}>
+        {isHydrated ? (
+          <>
+            <div
+              className={`flex items-center justify-between ${gapClassName}`}
             >
-              Wyczyść
-            </Button>
+              <Button
+                type="button"
+                variant="outline"
+                className={buttonClassName}
+                onClick={handleClear}
+              >
+                Wyczyść
+              </Button>
+
+              <Button
+                type="submit"
+                disabled={isWorking}
+                className={buttonClassName}
+              >
+                {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
+              </Button>
+            </div>
 
             <Button
               type="button"
               variant="outline"
-              className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-              onClick={() => {
-                window.open(
-                  buildAmwaySearchUrl(linkUrl),
-                  '_blank',
-                  'noopener,noreferrer'
-                )
-              }}
+              className={`w-fit ${buttonClassName}`}
+              onClick={handleSearch}
             >
               Wyszukaj w Amway
             </Button>
-          </div>
+          </>
+        ) : (
+          <>
+            <div
+              className={`flex items-center justify-between ${gapClassName}`}
+            >
+              <Skeleton className={skeletonClassName} />
+              <Skeleton className={skeletonClassName} />
+            </div>
 
-          <Button
-            type="submit"
-            disabled={isWorking}
-            className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-          >
-            {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
-          </Button>
-        </>
-      ) : (
-        <>
-          <Skeleton
-            className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-          />
+            <Skeleton className={skeletonClassName} />
+          </>
+        )}
+      </div>
 
-          <Skeleton
-            className={`${isCompact ? 'h-9 w-28' : 'h-10 w-32'} rounded-xl`}
-          />
-        </>
-      )}
-    </div>
+      {/* Desktop: wszystkie trzy przyciski w jednej linii */}
+      <div
+        className={`hidden items-center justify-between sm:flex ${gapClassName}`}
+      >
+        {isHydrated ? (
+          <>
+            <div className={`flex items-center ${gapClassName}`}>
+              <Button
+                type="button"
+                variant="outline"
+                className={buttonClassName}
+                onClick={handleClear}
+              >
+                Wyczyść
+              </Button>
+
+              <Button
+                type="button"
+                variant="outline"
+                className={buttonClassName}
+                onClick={handleSearch}
+              >
+                Wyszukaj w Amway
+              </Button>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isWorking}
+              className={buttonClassName}
+            >
+              {isWorking ? 'Przetwarzanie…' : 'Generuj link i QR'}
+            </Button>
+          </>
+        ) : (
+          <>
+            <Skeleton className={skeletonClassName} />
+            <Skeleton className={skeletonClassName} />
+          </>
+        )}
+      </div>
+    </>
   )
 }
