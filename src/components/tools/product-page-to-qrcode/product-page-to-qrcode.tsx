@@ -100,6 +100,7 @@ export function ProductPageToQrcode({
           errors={errors}
           reset={reset}
           lsKey={LS_KEY}
+          linkUrl={values.linkUrl}
         />
       </Card>
 

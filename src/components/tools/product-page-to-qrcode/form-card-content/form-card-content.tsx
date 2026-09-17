@@ -20,6 +20,7 @@ export const FormCardContent = ({
   errors,
   reset,
   lsKey,
+  linkUrl,
 }: FormCardContentProps) => {
   const { toast } = useToast()
 
@@ -39,7 +40,7 @@ export const FormCardContent = ({
 
       if (/^\d{4,6}$/.test(data.linkUrl.trim())) {
         toast({
-          title: 'Rozpoznano kod produktu',
+          title: 'Rozpoznano nr katalogowy',
           description: `Zbudowano adres: ${resolved}`,
         })
       } else if (resolved !== data.linkUrl.trim()) {
@@ -56,7 +57,8 @@ export const FormCardContent = ({
     } catch {
       toast({
         title: 'Błąd',
-        description: 'Nie udało się wygenerować linku lub QR.',
+        description:
+          'Nie udało się wygenerować linku lub QR. Podaj poprawny adres URL (z http/https) ALBO 4-6 cyfr numeru katalogowego.',
         variant: 'destructive',
       })
     } finally {
@@ -74,7 +76,7 @@ export const FormCardContent = ({
 
         <FormCardContentLinkUrlInput register={register} errors={errors} />
 
-        <FormCardButtons reset={reset} lsKey={lsKey} />
+        <FormCardButtons reset={reset} lsKey={lsKey} linkUrl={linkUrl} />
 
         <FormCardContactAuthor />
       </form>

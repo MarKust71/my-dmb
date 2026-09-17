@@ -5,8 +5,8 @@ import { useQrStore } from '@/store/use-qr-store'
 
 import { FormCardContentLinkUrlInputProps } from './form-card-content-link-url-input.types'
 
-const linkUrlLabel = 'Link do strony produktu ALBO kod produktu (tylko cyfry)'
-const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz kod produktu'
+const linkUrlLabel = 'Link do strony produktu ALBO nr katalogowy (tylko cyfry)'
+const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz nr katalogowy'
 
 export const FormCardContentLinkUrlInput = ({
   register,
