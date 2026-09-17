@@ -22,7 +22,7 @@ import { AddToCalendarOptions } from './add-to-calendar-options'
 export const AddToCalendar = ({
   event,
   open,
-  onOpenChange,
+  onOpenChangeAction,
   anchor,
 }: CalendarOptionsProps) => {
   const { icsHref, googleHref, icsFilename } = useCalendarLinks(event)
@@ -39,7 +39,7 @@ export const AddToCalendar = ({
 
   if (isDesktop) {
     return (
-      <Popover open={open} onOpenChange={onOpenChange}>
+      <Popover open={open} onOpenChange={onOpenChangeAction}>
         {/* Niewidoczny anchor dla Popover — pozycjonuje się przy przycisku */}
         <PopoverTrigger asChild>
           <span
@@ -55,7 +55,7 @@ export const AddToCalendar = ({
   }
 
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
+    <Drawer open={open} onOpenChange={onOpenChangeAction}>
       <DrawerContent className="theme-dmb">
         <DrawerHeader className="pb-2">
           <DrawerTitle className="flex items-center gap-2 text-base">

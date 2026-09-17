@@ -1,4 +1,4 @@
-import { CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { CardHeader } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -11,19 +11,7 @@ export const FormCardHeader = () => {
 
   return (
     <CardHeader className={`${isCompact ? 'p-2' : 'p-4'} pb-0`}>
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-col items-start justify-start">
-          <CardTitle className="text-xl">Generator kodu QR</CardTitle>
-
-          {isHydrated ? (
-            <CardDescription>
-              link do strony produktu z&nbsp;numerem&nbsp;PA zapraszającego
-            </CardDescription>
-          ) : (
-            <CardDescription>Ładowanie danych…</CardDescription>
-          )}
-        </div>
-
+      <div className="flex items-center justify-end gap-3">
         {/* Desktop: przełącznik compact */}
         <div className="hidden items-center gap-2 md:flex">
           {isHydrated ? (

@@ -1,12 +1,11 @@
 'use client'
 
-import Image from 'next/image'
 import { Facebook, Globe, Instagram } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
 import { Card } from '@/components/ui/card'
-import DmbLogo from '@/assets/images/dmb-logo.png'
+import { DmbLogo } from '@/components/ui/dmb-logo'
 import { UpcomingEvents } from '@/components/home-page/upcoming-events'
 import { OnlineEvents } from '@/components/home-page/online-events'
 
@@ -58,15 +57,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
-                <Image
-                  src={DmbLogo}
-                  alt="dMb Global"
-                  width={150}
-                  height={150}
-                  priority
-                />
-              </div>
+              <DmbLogo size={150} />
             </motion.div>
 
             <motion.div
