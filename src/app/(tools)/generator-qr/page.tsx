@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
-import { cn } from '@/lib/utils'
 import { ProductPageToQrcode } from '@/components/tools/product-page-to-qrcode'
 import { DmbLogo } from '@/components/ui/dmb-logo'
+import { DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,14 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const GeneratorQrPage = () => {
   return (
-    <main className="theme-dmb relative min-h-dvh bg-gradient-to-b from-background to-muted/40">
-      <div
-        className={cn(
-          'pointer-events-none absolute inset-0 -z-10',
-          'bg-[radial-gradient(900px_circle_at_50%_-200px,hsl(var(--primary)/0.18),transparent_55%)]'
-        )}
-      />
-
+    <DmbPageWrapper>
       <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <header className="mb-10">
           <div className="mb-10 flex justify-center">
@@ -41,7 +34,7 @@ const GeneratorQrPage = () => {
 
         <ProductPageToQrcode />
       </div>
-    </main>
+    </DmbPageWrapper>
   )
 }
 
