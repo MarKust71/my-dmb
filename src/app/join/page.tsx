@@ -20,7 +20,7 @@ const JoinPage = async () => {
   return (
     <DmbPageWrapper>
       <DmbPageContent
-        badge="Panel szybkich akcji"
+        // badge="Panel szybkich akcji"
         title="Wybierz swoją własną drogę"
         description="Trzy najważniejsze łącza w jednym miejscu"
       >

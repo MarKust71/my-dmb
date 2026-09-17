@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 
 import { ProductPageToQrcode } from '@/components/tools/product-page-to-qrcode'
-import { DmbPageContent, DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
+import {
+  DmbPageContent,
+  DmbPageWrapper,
+} from '@/components/ui/dmb-page-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -13,7 +16,7 @@ const GeneratorQrPage = () => {
   return (
     <DmbPageWrapper>
       <DmbPageContent
-        badge="Panel szybkich akcji"
+        // badge="Panel szybkich akcji"
         title="Wygeneruj kod QR"
         description="Link do strony produktu z numerem PA zapraszającego"
       >
