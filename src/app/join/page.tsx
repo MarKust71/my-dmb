@@ -23,6 +23,7 @@ const JoinPage = async () => {
         // badge="Panel szybkich akcji"
         title="Wybierz swoją własną drogę"
         description="Trzy najważniejsze łącza w jednym miejscu"
+        showLogo
       >
         <section className="grid gap-5 sm:grid-cols-2">
           <LinkCtaButton
