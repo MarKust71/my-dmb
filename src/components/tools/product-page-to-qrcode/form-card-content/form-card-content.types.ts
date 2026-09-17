@@ -10,4 +10,5 @@ export type FormCardContentProps = {
   }
   reset: any
   lsKey: string
+  linkUrl: string
 }

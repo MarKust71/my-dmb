@@ -1,12 +1,19 @@
 import { Button } from '@/components/ui/button'
-import { clearLocalStorage } from '@/components/tools/product-page-to-qrcode/helpers'
+import {
+  buildAmwaySearchUrl,
+  clearLocalStorage,
+} from '@/components/tools/product-page-to-qrcode/helpers'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useQrStore } from '@/store/use-qr-store'
 import { useToast } from '@/components/ui/use-toast'
 
 import { FormCardButtonsProps } from './form-card-buttons.types'
 
-export const FormCardButtons = ({ reset, lsKey }: FormCardButtonsProps) => {
+export const FormCardButtons = ({
+  reset,
+  lsKey,
+  linkUrl,
+}: FormCardButtonsProps) => {
   const { toast } = useToast()
 
   const isCompact = useQrStore((s) => s.isCompact)
@@ -21,23 +28,40 @@ export const FormCardButtons = ({ reset, lsKey }: FormCardButtonsProps) => {
     >
       {isHydrated ? (
         <>
-          <Button
-            type="button"
-            variant="outline"
-            className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
-            onClick={() => {
-              setSuppressNextSave(true) // nie zapisuj pustych po reset
-              reset({ aboSponsor: '', linkUrl: '' })
-              resetOutput()
-              clearLocalStorage(lsKey) // czyścimy LS TYLKO tutaj
-              toast({
-                title: 'Wyczyszczono',
-                description: 'Formularz został wyczyszczony.',
-              })
-            }}
-          >
-            Wyczyść
-          </Button>
+          <div className={`flex items-center ${isCompact ? 'gap-2' : 'gap-3'}`}>
+            <Button
+              type="button"
+              variant="outline"
+              className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+              onClick={() => {
+                setSuppressNextSave(true) // nie zapisuj pustych po reset
+                reset({ aboSponsor: '', linkUrl: '' })
+                resetOutput()
+                clearLocalStorage(lsKey) // czyścimy LS TYLKO tutaj
+                toast({
+                  title: 'Wyczyszczono',
+                  description: 'Formularz został wyczyszczony.',
+                })
+              }}
+            >
+              Wyczyść
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              className={`${isCompact ? 'h-9 px-3 text-sm' : ''}`}
+              onClick={() => {
+                window.open(
+                  buildAmwaySearchUrl(linkUrl),
+                  '_blank',
+                  'noopener,noreferrer'
+                )
+              }}
+            >
+              Wyszukaj w Amway
+            </Button>
+          </div>
 
           <Button
             type="submit"
