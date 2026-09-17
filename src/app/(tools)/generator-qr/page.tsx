@@ -1,9 +1,8 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 import { ProductPageToQrcode } from '@/components/tools/product-page-to-qrcode'
-import DmbLogo from '@/assets/images/dmb-logo.png'
+import { DmbLogo } from '@/components/ui/dmb-logo'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -24,15 +23,7 @@ const GeneratorQrPage = () => {
       <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
         <header className="mb-10">
           <div className="mb-10 flex justify-center">
-            <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
-              <Image
-                src={DmbLogo}
-                alt="dMb Global"
-                width={150}
-                height={150}
-                priority
-              />
-            </div>
+            <DmbLogo size={150} />
           </div>
 
           <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm">

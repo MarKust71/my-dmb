@@ -1,8 +1,7 @@
-import Image from 'next/image'
 import { Metadata } from 'next'
 
 import { DashboardWrapper } from '@/components/dashboard/dashboard-wrapper'
-import DmbLogo from '@/assets/images/dmb-logo.png'
+import { DmbLogo } from '@/components/ui/dmb-logo'
 import { EventList } from '@/components/ui/lists/event-list/event-list'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,15 +16,7 @@ const EventsPage = () => {
       <div className="mx-auto w-full max-w-xl px-4 py-12 sm:px-6 sm:py-16 sm:max-w-4xl">
         <header className="mb-10">
           <div className="mb-10 flex justify-center">
-            <div className="rounded-2xl bg-card/80 px-7 py-5 shadow-sm ring-1 ring-border">
-              <Image
-                src={DmbLogo}
-                alt="dMb Global"
-                width={150}
-                height={150}
-                priority
-              />
-            </div>
+            <DmbLogo size={150} />
           </div>
 
           <div className="inline-flex items-center rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm">
