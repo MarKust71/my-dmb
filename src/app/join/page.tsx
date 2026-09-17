@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 
 import { LinkCtaButton } from '@/components/join/link-cta-button'
-import { DmbPageContent, DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
+import {
+  DmbPageContent,
+  DmbPageWrapper,
+} from '@/components/ui/dmb-page-wrapper'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -22,16 +25,6 @@ const JoinPage = async () => {
         description="Trzy najważniejsze łącza w jednym miejscu"
       >
         <section className="grid gap-5 sm:grid-cols-2">
-          <div className="sm:col-span-2">
-            <LinkCtaButton
-              label="Dołącz w LINII ŻYCIA"
-              description="Wybierasz start profesjonalny, natychmiastową pomoc i najszybsze efekty"
-              href={URL_ONE}
-              featured
-              disabled
-            />
-          </div>
-
           <LinkCtaButton
             label="Dołącz jako PARTNER"
             description="Wybierasz start w swoim własnym tempie"
@@ -43,6 +36,16 @@ const JoinPage = async () => {
             description="Obserwujesz i testujesz produkty"
             href={URL_THREE}
           />
+
+          <div className="sm:col-span-2">
+            <LinkCtaButton
+              label="Dołącz w LINII ŻYCIA"
+              description="Wybierasz start profesjonalny, natychmiastową pomoc i najszybsze efekty"
+              href={URL_ONE}
+              featured
+              disabled
+            />
+          </div>
         </section>
 
         <footer className="mt-10 text-xs text-muted-foreground">
