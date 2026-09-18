@@ -12,9 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const URL_ONE = 'https://www.amway.pl/pl/?opt=2&aboSponsor=7023833738'
-const URL_TWO = 'https://www.amway.pl/pl/?opt=2&aboSponsor=8286448'
-const URL_THREE = 'https://www.amway.pl/pl/?opt=1&aboSponsor=8286448'
+const ABO_SPONSOR = process.env.ABO_SPONSOR
+const ABO_SPONSOR_LIFELINE = process.env.ABO_SPONSOR_LIFELINE
+
+const URL_LIFELINE = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR_LIFELINE}`
+const URL_PARTNER = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR}`
+const URL_CLIENT = `https://www.amway.pl/pl/?opt=1&aboSponsor=${ABO_SPONSOR}`
 
 const JoinPage = async () => {
   return (
@@ -29,20 +32,20 @@ const JoinPage = async () => {
           <LinkCtaButton
             label="Dołącz jako PARTNER"
             description="Wybierasz start w swoim własnym tempie"
-            href={URL_TWO}
+            href={URL_PARTNER}
           />
 
           <LinkCtaButton
             label="Dołącz jako KLIENT"
             description="Obserwujesz i testujesz produkty"
-            href={URL_THREE}
+            href={URL_CLIENT}
           />
 
           <div className="sm:col-span-2">
             <LinkCtaButton
               label="Dołącz w LINII ŻYCIA"
               description="Wybierasz start profesjonalny, natychmiastową pomoc i najszybsze efekty"
-              href={URL_ONE}
+              href={URL_LIFELINE}
               featured
               disabled
             />
