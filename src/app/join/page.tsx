@@ -12,9 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const URL_LIFELINE = 'https://www.amway.pl/pl/?opt=2&aboSponsor=7023833738'
-const URL_PARTNER = 'https://www.amway.pl/pl/?opt=2&aboSponsor=8286448'
-const URL_CLIENT = 'https://www.amway.pl/pl/?opt=1&aboSponsor=8286448'
+const ABO_SPONSOR = '8286448'
+const ABO_SPONSOR_LIFELINE = '7023833738'
+
+const URL_LIFELINE = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR_LIFELINE}`
+const URL_PARTNER = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR}`
+const URL_CLIENT = `https://www.amway.pl/pl/?opt=1&aboSponsor=${ABO_SPONSOR}`
 
 const JoinPage = async () => {
   return (
