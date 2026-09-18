@@ -12,8 +12,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const ABO_SPONSOR = '8286448'
-const ABO_SPONSOR_LIFELINE = '7023833738'
+const ABO_SPONSOR = process.env.ABO_SPONSOR
+const ABO_SPONSOR_LIFELINE = process.env.ABO_SPONSOR_LIFELINE
 
 const URL_LIFELINE = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR_LIFELINE}`
 const URL_PARTNER = `https://www.amway.pl/pl/?opt=2&aboSponsor=${ABO_SPONSOR}`
