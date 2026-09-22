@@ -18,7 +18,7 @@ import { FormCardContentLinkUrlInputProps } from './form-card-content-link-url-i
 const linkUrlLabel = 'Link do strony produktu ALBO nr katalogowy (tylko cyfry)'
 const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz nr katalogowy'
 const linkUrlInfo =
-  'Możesz również wpisać dowolny tekst i użyć „Wyszukaj w Amway”. Na stronie Amway zostaną pokazane wszystkie produkty, dla których zostanie odnalezione którekolwiek z wpisanych słów. Jeśli chcesz wyszukać dokładnie tekst składający się z kilku słów - zamknij go w cudzysłów.'
+  'Numer katalogowy znajdziesz w sklepie Amway. Spróbuj wpisać dowolny tekst i użyć „Wyszukaj w Amway”. Zobaczysz wszystkie produkty, dla których zostanie odnalezione którekolwiek z wpisanych słów. Jeśli chcesz wyszukać dokładnie tekst składający się z kilku słów - zamknij go w cudzysłów. Później skopiuj numer albo adres strony produktu i wklej go w polu generatora.'
 
 export const FormCardContentLinkUrlInput = ({
   register,
