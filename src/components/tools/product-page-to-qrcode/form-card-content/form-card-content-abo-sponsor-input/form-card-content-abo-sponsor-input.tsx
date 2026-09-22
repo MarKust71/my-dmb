@@ -1,3 +1,5 @@
+import { X } from 'lucide-react'
+
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -10,6 +12,7 @@ const aboSponsorPlaceholder = 'np. 8286448'
 
 export const FormCardContentAboSponsorInput = ({
   register,
+  setValue,
   errors,
 }: FormCardContentAboSponsorInputProps) => {
   const isHydrated = useQrStore((s) => s.isHydrated)
@@ -21,14 +24,30 @@ export const FormCardContentAboSponsorInput = ({
 
       {isHydrated ? (
         <>
-          <Input
-            id="aboSponsor"
-            type="text"
-            inputMode="numeric"
-            placeholder={aboSponsorPlaceholder}
-            className={`${isCompact ? 'h-9 text-sm' : ''}`}
-            {...register('aboSponsor')}
-          />
+          <div className="relative">
+            <Input
+              id="aboSponsor"
+              type="text"
+              inputMode="numeric"
+              placeholder={aboSponsorPlaceholder}
+              className={`pr-9 ${isCompact ? 'h-9 text-sm' : ''}`}
+              {...register('aboSponsor')}
+            />
+
+            <button
+              type="button"
+              onClick={() =>
+                setValue('aboSponsor', '', {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                })
+              }
+              aria-label="Wyczyść pole"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
 
           {errors.aboSponsor && (
             <p className="mt-1 text-sm text-red-600">

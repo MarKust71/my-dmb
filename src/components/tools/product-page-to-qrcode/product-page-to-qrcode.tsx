@@ -97,6 +97,7 @@ export function ProductPageToQrcode({
         <FormCardContent
           handleSubmit={handleSubmit}
           register={register}
+          setValue={setValue}
           errors={errors}
           reset={reset}
           lsKey={LS_KEY}

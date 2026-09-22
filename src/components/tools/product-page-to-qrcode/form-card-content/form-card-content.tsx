@@ -17,6 +17,7 @@ import { FormCardContentProps } from './form-card-content.types'
 export const FormCardContent = ({
   handleSubmit,
   register,
+  setValue,
   errors,
   reset,
   lsKey,
@@ -72,9 +73,17 @@ export const FormCardContent = ({
         onSubmit={handleSubmit(onSubmit)}
         className={`grid ${isCompact ? 'gap-3' : 'gap-4'}`}
       >
-        <FormCardContentAboSponsorInput register={register} errors={errors} />
+        <FormCardContentAboSponsorInput
+          register={register}
+          setValue={setValue}
+          errors={errors}
+        />
 
-        <FormCardContentLinkUrlInput register={register} errors={errors} />
+        <FormCardContentLinkUrlInput
+          register={register}
+          setValue={setValue}
+          errors={errors}
+        />
 
         <FormCardButtons reset={reset} lsKey={lsKey} linkUrl={linkUrl} />
 

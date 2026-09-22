@@ -5,6 +5,7 @@ import { FormValues } from '@/components/tools/product-page-to-qrcode/product-pa
 export type FormCardContentProps = {
   handleSubmit: any
   register: any
+  setValue: any
   errors: Partial<FieldErrorsImpl<DeepRequired<FormValues>>> & {
     root?: Record<string, GlobalError> & GlobalError
   }
