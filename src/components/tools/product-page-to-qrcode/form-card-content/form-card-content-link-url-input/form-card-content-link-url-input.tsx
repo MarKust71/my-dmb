@@ -1,14 +1,24 @@
-import { X } from 'lucide-react'
+import { useState } from 'react'
+import { Info, X } from 'lucide-react'
 
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { useQrStore } from '@/store/use-qr-store'
 
 import { FormCardContentLinkUrlInputProps } from './form-card-content-link-url-input.types'
 
 const linkUrlLabel = 'Link do strony produktu ALBO nr katalogowy (tylko cyfry)'
 const linkUrlPlaceholder = 'wklej tu adres strony ALBO wpisz nr katalogowy'
+const linkUrlInfo =
+  'Możesz również wpisać dowolny tekst i użyć „Wyszukaj w Amway”. Na stronie Amway zostaną pokazane wszystkie produkty, dla których zostanie odnalezione którekolwiek z wpisanych słów. Jeśli chcesz wyszukać dokładnie tekst składający się z kilku słów - zamknij go w cudzysłów.'
 
 export const FormCardContentLinkUrlInput = ({
   register,
@@ -17,10 +27,32 @@ export const FormCardContentLinkUrlInput = ({
 }: FormCardContentLinkUrlInputProps) => {
   const isHydrated = useQrStore((s) => s.isHydrated)
   const isCompact = useQrStore((s) => s.isCompact)
+  const [isInfoOpen, setIsInfoOpen] = useState(false)
 
   return (
     <div>
-      <Label htmlFor="linkUrl">{linkUrlLabel}</Label>
+      <Label htmlFor="linkUrl">
+        {linkUrlLabel}
+
+        <button
+          type="button"
+          onClick={() => setIsInfoOpen(true)}
+          aria-label="Więcej informacji"
+          className="ml-1 align-super text-muted-foreground hover:text-foreground"
+        >
+          <Info className="inline h-3 w-3" />
+        </button>
+      </Label>
+
+      <Dialog open={isInfoOpen} onOpenChange={setIsInfoOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Wskazówka</DialogTitle>
+          </DialogHeader>
+
+          <DialogDescription>{linkUrlInfo}</DialogDescription>
+        </DialogContent>
+      </Dialog>
 
       {isHydrated ? (
         <>
