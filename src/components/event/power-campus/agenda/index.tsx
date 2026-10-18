@@ -33,8 +33,10 @@ export const PowerCampusAgenda = () => {
                 Agenda
               </h1>
 
-              <p className="mt-3 text-lg font-semibold sm:text-xl">
-                {AGENDA_EVENT.title} · {AGENDA_EVENT.dates}
+              <p className="mt-3 flex flex-col text-lg font-semibold sm:block sm:text-xl">
+                <span>{AGENDA_EVENT.title}</span>
+                <span className="hidden sm:inline"> · </span>
+                <span>{AGENDA_EVENT.dates}</span>
               </p>
 
               <p className="mt-1 text-sm text-muted-foreground">
