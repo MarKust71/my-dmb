@@ -109,6 +109,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     timeStart: '19:00',
     timeEnd: '24:00',
     location: 'PreZero Arena Gliwice, Gliwice, ul. Akademicka 50',
+    agendaHref: '/powercampus/agenda',
     // href: '/events/diamond-event/20260615',
     image:
       'https://firebasestorage.googleapis.com/v0/b/my-dmb.appspot.com/o/media%2Fimage%2Fevent%2Fpower-campus-2025-10.jpg?alt=media&token=6f663733-0b61-455c-bcde-286dfcec349f',
