@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ListChecks } from 'lucide-react'
 
 import { Card } from '@/components/ui/card'
 import { AddToCalendar } from '@/components/add-to-calendar'
@@ -22,9 +23,11 @@ export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
     setCalendarOpen(true)
   }
 
+  const agendaHref = event.agendaHref?.trim()
+
   return (
     <motion.div
-      className="h-full"
+      className="flex h-full flex-col gap-2"
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -32,7 +35,7 @@ export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
     >
       <Card
         className={cn(
-          'h-full overflow-hidden rounded-2xl bg-card/80 shadow-sm ring-1 ring-border transition-all',
+          'flex-1 overflow-hidden rounded-2xl bg-card/80 shadow-sm ring-1 ring-border transition-all',
           'hover:bg-card hover:shadow-md',
           event.href ? 'cursor-pointer' : 'cursor-default'
         )}
@@ -55,6 +58,16 @@ export const HomePageEventCard = ({ event, index }: HomePageEventCardProps) => {
           />
         )}
       </Card>
+
+      {agendaHref && (
+        <Link
+          href={agendaHref}
+          className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary no-underline transition hover:bg-primary/20"
+        >
+          <ListChecks className="h-4 w-4" />
+          <span>Zobacz agendę</span>
+        </Link>
+      )}
 
       <AddToCalendar
         event={toCalendarEvent(event)}

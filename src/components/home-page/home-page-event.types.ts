@@ -8,6 +8,7 @@ export type HomePageEvent = {
   location?: string
   image?: string // ścieżka do grafiki (np. '/img/event/power-campus.jpeg')
   href?: string // link do dedykowanej strony eventu
+  agendaHref?: string // route agendy; jeśli pusty/brak, pasek "Zobacz agendę" jest ukryty
   inactive?: boolean // jeśli nie podane, wyliczane automatycznie na podstawie date + timeEnd
   recurrence?: 'WEEKLY' | 'DAILY' | 'MONTHLY' // dla wydarzeń cyklicznych
 }
