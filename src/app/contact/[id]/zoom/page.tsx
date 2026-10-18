@@ -67,7 +67,7 @@ const Component = async ({ params }: PageProps<PageParams>) => {
         return {
           backgroundImageClass:
             'bg-[url("/img/contact/zoom/radek-dwilewicz.png")] bg-cover bg-[position:50%_40%] bg-no-repeat',
-          url: 'https://zoom.us/j/88466979766',
+          url: 'https://zoom.us/j/82630791908',
         }
 
       default:
