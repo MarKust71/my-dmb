@@ -10,10 +10,17 @@ import { AgendaDay as AgendaDayData } from './constants'
 type AgendaDayProps = {
   day: AgendaDayData
   isOpen: boolean
+  // dopóki użytkownik nie kliknął, wygląd wynika z szerokości ekranu (CSS)
+  followViewport: boolean
   onToggle: () => void
 }
 
-export const AgendaDay = ({ day, isOpen, onToggle }: AgendaDayProps) => {
+export const AgendaDay = ({
+  day,
+  isOpen,
+  followViewport,
+  onToggle,
+}: AgendaDayProps) => {
   const contentId = useId()
 
   return (
@@ -37,7 +44,9 @@ export const AgendaDay = ({ day, isOpen, onToggle }: AgendaDayProps) => {
               aria-hidden
               className={cn(
                 'h-5 w-5 text-primary transition-transform duration-300',
-                isOpen && 'rotate-180'
+                followViewport
+                  ? 'rotate-180 max-sm:rotate-0'
+                  : isOpen && 'rotate-180'
               )}
             />
           </span>
@@ -48,7 +57,11 @@ export const AgendaDay = ({ day, isOpen, onToggle }: AgendaDayProps) => {
         id={contentId}
         className={cn(
           'grid transition-[grid-template-rows,visibility] duration-300 ease-in-out',
-          isOpen ? 'visible grid-rows-[1fr]' : 'invisible grid-rows-[0fr]'
+          followViewport
+            ? 'visible grid-rows-[1fr] max-sm:invisible max-sm:grid-rows-[0fr]'
+            : isOpen
+              ? 'visible grid-rows-[1fr]'
+              : 'invisible grid-rows-[0fr]'
         )}
       >
         <ul className="min-h-0 overflow-hidden">
