@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { SessionProvider } from 'next-auth/react'
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
@@ -10,12 +10,26 @@ import { Analytics } from '@vercel/analytics/next'
 import { cn } from '@/lib/utils'
 import { auth } from '@/auth'
 import { Toaster } from '@/components/ui/toaster'
+import { SITE_URL } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'myDMB | strona główna',
   description: 'wspierana przez społeczność "dMb Global"',
+  openGraph: {
+    type: 'website',
+    locale: 'pl_PL',
+    siteName: 'myDMB',
+    title: 'myDMB | strona główna',
+    description: 'wspierana przez społeczność "dMb Global"',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'myDMB | strona główna',
+    description: 'wspierana przez społeczność "dMb Global"',
+  },
 }
 
 export default async function RootLayout({
@@ -27,7 +41,7 @@ export default async function RootLayout({
 
   return (
     <SessionProvider session={session}>
-      <html lang="en" className="light">
+      <html lang="pl" className="light">
         <head>
           <link
             rel="apple-touch-icon"
@@ -81,7 +95,6 @@ export default async function RootLayout({
         </body>
 
         <GoogleTagManager gtmId={`${process.env.NEXT_PUBLIC_GTM_ID}`} />
-        <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA_ID}`} />
       </html>
     </SessionProvider>
   )
