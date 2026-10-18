@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import DmbLogoImage from '@/assets/images/dmb-logo.png'
 import { DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
@@ -14,14 +15,20 @@ export const PowerCampusAgenda = () => {
         <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
           <header className="mb-10 flex flex-col items-center gap-6 sm:mb-14">
             <div className="flex w-full items-center justify-between gap-4">
-              <Image
-                src={DmbLogoImage}
-                alt="dMb Global"
-                width={96}
-                height={82}
-                priority
-                className="h-auto w-16 sm:w-24"
-              />
+              <Link
+                href="/"
+                aria-label="dMb Global – strona główna"
+                className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Image
+                  src={DmbLogoImage}
+                  alt="dMb Global"
+                  width={96}
+                  height={82}
+                  priority
+                  className="h-auto w-16 sm:w-24"
+                />
+              </Link>
 
               <PowerCampusLogo />
             </div>
