@@ -25,7 +25,7 @@ export const AGENDA: AgendaDay[] = [
       { time: '17:00 – 18:00', title: '21% & UP MEETING' },
       { time: '19:30', title: 'Meeting room opening', muted: true },
       { time: '19:45', title: 'EVENT START', highlight: true },
-      { time: '22:00', title: 'End', muted: true },
+      { time: '22:00', title: 'Finish', muted: true },
     ],
   },
   {
@@ -49,7 +49,7 @@ export const AGENDA: AgendaDay[] = [
         title: 'RECOGNITION & OSCAR NIGHT',
         highlight: true,
       },
-      { time: '00:00', title: 'End', muted: true },
+      { time: '00:00', title: 'Finish', muted: true },
     ],
   },
   {
@@ -63,7 +63,7 @@ export const AGENDA: AgendaDay[] = [
         title: 'MEETING SESSION (with short break)',
         highlight: true,
       },
-      { time: '13:30', title: 'End', muted: true },
+      { time: '13:30', title: 'Finish', muted: true },
     ],
   },
 ]
