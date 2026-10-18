@@ -2,9 +2,9 @@ import Image from 'next/image'
 
 import DmbLogoImage from '@/assets/images/dmb-logo.png'
 import { DmbPageWrapper } from '@/components/ui/dmb-page-wrapper'
-import { cn } from '@/lib/utils'
 
-import { AGENDA, AGENDA_EVENT } from './constants'
+import { AgendaDays } from './agenda-days'
+import { AGENDA_EVENT } from './constants'
 import { PowerCampusLogo } from './power-campus-logo'
 
 export const PowerCampusAgenda = () => {
@@ -45,48 +45,7 @@ export const PowerCampusAgenda = () => {
             </div>
           </header>
 
-          <div className="flex flex-col gap-8">
-            {AGENDA.map((day) => (
-              <section
-                key={day.name}
-                className="overflow-hidden rounded-2xl border border-primary/30 bg-card/80 shadow-lg shadow-black/20"
-              >
-                <h2 className="flex items-baseline justify-between bg-gradient-to-r from-primary/25 via-primary/10 to-transparent px-5 py-3 text-lg font-semibold tracking-wide sm:px-6">
-                  <span>{day.name}</span>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    {day.date}
-                  </span>
-                </h2>
-
-                <ul>
-                  {day.items.map((item, index) => (
-                    <li
-                      key={`${item.time}-${index}`}
-                      className={cn(
-                        'grid grid-cols-[6.5rem_1fr] items-baseline gap-x-4 border-l-2 border-t border-border border-l-transparent px-5 py-3 text-sm sm:grid-cols-[9rem_1fr] sm:px-6 sm:text-base',
-                        item.highlight &&
-                          'border-l-primary bg-primary/10 font-semibold',
-                        item.muted && 'text-muted-foreground'
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          'tabular-nums',
-                          item.highlight
-                            ? 'text-primary'
-                            : 'text-muted-foreground'
-                        )}
-                      >
-                        {item.time}
-                      </span>
-
-                      <span>{item.title}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
+          <AgendaDays />
         </div>
       </DmbPageWrapper>
     </div>
