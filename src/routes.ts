@@ -57,6 +57,7 @@ export const publicRoutes = [
   '/mra-reports',
   '/pc',
   '/powercampus',
+  '/powercampus/agenda',
   '/products',
   '/products/artistry-holistic-promo',
   '/products/mra',
