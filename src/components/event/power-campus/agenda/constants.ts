@@ -14,7 +14,7 @@ export type AgendaDay = {
 export const AGENDA_EVENT = {
   title: 'Power Campus Gliwice',
   dates: '23–25 października 2026',
-  location: 'PreZero Arena Gliwice, ul. Akademicka 50',
+  location: 'PreZero Arena Gliwice, ul. Akademicka 50 (wejście B)',
 }
 
 export const AGENDA: AgendaDay[] = [
