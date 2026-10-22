@@ -108,7 +108,7 @@ export const UPCOMING_EVENTS: HomePageEvent[] = [
     dateEnd: '2026-10-25',
     timeStart: '19:00',
     timeEnd: '24:00',
-    location: 'PreZero Arena Gliwice, Gliwice, ul. Akademicka 50',
+    location: 'PreZero Arena Gliwice, Gliwice, ul. Akademicka 50 (wejście B)',
     agendaHref: '/powercampus/agenda',
     // href: '/events/diamond-event/20260615',
     image:
